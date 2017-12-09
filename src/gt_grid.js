@@ -4,7 +4,7 @@ if (!window.Sigma) {
   window.Sigma = {};
 }
 
-SIGMA_GRID_VER = "Sigma-Grid 2.4";
+SIGMA_GRID_VER = "Sigma-Grid 2.4/SigmaVariations";
 
 Sigma.WidgetCache = {};
 
@@ -5218,6 +5218,10 @@ Sigma.$extend(Sigma.Grid, {
     }
   },
 
+  /**
+  *	ツールバーでスキンを変更した時に、スキン情報が変わらない
+  *	ツールバーでスキンを変更した時に、メニュー表示が閉じない
+  **/
   changeSkin: function(grid, skinName) {
     grid = Sigma.$grid(grid);
     var classNames = grid.gridDiv.className.split(" ");
@@ -5229,6 +5233,11 @@ Sigma.$extend(Sigma.Grid, {
     }
     classNames.push(Sigma.Const.Grid.SKIN_CLASSNAME_PREFIX + skinName);
     grid.gridDiv.className = classNames.join(" ");
+	
+	/*171209==>*/
+	grid.skin = skinName;
+	grid.closeGridMenu();
+	/*<==171209*/
   },
 
   createCheckColumn: function(grid, cfg) {

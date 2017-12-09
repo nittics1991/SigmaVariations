@@ -5,6 +5,9 @@ if (!window.Sigma) {
 }
 Sigma.loaded = false;
 
+/**
+*   E11でcustomHeaderを設定するとfrozen列設定ででエラー停止する
+**/
 Sigma.init = function(win) {
   win = win || window;
 
@@ -19,6 +22,10 @@ Sigma.init = function(win) {
   Sigma.isIE8 = ua.indexOf("msie 8") > -1;
   Sigma.isIE9 = ua.indexOf("msie 9") > -1;
 
+  /*171209==>*/
+  Sigma.isIE11 = ua.indexOf("trident") > -1;
+  /*<==171209>*/
+  
   Sigma.isFF = ua.indexOf("firefox") > -1;
   Sigma.isFF1 = ua.indexOf("firefox/1") > -1;
   Sigma.isFF2 = ua.indexOf("firefox/2") > -1;

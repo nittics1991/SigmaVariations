@@ -3,8 +3,17 @@ v0.0.0	17-12-09 nittics1991
 v1.0.0	17-12-09 nittics1991
 	v0.0.0のコピー
 v1.0.1	17-12-09 nittics1991
-	src/*.js
-	prettierでソースを整形
-
-
+	src/*.js 
+		prettierでソースを整形
+v1.0.2	17-12-09 nittics1991
+	src/gt_grid.js
+		SIGMA_GRID_VER変更
+		changeSkin() ツールバーでスキンを変更した時に、スキン情報が変わらない対策
+		changeSkin() ツールバーでスキンを変更した時に、メニュー表示が閉じない対策
+	src/gt_base.js
+		init() E11でcustomHeaderを設定するとfrozen列設定ででエラー停止する対策
+	src/gt_column.js
+		freezeCell() E11でcustomHeaderを設定するとfrozen列設定ででエラー停止する対策
+	
+	
 	

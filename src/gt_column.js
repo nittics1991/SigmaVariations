@@ -355,6 +355,9 @@ Sigma.ColumnDefault = {
     this.group(false);
   },
 
+  /**
+  *   IE11でcustomHeaderを設定するとfrozen列設定ででエラー停止する
+  **/
   freezeCell: function(
     row,
     freezeTable,
@@ -377,6 +380,9 @@ Sigma.ColumnDefault = {
       this.frozenHeadCell = colL;
       this.frozenSortIcon = Sigma.Grid.getSortIcon(this, this.frozenHeadCell);
       this.frozenHdTool = Sigma.Grid.getHdTool(this, this.frozenHeadCell);
+      
+      /*171209==>*/
+      /*
       if (!Sigma.isIE) {
         Sigma.Grid.initColumnEvent(
           grid,
@@ -385,6 +391,18 @@ Sigma.ColumnDefault = {
           this.frozenSortIcon
         );
       }
+      */
+      
+      try {
+          Sigma.Grid.initColumnEvent(
+              grid,
+              this,
+              this.frozenHeadCell,
+              this.frozenSortIcon
+          );
+      } catch(e) {
+      }
+      /*<==171209>*/
     }
   },
 
