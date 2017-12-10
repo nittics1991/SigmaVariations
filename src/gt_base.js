@@ -253,6 +253,9 @@ Sigma.$extend(Sigma, {
     return el.innerText === undefined ? el.textContent : el.innerText;
   },
 
+  /**
+  *	IE9/10でcreateElementの引数に'<div>'と山かっこが使えなくなった
+  **/
   $element: function(el, props) {
     if (Sigma.$type(el, "string")) {
       if (Sigma.isIE && props && (props.name || props.type)) {
@@ -262,8 +265,24 @@ Sigma.$extend(Sigma, {
         delete props.type;
         el = "<" + el + name + type + ">";
       }
-      el = Sigma.doc.createElement(el);
+      
+      
+		  /*171210==>*/
+		  //el = Sigma.doc.createElement(el);
+		  
+			if (el.substr(0,1) == '<') {
+		 	 var pos = el.indexOf(' ');
+			 var element = el.substr(1, pos-1);
+			 var parent = document.createElement(element);
+			 parent.innerHTML=el;
+			 el = parent.firstChild;
+		  } else {
+			el = Sigma.doc.createElement(el);
+		 }
+		 /*<==171210*/
+    
     }
+    
     if (props) {
       if (props.style) {
         Sigma.$extend(el.style, props.style);

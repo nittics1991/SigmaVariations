@@ -14,6 +14,15 @@ v1.0.2	17-12-09 nittics1991
 		init() E11でcustomHeaderを設定するとfrozen列設定ででエラー停止する対策
 	src/gt_column.js
 		freezeCell() E11でcustomHeaderを設定するとfrozen列設定ででエラー停止する対策
-	
-	
+v1.0.3	17-12-10 nittics1991
+	src/gt_grid.js
+		updateFreezeState() frozen列のソートが出来ない. customHeadでソートが出来ない
+		refreshToolBar() ツールバー NO DATA表示しない
+	src/gt_base.js
+		$element() IE9/10でcreateElementの引数に'<div>'と山かっこが使えなくなった
+	src/gt_tool.js
+		$buildNavTools() PAGEボタンポップアップが表示しない
+
+
+
 	

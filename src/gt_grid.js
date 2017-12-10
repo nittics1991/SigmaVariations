@@ -2845,7 +2845,13 @@ Sigma.GridDefault = {
   },
 
   resetFreeze: function(grid) {},
-
+	
+  /**
+  *	IE9以降frozen列のソートが出来ない
+  *	customHeadでソートが出来ない
+  *	注意：customHeadの場合、移動列と固定列でクリックに反応するセルが異なる
+  *		customHeadの移動列イベント設定に改造が必要(initColumnEvent()??)
+  **/
   updateFreezeState: function() {
     if (this.frozenColumnList) {
       var i, colObj;
@@ -2862,6 +2868,81 @@ Sigma.GridDefault = {
         }
       }
     }
+			
+	/*171210==>*/
+	var grid = this;
+	var gtFreezeTable = Sigma.$byId(grid.id + '_headTable_freeze');
+	//var gtFreezeRow = gtFreezeTable.childNodes[0].childNodes[0];
+	var grid = this;
+			
+	for (var x=0; x<gtFreezeTable.childNodes[0].childNodes.length; x++) {
+		var gtFreezeRow = gtFreezeTable.childNodes[0].childNodes[x];
+		
+		for (i=0; i<this.frozenColumnList.length; i++) {
+			colObj= this.columnMap[this.frozenColumnList[i]];
+			var clsName = ("gt-col-" + grid.id + "-" + this.frozenColumnList[i]).toLowerCase();
+			var headCell = null;
+			
+			for (var y=0; y<gtFreezeRow.childNodes.length; y++) {
+				if (gtFreezeRow.childNodes[y].className == clsName) {
+					headCell = gtFreezeRow.childNodes[y];
+					break;
+				}
+			}
+		
+			if (headCell == null) {
+				continue;
+			}
+					
+			Sigma.U.addEvent(headCell,"mousedown",function(event){
+				grid.activeMe();
+				if (grid.endEdit()===false){
+					return;
+				}
+				grid.closeGridMenu();
+				if (!grid.customHead ){
+					Sigma.U.stopEvent(event);
+					Sigma.Grid.startColumnMove(event,colObj);
+				}
+			} );
+					
+			//oncontextmenu
+			Sigma.U.addEvent(headCell,'click',function(event){
+				colObj = arguments[1];
+				
+				// Sigma.U.stopEvent(event);
+				var et =Sigma.U.getEventTarget(event);
+				if ( !grid.isColumnResizing ){
+					Sigma.$invoke(grid,'onHeadClick',[event,headCell,colObj,grid]);
+	
+					if (  Sigma.U.getTagName(et)=='INPUT' && et.type=='checkbox' && Sigma.U.hasClass(et,'gt-f-totalcheck')  ){
+						Sigma.checkTotalBox(et,grid,colObj);
+					}else if (colObj.sortable && et.className!='gt-hd-button' )	{
+						grid.lastAction='sort';
+						grid.sorting=true;
+						var sortOrder = colObj.sortOrder=='asc'?'desc': (colObj.sortOrder=='desc'&& colObj.enableDefaultSort ?'defaultsort':'asc');
+						var si=grid.createSortInfo(colObj);si.sortOrder=sortOrder;
+						grid.addSortInfo(si);
+						//grid.showWaiting();
+						//todo : 
+						//Sigma.$thread(function(){
+							grid.sortGrid( );
+						//} );
+
+					}
+				}
+				
+				if ( Sigma.isOpera ){
+					grid.isColumnResizing=false;
+				}
+			}, null , colObj);
+			
+			if (!colObj.sortable && !colObj.resizable && colObj.hdTool){
+				colObj.hdTool.style.display="none";
+			}
+		}
+	}	//END rows loop
+	/*<==171210*/
   },
 
   /* todo */
@@ -3222,6 +3303,9 @@ Sigma.GridDefault = {
     //this.refreshToolBar();
   },
 
+  /**
+  *	ツールバー NO DATA表示しない
+  **/
   refreshToolBar: function(pageInfo, doCount) {
     pageInfo && this.setPageInfo(pageInfo);
     if (this.over_initToolbar) {
@@ -3232,7 +3316,13 @@ Sigma.GridDefault = {
         pageInfo = this.getPageInfo();
         //this.pageStateBar.innerHTML="";
         Sigma.U.removeNode(this.pageStateBar.firstChild);
-        if (pageInfo.endRowNum - pageInfo.startRowNum < 1) {
+        
+				/*171210==>*/
+				
+        //if (pageInfo.endRowNum - pageInfo.startRowNum < 1) {
+				if ((pageInfo.endRowNum < 1) || (pageInfo.startRowNum < 1)) {
+				/*<==171210*/
+        
           this.pageStateBar.innerHTML =
             "<div>" + this.getMsg("NO_DATA") + "</div>";
         } else {

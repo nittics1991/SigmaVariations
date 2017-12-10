@@ -42,6 +42,9 @@ Sigma.Navigator = Sigma.$class({
     this.pageInput = null;
   },
 
+	/**
+	*	PAGEボタンポップアップが表示しない
+	**/
   buildNavTools: function() {
     var grid = Sigma.$grid(this.gridId);
 
@@ -50,6 +53,11 @@ Sigma.Navigator = Sigma.$class({
       cls: "gt-first-page",
       onclick: this.gotoFirstPage,
       onclickArgs: [this]
+      
+			/*171210==>*/
+			, text:grid.getMsg('TOOL_PAGE_FIRST')
+			/*<==171210*/
+      
     });
 
     this.prevPageButton = new Sigma.Button({
@@ -57,6 +65,11 @@ Sigma.Navigator = Sigma.$class({
       cls: "gt-prev-page",
       onclick: this.gotoPrevPage,
       onclickArgs: [this]
+      
+			/*171210==>*/
+			, text:grid.getMsg('TOOL_PAGE_PREV')
+			/*<==171210*/
+      
     });
 
     this.nextPageButton = new Sigma.Button({
@@ -64,6 +77,11 @@ Sigma.Navigator = Sigma.$class({
       cls: "gt-next-page",
       onclick: this.gotoNextPage,
       onclickArgs: [this]
+      
+			/*171210==>*/
+			, text:grid.getMsg('TOOL_PAGE_NEXT')
+			/*<==171210*/
+      
     });
 
     this.lastPageButton = new Sigma.Button({
@@ -71,6 +89,11 @@ Sigma.Navigator = Sigma.$class({
       cls: "gt-last-page",
       onclick: this.gotoLastPage,
       onclickArgs: [this]
+      
+			/*171210==>*/
+			, text:grid.getMsg('TOOL_PAGE_LAST')
+			/*<==171210*/
+      
     });
 
     /*

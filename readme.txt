@@ -1,3 +1,19 @@
+SigmaVariations
+
+sigmawidgets/Sigma-grid-AJAX-grid-for-php-java---.net(以下SigmaGrid)は、従来、EXCEL表のような操作を実現するライブラリとして活躍していました。
+バージョン2.4を最後に開発が終了し、現在ではsigmawidgetsのホームページも閉じてしまったようです。
+
+システムを新規開発するならば、現在では別に良いライブラリが存在します。
+しかし、お金や時間などの関係から、SigmaGridを使用したシステムは残っています。
+そこで、これまでにプライベートの世界で行なわれてきたプログラム変更の集約と、さらなる改造を行う、SigmaGrid変奏曲(SigmaVariations)の開発を行います。
+
+なお、プログラム開発を学習しながらの作業なので、出来栄えは良くありません。
+どなたかもっと良いフォークプロジェクトを立ち上げてください。
+
+
+以下は開発元のreadme.txtです。
+--------------------------------------------------------------------------------
+
 1. Introduction
 This is a Sigma Grid 2.4 version(internal 2.4.13) and allowed to use under LGPL or you need to buy commercial license for better support or other purpose.  
 Written in pure javascript, Sigma Grid is an Ajax data grid for displaying and inline editing data in a scrollable and sortable table. With MVC architecture, plenty of attributes and powerful script API, this grid control brings developer more flexibilities and less workload.
