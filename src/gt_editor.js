@@ -152,7 +152,7 @@ Sigma.EditorDefault = {
       if (Sigma.$type(rule, "array") && rule.length > 0) {
 		
 		
-		/*1712==>*/
+		/*v110==>*/
 		
 		
         //rule = rule[0];
@@ -162,7 +162,7 @@ Sigma.EditorDefault = {
         validParameter = validParameter.concat(tmpRule);
 		
 		
-		/*<==1712*/
+		/*<==v110*/
 		
 		
       }

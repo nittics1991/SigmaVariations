@@ -267,7 +267,7 @@ Sigma.$extend(Sigma, {
       }
       
       
-		  /*171210==>*/
+		  /*v103==>*/
 		  //el = Sigma.doc.createElement(el);
 		  
 			if (el.substr(0,1) == '<') {
@@ -279,7 +279,7 @@ Sigma.$extend(Sigma, {
 		  } else {
 			el = Sigma.doc.createElement(el);
 		 }
-		 /*<==171210*/
+		 /*<==v103*/
     
     }
     

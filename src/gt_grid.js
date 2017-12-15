@@ -804,13 +804,13 @@ Sigma.GridDefault = {
       onRowCheck: Sigma.$empty,
 	  
 	  
-	  /*==>1712*/
+	  /*==>v110*/
 	  /**
        * @description {Event} beforeRender(grid)
        * @param {Object} grid Grid object.
 	  */
       beforeRender: Sigma.$empty,
-	  /*<==1712*/
+	  /*<==v110*/
 	  
 	  
       ////////////////////////////////////
@@ -888,9 +888,9 @@ Sigma.GridDefault = {
       parameters: {}
 	  
 	  
-	  /*1712==>*/
+	  /*v110==>*/
 	  , mouseOvered:false
-	  /*<==1712*/
+	  /*<==v110*/
 	  
     };
   },
@@ -1634,11 +1634,11 @@ Sigma.GridDefault = {
         case Sigma.Const.Key.LEFT:
         case Sigma.Const.Key.TAB:
 		  
-		  /*1712==>*/
+		  /*v110==>*/
 		  if (!grid.mouseOvered) {
 			return;
 		  }
-		  /*<==1712*/
+		  /*<==v110*/
 		  
 		  
           if (kcode == Sigma.Const.Key.LEFT || event.shiftKey) {
@@ -1674,7 +1674,7 @@ Sigma.GridDefault = {
           break;
 		
 		
-		/*1712==>*/
+		/*v110==>*/
 		
 	    //ctrl+A
 		case 65:
@@ -1742,7 +1742,7 @@ Sigma.GridDefault = {
 		  event.preventDefault();
 		  break;
 		
-		/*<==1712*/
+		/*<==v110*/
 		
       }
 
@@ -2275,7 +2275,7 @@ Sigma.GridDefault = {
     Sigma.U.addEvent(grid.freezeHeadTable, "mousemove", overHdCell);
 	
 	
-	/*1712==>*/
+	/*v110==>*/
     Sigma.U.addEvent(grid.gridDiv, "mouseenter", function(event) {
 		grid.mouseOvered = true;
     });
@@ -2283,7 +2283,7 @@ Sigma.GridDefault = {
     Sigma.U.addEvent(grid.gridDiv, "mouseleave", function(event) {
 		grid.mouseOvered = false;
     });
-	/*<==1712*/
+	/*<==v110*/
 	
 	
   },
@@ -2301,10 +2301,10 @@ Sigma.GridDefault = {
    * @param {String} message.
    */
    
-	/*1712==>*/
+	/*v110==>*/
   //showCellToolTip: function(cell, width) {
   showCellToolTip: function(cell, width, message) {
-	/*<==1712*/
+	/*<==v110*/
 	  
     if (!this.toolTipDiv) {
       this.toolTipDiv = Sigma.$e("div", {
@@ -2313,14 +2313,14 @@ Sigma.GridDefault = {
       this.toolTipDiv.style.display = "none";
     }
 	
-	/*1712==>*/
+	/*v110==>*/
     //this.toolTipDiv.innerHTML = Sigma.$getText(cell);
 	if (message != null) {
 		this.toolTipDiv.innerHTML=message;
 	} else {
 		this.toolTipDiv.innerHTML=Sigma.$getText(cell);
 	}
-	/*<==1712*/
+	/*<==v110*/
 	
     this.gridDiv.appendChild(this.toolTipDiv);
 
@@ -2341,7 +2341,7 @@ Sigma.GridDefault = {
     width && (this.toolTipDiv.style.width = width + "px");
 	
 	
-	/*1712==>*/
+	/*v110==>*/
 	var w = window.innerWidth || document.documentElement.clientWidth;
 	var h = window.innerHeight || document.documentElement.clientHeight;
 	
@@ -2354,7 +2354,7 @@ Sigma.GridDefault = {
 	if (tt + cell.offsetHeight > h) {
 		this.toolTipDiv.style.top = tt - cell.offsetHeight + "px";
 	}
-	/*<==1712*/
+	/*<==v110*/
 	
     this.toolTipDiv.style.display = "block";
   },
@@ -3025,7 +3025,7 @@ Sigma.GridDefault = {
       }
     }
 			
-	/*171210==>*/
+	/*v103==>*/
 	var grid = this;
 	var gtFreezeTable = Sigma.$byId(grid.id + '_headTable_freeze');
 	//var gtFreezeRow = gtFreezeTable.childNodes[0].childNodes[0];
@@ -3098,7 +3098,7 @@ Sigma.GridDefault = {
 			}
 		}
 	}	//END rows loop
-	/*<==171210*/
+	/*<==v103*/
   },
 
   /* todo */
@@ -3411,7 +3411,7 @@ Sigma.GridDefault = {
       });
 		
 		
-		/*1712==>*/
+		/*v110==>*/
 		} else if (this.resizable && this.toolBarBox){
 			this.resizeButton=Sigma.$e("div",{ id:this.id +"_resizeButton",className:"gt-tool-resize", innerHTML:'&#160;'
 				});
@@ -3423,7 +3423,7 @@ Sigma.GridDefault = {
 			this.gridDiv.appendChild(stateBar);
 			var grid=this;
 			Sigma.U.addEvent(this.resizeButton,"mousedown",function(event){ Sigma.Grid.startGridResize(event,grid); } ) ;
-		/*<==1712*/
+		/*<==v110*/
 		
 		
     }
@@ -3494,11 +3494,11 @@ Sigma.GridDefault = {
         //this.pageStateBar.innerHTML="";
         Sigma.U.removeNode(this.pageStateBar.firstChild);
         
-				/*171210==>*/
+				/*v103==>*/
 				
         //if (pageInfo.endRowNum - pageInfo.startRowNum < 1) {
 				if ((pageInfo.endRowNum < 1) || (pageInfo.startRowNum < 1)) {
-				/*<==171210*/
+				/*<==v103*/
         
           this.pageStateBar.innerHTML =
             "<div>" + this.getMsg("NO_DATA") + "</div>";
@@ -4585,9 +4585,9 @@ Sigma.GridDefault = {
       container = Sigma.getDom(container);
       this.container = container || this.container;
 	  
-	  /*1712==>*/
+	  /*v110==>*/
 	  Sigma.$invoke(this,'beforeRender', [this]);
-	  /*<==1712*/
+	  /*<==v110*/
 	  
       this.initColumns();
       this.initCSS();
@@ -5209,6 +5209,50 @@ Sigma.GridDefault = {
       }
     }
   }
+  
+  /*v120==>*/
+  /**
+  *	チェックボックスがチェックされたレコードの取得
+  *
+  *	@param int カラムID
+  *	@return array レコード
+  **/
+  , getCheckedRecords:function(columnId) {
+	var grid = this;
+	var name = 'gt_' + grid.id + '_chk_' + columnId;
+	
+	var checkbox = document.getElementsByClassName('gt-f-check');
+	var sortRowNo;
+	var records = [];
+	for (var i=0; i<checkbox.length; i++) {
+		if (checkbox[i].name.indexOf(name) > -1) {
+			if (checkbox[i].checked) {
+				sortRowNo = checkbox[i].value;
+				records.push(grid.dataset.data[sortRowNo]);
+			}
+		}
+	}
+	return records;
+  }
+  
+  /**
+  *	セルに編集マークを付加
+  *
+  *	@param int 行インデックス
+  *	@param string カラムID
+  **/
+  , setEditMark:function(rowIndex, colId) {
+	var grid = this;
+	var cell = grid.getCell(rowIndex, colId);
+	
+	if (cell != null) {
+		Sigma.U.addClass(cell, 'gt-cell-updated');
+	}
+	grid.syncTwinRowCell(null,cell);
+  }
+  /*<==v102*/
+  
+  
 };
 
 Sigma.Grid = Sigma.$class(Sigma.GridDefault);
@@ -5578,7 +5622,7 @@ Sigma.$extend(Sigma.Grid, {
         : "";
 		
 		
-		/*1712==>*/
+		/*v110==>*/
       // return (
         // '<input type="' +
         // checkType +
@@ -5602,7 +5646,7 @@ Sigma.$extend(Sigma.Grid, {
 		rowNo +
         '" />'
       );
-	  /*<==1712*/
+	  /*<==v110*/
 	  
     };
     return cfg;
@@ -5682,7 +5726,7 @@ Sigma.$extend(Sigma.Grid, {
 		  
 		  
 		  
-		  /*1712==>*/
+		  /*v110==>*/
           //grid.sortGrid();
 			grid.sorted = grid.sorted || 0;
 				switch (grid.sorted) {
@@ -5711,7 +5755,7 @@ Sigma.$extend(Sigma.Grid, {
 						grid.sorted = 1;
 						break
 				}
-		  /*<==1712*/
+		  /*<==v110*/
 		  
 		  
         }
@@ -5796,11 +5840,11 @@ Sigma.checkOneBox = function(chkbox, grid, chk) {
   }
     
 	
-    /*1712==>*/
+    /*v110==>*/
     if (chk === undefined) {
         chk = chkbox.checked;
     }
-    /*<==1712*/
+    /*<==v110*/
     
 
   var cell = Sigma.U.getParentByTagName("td", chkbox);
@@ -5809,11 +5853,11 @@ Sigma.checkOneBox = function(chkbox, grid, chk) {
   if (chk === true || chk === false) {
 	  
 	  
-    /*1712==>*/
+    /*v110==>*/
     // if (Sigma.$invoke(this, "onRowCheck", [mrow, chk, grid]) === false) {
     if (Sigma.$invoke(grid, "onRowCheck", [mrow, chk, grid]) === false) {
 	
-    /*<==1712*/
+    /*<==v110*/
 	
       return !!chkbox.checked;
     }

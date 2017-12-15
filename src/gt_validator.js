@@ -3,10 +3,10 @@
 Sigma.Validator = {
   hasDepend: /^datetime|^date|^time|^minlength|^maxlength|^DT|^D|^T|^MINL|^MAXL/,
   
-  /*1712==>*/
+  /*v110==>*/
   //hasArgument: /^equals|^lessthen|^EQ|^LT/,
   hasArgument: /^equals|^lessthen|^greatethen|^less|^greater|^EQ|^LT|^GT|^L|^G/,
-  /*<==1712*/
+  /*<==v110*/
 
   
   DATE_FORMAT: "yyyy-MM-dd",
@@ -30,10 +30,10 @@ Sigma.Validator = {
     LT: "lessthen",
     GT: "greatethen",
 	
-	/*1712==>*/
+	/*v110==>*/
 	L:"less",
 	G:"greater",
-	/*<==1712*/
+	/*<==v110*/
 	
     U: "url",
     ENC: "enchar",
@@ -57,7 +57,7 @@ Sigma.Validator = {
     return Sigma.Validator[rule];
   },
   getMessage: function(msgKey) {
-      /*1712==>*/
+      /*v110==>*/
 	/*
     var msg = Sigma.Msg.Validator["default"][msgKey];
     if (!msg) {
@@ -109,7 +109,7 @@ Sigma.Validator = {
       var rex = RegExp("#\\{" + i + "\\}");
 	  msg = msg.replace(rex, param);
     }
-	/*<==1712*/
+	/*<==v110*/
 	
     return msg;
   },
@@ -314,7 +314,7 @@ Sigma.Validator = {
     return value >= min && value <= max;
   },
 
-  /*1712==>*/
+  /*v110==>*/
   
   // equals: function(value, values2) {
     // values2 = [].concat(values2);
@@ -361,7 +361,7 @@ Sigma.Validator = {
   },
   
   
-  /*<==1712*/
+  /*<==v110*/
   
   
   minlength: function(value, lt) {

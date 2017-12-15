@@ -47,5 +47,13 @@ v1.1.0 17-12-16
 	src/gt_editor.js
 		defaultValidator() validRuleプロパティが2文字以上(例:validRule:["GT"])が動かない対策
 		defaultValidator() validRuleプロパティで引数がある(例:validRule:["R",[GT,12]])処理が動かない対策
+v1.2.0 17-1-16
+	src/gt_grid.js
+		getCheckedRecords() 新規追加 チェックボックスがチェックされたレコードの取得
+		setEditMark() 新規追加 セルに編集マークを付加
+
+
+
+
 	
 	

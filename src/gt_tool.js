@@ -54,9 +54,9 @@ Sigma.Navigator = Sigma.$class({
       onclick: this.gotoFirstPage,
       onclickArgs: [this]
       
-			/*171210==>*/
+			/*v103==>*/
 			, text:grid.getMsg('TOOL_PAGE_FIRST')
-			/*<==171210*/
+			/*<==v103*/
       
     });
 
@@ -66,9 +66,9 @@ Sigma.Navigator = Sigma.$class({
       onclick: this.gotoPrevPage,
       onclickArgs: [this]
       
-			/*171210==>*/
+			/*v103==>*/
 			, text:grid.getMsg('TOOL_PAGE_PREV')
-			/*<==171210*/
+			/*<==v103*/
       
     });
 
@@ -78,9 +78,9 @@ Sigma.Navigator = Sigma.$class({
       onclick: this.gotoNextPage,
       onclickArgs: [this]
       
-			/*171210==>*/
+			/*v103==>*/
 			, text:grid.getMsg('TOOL_PAGE_NEXT')
-			/*<==171210*/
+			/*<==v103*/
       
     });
 
@@ -90,9 +90,9 @@ Sigma.Navigator = Sigma.$class({
       onclick: this.gotoLastPage,
       onclickArgs: [this]
       
-			/*171210==>*/
+			/*v103==>*/
 			, text:grid.getMsg('TOOL_PAGE_LAST')
-			/*<==171210*/
+			/*<==v103*/
       
     });
 
