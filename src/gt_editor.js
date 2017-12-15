@@ -137,6 +137,11 @@ Sigma.EditorDefault = {
     return value === undefined ? this.getValue() : value;
   },
 
+  
+  /**
+  *	validRuleプロパティが2文字以上(例:validRule:["GT"])が動かない対策
+  *	validRuleプロパティで引数がある(例:validRule:["R",[GT,12]])処理が動かない対策
+  **/
   defaultValidator: function(value, record, colObj, grid, editor) {
     var errMsg = [];
     var validRule = [].concat(editor.validRule);
@@ -145,8 +150,21 @@ Sigma.EditorDefault = {
       var rule = validRule[i];
       var validParameter = [value];
       if (Sigma.$type(rule, "array") && rule.length > 0) {
-        rule = rule[0];
-        validParameter = validParameter.concat(rule.slice(1));
+		
+		
+		/*1712==>*/
+		
+		
+        //rule = rule[0];
+        //validParameter = validParameter.concat(rule.slice(1));
+		tmpRule = [].concat(rule);
+		rule = tmpRule.shift();
+        validParameter = validParameter.concat(tmpRule);
+		
+		
+		/*<==1712*/
+		
+		
       }
 
       var vat = Sigma.Validator.getValidator(rule);

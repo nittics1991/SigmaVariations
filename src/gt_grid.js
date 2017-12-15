@@ -802,7 +802,17 @@ Sigma.GridDefault = {
        * @param {Object} grid Grid object.
        */
       onRowCheck: Sigma.$empty,
-
+	  
+	  
+	  /*==>1712*/
+	  /**
+       * @description {Event} beforeRender(grid)
+       * @param {Object} grid Grid object.
+	  */
+      beforeRender: Sigma.$empty,
+	  /*<==1712*/
+	  
+	  
       ////////////////////////////////////
 
       editing: false,
@@ -876,6 +886,12 @@ Sigma.GridDefault = {
 
       queryParameters: {},
       parameters: {}
+	  
+	  
+	  /*1712==>*/
+	  , mouseOvered:false
+	  /*<==1712*/
+	  
     };
   },
 
@@ -1562,6 +1578,13 @@ Sigma.GridDefault = {
     return newCell;
   },
 
+  
+/**
+*	マウスオーバー時のみTAB移動許可(grid以外のTAG移動ができない対策)
+*	Ctrl+Aで全データ選択
+*	Ctrl+Cでセルデータクリップボードコピー
+*	Ctrl+Cで行データクリップボードコピー
+**/
   _onKeydown: function(event) {
     var oldCell = this.activeCell;
     var newCell = null;
@@ -1610,6 +1633,14 @@ Sigma.GridDefault = {
       switch (kcode) {
         case Sigma.Const.Key.LEFT:
         case Sigma.Const.Key.TAB:
+		  
+		  /*1712==>*/
+		  if (!grid.mouseOvered) {
+			return;
+		  }
+		  /*<==1712*/
+		  
+		  
           if (kcode == Sigma.Const.Key.LEFT || event.shiftKey) {
             newCell = this._prveEditableCell(oldCell);
             while (this.isGroupRow(newCell)) {
@@ -1641,6 +1672,78 @@ Sigma.GridDefault = {
             newCell = newCell.cells[Sigma.U.getCellIndex(oldCell)];
           }
           break;
+		
+		
+		/*1712==>*/
+		
+	    //ctrl+A
+		case 65:
+		  if (!grid.mouseOvered) {
+			return;
+		  }
+							
+		  if (event.ctrlKey) {
+			grid.forEachRow(function(row, record, counter, grid) {
+				grid.selectRow(row, true);
+			});
+			event.preventDefault();
+		  }
+		  break;
+		
+	    //ctrl+C ctrl+shift+C
+		case 67:
+		  if (!grid.mouseOvered) {
+			return;
+		  }
+		  
+		  if (event.ctrlKey && event.shiftKey) {
+			var str = "";
+			var tmp = "";
+			var obj;
+			
+			var records =  grid.getSelectedRecords() || [];
+			if (Sigma.$type(records[0], 'object')) {
+				str += Object.keys(records[0]).filter(function(val) {
+						return !(val.indexOf("_") == 0)
+					})
+					.join(",");
+				str += "\n";
+			}
+			
+			for (var i=0; i<records.length; i++) {
+				tmp = "";
+				
+				if (Sigma.$type(records[i], 'object')) {
+					for (var x in records[i]) {
+						if (x.indexOf('_') != 0) {
+							obj = records[i];
+							tmp += ',' + obj[x];
+						}
+					}
+				} else {
+					for (var j=0; j<records[i].length; j++) {
+						tmp += ',' + records[i][j];
+					}
+				}
+				tmp += "\n";
+				str += tmp.substr(1);
+			}
+		  } else if (event.ctrlKey) {
+			  str = grid.activeValue;
+		  }
+		  
+		  if (str) {
+			try {
+				clipboardData.setData("text", str);
+			} catch (e) {
+				event.clipboardData.setData('text/plain', str); 
+		    }
+		  }
+		  event.preventDefault();
+		  break;
+		
+		/*<==1712*/
+		
       }
 
       if (newCell) {
@@ -2116,6 +2219,12 @@ Sigma.GridDefault = {
     });
   },
 
+  
+  
+/**
+*	gridのmouse hover状態の記憶
+*
+**/
   initMainEvent: function() {
     var grid = this;
 
@@ -2150,9 +2259,7 @@ Sigma.GridDefault = {
     grid.bindEvent(grid.bodyDiv, "mousemove");
     grid.bindEvent(grid.freezeBodyDiv, "mousemove");
 
-    // todo : when mouseout ... ?
     function overHdCell(event) {
-      //Sigma.U.stopEvent(event);
       event = event || window.event;
       var cell = Sigma.U.getParentByTagName("td", null, event);
       if (cell) {
@@ -2166,23 +2273,55 @@ Sigma.GridDefault = {
 
     Sigma.U.addEvent(grid.headTable, "mousemove", overHdCell);
     Sigma.U.addEvent(grid.freezeHeadTable, "mousemove", overHdCell);
+	
+	
+	/*1712==>*/
+    Sigma.U.addEvent(grid.gridDiv, "mouseenter", function(event) {
+		grid.mouseOvered = true;
+    });
+			
+    Sigma.U.addEvent(grid.gridDiv, "mouseleave", function(event) {
+		grid.mouseOvered = false;
+    });
+	/*<==1712*/
+	
+	
   },
 
+  
+  
+	/**
+	*	ツールチップにmessage文を表示
+	**/
   /***
    * @description {Method} showCellToolTip
    * To show tool tip for cell.
    * @param {Object} cell On which cell tip will show.
    * @param {Object} width Tip balloon width.
+   * @param {String} message.
    */
-
-  showCellToolTip: function(cell, width) {
+   
+	/*1712==>*/
+  //showCellToolTip: function(cell, width) {
+  showCellToolTip: function(cell, width, message) {
+	/*<==1712*/
+	  
     if (!this.toolTipDiv) {
       this.toolTipDiv = Sigma.$e("div", {
         className: "gt-cell-tooltip gt-breakline"
       });
       this.toolTipDiv.style.display = "none";
     }
-    this.toolTipDiv.innerHTML = Sigma.$getText(cell);
+	
+	/*1712==>*/
+    //this.toolTipDiv.innerHTML = Sigma.$getText(cell);
+	if (message != null) {
+		this.toolTipDiv.innerHTML=message;
+	} else {
+		this.toolTipDiv.innerHTML=Sigma.$getText(cell);
+	}
+	/*<==1712*/
+	
     this.gridDiv.appendChild(this.toolTipDiv);
 
     this.toolTipDiv.style.left =
@@ -2200,6 +2339,23 @@ Sigma.GridDefault = {
       (Sigma.isFF ? 1 : 0) +
       "px";
     width && (this.toolTipDiv.style.width = width + "px");
+	
+	
+	/*1712==>*/
+	var w = window.innerWidth || document.documentElement.clientWidth;
+	var h = window.innerHeight || document.documentElement.clientHeight;
+	
+	var tl = parseInt(this.toolTipDiv.style.left.substr(0, this.toolTipDiv.style.left.length -2));
+	if (tl + width > w) {
+		this.toolTipDiv.style.left = tl - width + "px";
+	}
+	
+	var tt = parseInt(this.toolTipDiv.style.top.substr(0, this.toolTipDiv.style.top.length -2));
+	if (tt + cell.offsetHeight > h) {
+		this.toolTipDiv.style.top = tt - cell.offsetHeight + "px";
+	}
+	/*<==1712*/
+	
     this.toolTipDiv.style.display = "block";
   },
 
@@ -2869,7 +3025,7 @@ Sigma.GridDefault = {
       }
     }
 			
-	/*v103==>*/
+	/*171210==>*/
 	var grid = this;
 	var gtFreezeTable = Sigma.$byId(grid.id + '_headTable_freeze');
 	//var gtFreezeRow = gtFreezeTable.childNodes[0].childNodes[0];
@@ -2942,7 +3098,7 @@ Sigma.GridDefault = {
 			}
 		}
 	}	//END rows loop
-	/*<==v103*/
+	/*<==171210*/
   },
 
   /* todo */
@@ -3232,6 +3388,10 @@ Sigma.GridDefault = {
     /* sync other gt-grid */
   },
 
+  
+/**
+*	toolbarpos=topでもgridのresize対応
+**/
   initToolbar: function() {
     if (
       this.resizable &&
@@ -3249,6 +3409,23 @@ Sigma.GridDefault = {
       Sigma.U.addEvent(this.resizeButton, "mousedown", function(event) {
         Sigma.Grid.startGridResize(event, grid);
       });
+		
+		
+		/*1712==>*/
+		} else if (this.resizable && this.toolBarBox){
+			this.resizeButton=Sigma.$e("div",{ id:this.id +"_resizeButton",className:"gt-tool-resize", innerHTML:'&#160;'
+				});
+			this.resizeButton.setAttribute('unselectable','on');
+			
+			var stateBar = this.toolBarBox.cloneNode(false);
+			stateBar.style.height = "4px";
+			stateBar.appendChild(this.resizeButton);
+			this.gridDiv.appendChild(stateBar);
+			var grid=this;
+			Sigma.U.addEvent(this.resizeButton,"mousedown",function(event){ Sigma.Grid.startGridResize(event,grid); } ) ;
+		/*<==1712*/
+		
+		
     }
 
     this.createGridMenu();
@@ -3317,11 +3494,11 @@ Sigma.GridDefault = {
         //this.pageStateBar.innerHTML="";
         Sigma.U.removeNode(this.pageStateBar.firstChild);
         
-				/*v103==>*/
+				/*171210==>*/
 				
         //if (pageInfo.endRowNum - pageInfo.startRowNum < 1) {
 				if ((pageInfo.endRowNum < 1) || (pageInfo.startRowNum < 1)) {
-				/*<==v103*/
+				/*<==171210*/
         
           this.pageStateBar.innerHTML =
             "<div>" + this.getMsg("NO_DATA") + "</div>";
@@ -4407,6 +4584,11 @@ Sigma.GridDefault = {
     if (!this.rendered) {
       container = Sigma.getDom(container);
       this.container = container || this.container;
+	  
+	  /*1712==>*/
+	  Sigma.$invoke(this,'beforeRender', [this]);
+	  /*<==1712*/
+	  
       this.initColumns();
       this.initCSS();
       this.createMain();
@@ -5324,12 +5506,16 @@ Sigma.$extend(Sigma.Grid, {
     classNames.push(Sigma.Const.Grid.SKIN_CLASSNAME_PREFIX + skinName);
     grid.gridDiv.className = classNames.join(" ");
 	
-	/*v102==>*/
+	/*171209==>*/
 	grid.skin = skinName;
 	grid.closeGridMenu();
-	/*<==v102*/
+	/*<==171209*/
   },
 
+  
+/**
+*	チェックボックスのname属性を行毎別々に
+**/
   createCheckColumn: function(grid, cfg) {
     var id = cfg.id;
     grid = Sigma.$grid(grid);
@@ -5340,14 +5526,10 @@ Sigma.$extend(Sigma.Grid, {
 
     if (!checkValue) {
       checkValue = Sigma.$chk(cfg.fieldIndex)
-        ? // checkValue/cfg.fieldIndex bug ??
-          //'grid.getColumnValue("'+checkValue+'",record);'
-          //'grid.getColumnValue("'+cfg.fieldIndex+'",record);'
-          'record["' + cfg.fieldIndex + '"];'
+        ?    'record["' + cfg.fieldIndex + '"];'
         : "grid.getUniqueField(record);";
     }
     if (typeof checkValue == "string") {
-      //
       checkValue = new Function(
         "value",
         "record",
@@ -5361,7 +5543,6 @@ Sigma.$extend(Sigma.Grid, {
 
     if (!checkValid) {
       checkValid = function(cvalue, value, record, colObj, _g, colNo, rowNo) {
-        //return record.isChecked;
         return _g.checkedRows[cvalue];
       };
     }
@@ -5395,6 +5576,20 @@ Sigma.$extend(Sigma.Grid, {
       )
         ? 'checked="checked"'
         : "";
+		
+		
+		/*1712==>*/
+      // return (
+        // '<input type="' +
+        // checkType +
+        // '" class="gt-f-check" value="' +
+        // cvalue +
+        // '" ' +
+        // checkFlag +
+        // ' name="' +
+        // checkBoxName +
+        // '" />'
+      // );
       return (
         '<input type="' +
         checkType +
@@ -5404,8 +5599,11 @@ Sigma.$extend(Sigma.Grid, {
         checkFlag +
         ' name="' +
         checkBoxName +
+		rowNo +
         '" />'
       );
+	  /*<==1712*/
+	  
     };
     return cfg;
   }
@@ -5421,6 +5619,13 @@ Sigma.$extend(Sigma.Grid, {
       grid.render();
     };
   },
+  
+  
+  /**
+*	ソートを昇順・降順・戻すの３段階化
+*		カラムをグループ化すると、グループ列のみ有効
+*			注意：他の列をソートすると上手く切り替えない
+**/
   initColumnEvent: function(grid, colObj, headCell, sortIcon) {
     headCell = headCell || colObj.headCell;
     if (!headCell) {
@@ -5451,10 +5656,7 @@ Sigma.$extend(Sigma.Grid, {
       }
     });
 
-    //oncontextmenu
-
     Sigma.U.addEvent(headCell, "click", function(event) {
-      // Sigma.U.stopEvent(event);
       var et = Sigma.U.getEventTarget(event);
       if (!grid.isColumnResizing) {
         Sigma.$invoke(grid, "onHeadClick", [event, headCell, colObj, grid]);
@@ -5477,11 +5679,41 @@ Sigma.$extend(Sigma.Grid, {
           var si = grid.createSortInfo(colObj);
           si.sortOrder = sortOrder;
           grid.addSortInfo(si);
-          //grid.showWaiting();
-          //todo :
-          //Sigma.$thread(function(){
-          grid.sortGrid();
-          //} );
+		  
+		  
+		  
+		  /*1712==>*/
+          //grid.sortGrid();
+			grid.sorted = grid.sorted || 0;
+				switch (grid.sorted) {
+					case 2:
+						grid.dataset.resetDataProxy();
+						grid.sorting=false;
+						grid.refreshGrid();
+						grid.sorted = 0;
+						
+						var sicons = document.getElementsByClassName("gt-hd-desc") || [];
+						for (var i=0; i<sicons.length; i++) {
+							var ar = sicons[i].className.split(' ') || [];
+							var index = ar.indexOf("gt-hd-desc");
+							if(index >= 0){
+								ar.splice(index, 1);
+								sicons[i].className = ar.join(' ');
+							}
+						}
+						break;
+					case 1:
+						grid.sortGrid( );
+						grid.sorted = 2;
+						break
+					default:
+						grid.sortGrid( );
+						grid.sorted = 1;
+						break
+				}
+		  /*<==1712*/
+		  
+		  
         }
       }
       if (Sigma.isOpera) {

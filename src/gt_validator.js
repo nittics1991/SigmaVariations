@@ -2,8 +2,13 @@
 
 Sigma.Validator = {
   hasDepend: /^datetime|^date|^time|^minlength|^maxlength|^DT|^D|^T|^MINL|^MAXL/,
-  hasArgument: /^equals|^lessthen|^EQ|^LT/,
+  
+  /*1712==>*/
+  //hasArgument: /^equals|^lessthen|^EQ|^LT/,
+  hasArgument: /^equals|^lessthen|^greatethen|^less|^greater|^EQ|^LT|^GT|^L|^G/,
+  /*<==1712*/
 
+  
   DATE_FORMAT: "yyyy-MM-dd",
   TIME_FORMAT: "HH:mm:ss",
   DATETIME_FORMAT: "yyyy-MM-dd HH:mm:ss",
@@ -24,6 +29,12 @@ Sigma.Validator = {
     EQ: "equals",
     LT: "lessthen",
     GT: "greatethen",
+	
+	/*1712==>*/
+	L:"less",
+	G:"greater",
+	/*<==1712*/
+	
     U: "url",
     ENC: "enchar",
     CNC: "cnchar",
@@ -46,14 +57,16 @@ Sigma.Validator = {
     return Sigma.Validator[rule];
   },
   getMessage: function(msgKey) {
+      /*1712==>*/
+	/*
     var msg = Sigma.Msg.Validator["default"][msgKey];
     if (!msg) {
-      msg = Sigma.Msg.Validator["default"][Sigma.Validator.KeyMapping[msgKey]];
+	  msg = Sigma.Msg.Validator["default"][Sigma.Validator.KeyMapping[msgKey]];
     }
     var _format = (
       (Sigma.Validator.KeyMapping[msgKey] || msgKey) + "_FORMAT"
     ).toUpperCase();
-    _format = Sigma.Validator[_format];
+	_format = Sigma.Validator[_format];
 
     var wordNum = (" " + msg).split(/\{[0-9]/).length - 1;
     for (var i = 1; i <= wordNum; i++) {
@@ -73,6 +86,31 @@ Sigma.Validator = {
         }
       }
     }
+	*/
+	
+	var key = (Sigma.$type(msgKey, "array"))? msgKey[0]:msgKey;
+    var msg = Sigma.Msg.Validator["default"][key];
+    if (!msg) {
+	  msg = Sigma.Msg.Validator["default"][Sigma.Validator.KeyMapping[key]];
+    }
+	
+    var _format = (
+      (Sigma.Validator.KeyMapping[key] || key) + "_FORMAT"
+    ).toUpperCase();
+	_format = Sigma.Validator[_format];
+	msg += (_format)? "(" + _format + ")":"";
+	
+	if (!Sigma.$type(msgKey, "array")) {
+		return msg;
+	}
+	
+    for (var i = 1; i <= msgKey.length - 1; i++) {
+      var param = msgKey[i];
+      var rex = RegExp("#\\{" + i + "\\}");
+	  msg = msg.replace(rex, param);
+    }
+	/*<==1712*/
+	
     return msg;
   },
 
@@ -276,34 +314,56 @@ Sigma.Validator = {
     return value >= min && value <= max;
   },
 
+  /*1712==>*/
+  
+  // equals: function(value, values2) {
+    // values2 = [].concat(values2);
+    // for (var i = 0; i < values2.length; i++) {
+      // if (value == values2) {
+        // return true;
+      // }
+    // }
+    // return false;
+  // },
+  // lessthen: function(value, values2) {
+    // values2 = [].concat(values2);
+    // for (var i = 0; i < values2.length; i++) {
+      // if (value <= values2) {
+        // return true;
+      // }
+    // }
+    // return false;
+  // },
+  // greatethen: function(value, values2) {
+    // values2 = [].concat(values2);
+    // for (var i = 0; i < values2.length; i++) {
+      // if (value >= values2) {
+        // return true;
+      // }
+    // }
+    // return false;
+  // },
+  
   equals: function(value, values2) {
-    values2 = [].concat(values2);
-    for (var i = 0; i < values2.length; i++) {
-      if (value == values2) {
-        return true;
-      }
-    }
-    return false;
+	  return value == value2;
   },
   lessthen: function(value, values2) {
-    values2 = [].concat(values2);
-    for (var i = 0; i < values2.length; i++) {
-      if (value <= values2) {
-        return true;
-      }
-    }
-    return false;
+      return value <= values2;
   },
   greatethen: function(value, values2) {
-    values2 = [].concat(values2);
-    for (var i = 0; i < values2.length; i++) {
-      if (value >= values2) {
-        return true;
-      }
-    }
-    return false;
+      return value >= values2;
   },
-
+  less: function(value, values2) {
+      return value < values2;
+  },
+  greater: function(value, values2) {
+      return value > values2;
+  },
+  
+  
+  /*<==1712*/
+  
+  
   minlength: function(value, lt) {
     return Sigma.$chk(value) && (value + "").length >= lt;
   },

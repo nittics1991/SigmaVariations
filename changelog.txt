@@ -16,12 +16,36 @@ v1.0.2	17-12-09 nittics1991
 		freezeCell() E11でcustomHeaderを設定するとfrozen列設定ででエラー停止する対策
 v1.0.3	17-12-10 nittics1991
 	src/gt_grid.js
-		updateFreezeState() frozen列のソートが出来ない. customHeadでソートが出来ない
+		updateFreezeState() frozen列のソートが出来ない. customHeadでソートが出来ない対策
 		refreshToolBar() ツールバー NO DATA表示しない
 	src/gt_base.js
-		$element() IE9/10でcreateElementの引数に'<div>'と山かっこが使えなくなった
+		$element() IE9/10でcreateElementの引数に'<div>'と山かっこが使えなくなった対策
 	src/gt_tool.js
-		$buildNavTools() PAGEボタンポップアップが表示しない
+		$buildNavTools() PAGEボタンポップアップが表示しない対策
 v1.0.4 17-12-16
 	src/gt_grid.js
 		checkOneBox() チェックボックスON/OFFでonRowCheckイベントが発生しない対策
+v1.1.0 17-12-16
+	src/gt_grid.js
+		initColumnEvent() ソートを昇順・降順・戻すの３段階化
+		initToolbar() toolbarpos=topでもgridのresize対応
+		render() beforeRenderイベント追加
+		showCellToolTip() ツールチップにmessage文を表示
+		createCheckColumn() チェックボックスのname属性を行毎別々に
+		initMainEvent() gridのmouseover状態の記憶
+		_onBodyClick() grid以外のTAB移動ができない対策
+		_onKeydown() grid以外のTAB移動ができない対策
+		_onKeydown() ctrl+Aで全レコード選択
+		_onKeydown() ctrl+Cでセルデータクリップボードへコピー
+		_onKeydown() ctrl+Cで行データクリップボードへコピー
+	src/gt_base.js
+		init() IE判定方法変更
+	src/gt_varidator.js
+		equals(),lessthen(),greatethen()判定方法変更
+		less(),greater() 判定追加
+		getMessage() メッセージフォーマットを#{n}で判定式の引数を表示するように変更
+	src/gt_editor.js
+		defaultValidator() validRuleプロパティが2文字以上(例:validRule:["GT"])が動かない対策
+		defaultValidator() validRuleプロパティで引数がある(例:validRule:["R",[GT,12]])処理が動かない対策
+	
+	
