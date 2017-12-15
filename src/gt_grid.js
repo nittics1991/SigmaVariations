@@ -2869,7 +2869,7 @@ Sigma.GridDefault = {
       }
     }
 			
-	/*171210==>*/
+	/*v103==>*/
 	var grid = this;
 	var gtFreezeTable = Sigma.$byId(grid.id + '_headTable_freeze');
 	//var gtFreezeRow = gtFreezeTable.childNodes[0].childNodes[0];
@@ -2942,7 +2942,7 @@ Sigma.GridDefault = {
 			}
 		}
 	}	//END rows loop
-	/*<==171210*/
+	/*<==v103*/
   },
 
   /* todo */
@@ -3317,11 +3317,11 @@ Sigma.GridDefault = {
         //this.pageStateBar.innerHTML="";
         Sigma.U.removeNode(this.pageStateBar.firstChild);
         
-				/*171210==>*/
+				/*v103==>*/
 				
         //if (pageInfo.endRowNum - pageInfo.startRowNum < 1) {
 				if ((pageInfo.endRowNum < 1) || (pageInfo.startRowNum < 1)) {
-				/*<==171210*/
+				/*<==v103*/
         
           this.pageStateBar.innerHTML =
             "<div>" + this.getMsg("NO_DATA") + "</div>";
@@ -5324,10 +5324,10 @@ Sigma.$extend(Sigma.Grid, {
     classNames.push(Sigma.Const.Grid.SKIN_CLASSNAME_PREFIX + skinName);
     grid.gridDiv.className = classNames.join(" ");
 	
-	/*171209==>*/
+	/*v102==>*/
 	grid.skin = skinName;
 	grid.closeGridMenu();
-	/*<==171209*/
+	/*<==v102*/
   },
 
   createCheckColumn: function(grid, cfg) {
@@ -5549,6 +5549,12 @@ Sigma.$extend(Sigma.Grid, {
 var Ext = Ext || null;
 Ext && Ext.reg && Ext.reg("gtgrid", Sigma.Grid);
 
+
+
+
+/**
+*	チェックボックスON/OFFでonRowCheckイベントが発生しない対策
+*/
 /* todo */
 Sigma.checkOneBox = function(chkbox, grid, chk) {
   grid = Sigma.$grid(grid);
@@ -5556,12 +5562,27 @@ Sigma.checkOneBox = function(chkbox, grid, chk) {
   if (chkbox.checked == chk) {
     return chk;
   }
+    
+	
+    /*1712==>*/
+    if (chk === undefined) {
+        chk = chkbox.checked;
+    }
+    /*<==1712*/
+    
 
   var cell = Sigma.U.getParentByTagName("td", chkbox);
   var row = cell.parentNode;
   var mrow = grid.getTwinRows(row)[0];
   if (chk === true || chk === false) {
-    if (Sigma.$invoke(this, "onRowCheck", [mrow, chk, grid]) === false) {
+	  
+	  
+    /*1712==>*/
+    // if (Sigma.$invoke(this, "onRowCheck", [mrow, chk, grid]) === false) {
+    if (Sigma.$invoke(grid, "onRowCheck", [mrow, chk, grid]) === false) {
+	
+    /*<==1712*/
+	
       return !!chkbox.checked;
     }
     chkbox.checked = chk;

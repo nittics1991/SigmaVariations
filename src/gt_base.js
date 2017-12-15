@@ -22,9 +22,9 @@ Sigma.init = function(win) {
   Sigma.isIE8 = ua.indexOf("msie 8") > -1;
   Sigma.isIE9 = ua.indexOf("msie 9") > -1;
 
-  /*171209==>*/
+  /*v102==>*/
   Sigma.isIE11 = ua.indexOf("trident") > -1;
-  /*<==171209>*/
+  /*<==v102>*/
   
   Sigma.isFF = ua.indexOf("firefox") > -1;
   Sigma.isFF1 = ua.indexOf("firefox/1") > -1;

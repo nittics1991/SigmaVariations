@@ -22,7 +22,6 @@ v1.0.3	17-12-10 nittics1991
 		$element() IE9/10でcreateElementの引数に'<div>'と山かっこが使えなくなった
 	src/gt_tool.js
 		$buildNavTools() PAGEボタンポップアップが表示しない
-
-
-
-	
+v1.0.4 17-12-16
+	src/gt_grid.js
+		checkOneBox() チェックボックスON/OFFでonRowCheckイベントが発生しない対策
