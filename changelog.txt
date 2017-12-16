@@ -22,10 +22,10 @@ v1.0.3	17-12-10 nittics1991
 		$element() IE9/10でcreateElementの引数に'<div>'と山かっこが使えなくなった対策
 	src/gt_tool.js
 		$buildNavTools() PAGEボタンポップアップが表示しない対策
-v1.0.4 17-12-16
+v1.0.4 17-12-16 nittics1991
 	src/gt_grid.js
 		checkOneBox() チェックボックスON/OFFでonRowCheckイベントが発生しない対策
-v1.1.0 17-12-16
+v1.1.0 17-12-16 nittics1991
 	src/gt_grid.js
 		initColumnEvent() ソートを昇順・降順・戻すの３段階化
 		initToolbar() toolbarpos=topでもgridのresize対応
@@ -47,16 +47,16 @@ v1.1.0 17-12-16
 	src/gt_editor.js
 		defaultValidator() validRuleプロパティが2文字以上(例:validRule:["GT"])が動かない対策
 		defaultValidator() validRuleプロパティで引数がある(例:validRule:["R",[GT,12]])処理が動かない対策
-v1.2.0 17-12-16
+v1.2.0 17-12-16 nittics1991
 	src/gt_grid.js
 		getCheckedRecords() 新規追加 チェックボックスがチェックされたレコードの取得
 		setEditMark() 新規追加 セルに編集マークを付加
-v1.3.0 17-12-16
+v1.3.0 17-12-16 nittics1991
 	src/lib/gtv_compressor.js
 		ファイル新規追加
 	src/lib/gtv_cookie.js
 		ファイル新規追加
-v1.3.1 17-12-16
+v1.3.1 17-12-16 nittics1991
 	grid/gtv_msg_en.js
 		gtv_msg_en.js 新規追加 デモメッセージ作成(開発用)
 	src/gt_varidator.js
@@ -64,11 +64,13 @@ v1.3.1 17-12-16
 	demos/variations
 		_template.htm 新規追加 デモhtmlテンプレート作成(開発用)
 		v140validRule.htm 新規追加
-v1.4.0 17-12-16
+v1.4.0 17-12-16 nittics1991
 	src/lib/gtv_clipboard.js
 		ファイル新規追加
 	src/gt_grid.js
 		_onKeydown() Sigma.Clipboardを利用する形に変更
-
+v1.5.0 17-12-17 nittics1991
+	grid/skin/default/images/variations
+		ファイル新規追加
 	
 	
