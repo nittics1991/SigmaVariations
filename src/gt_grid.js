@@ -1733,11 +1733,11 @@ Sigma.GridDefault = {
 		  }
 		  
 		  if (str) {
-			try {
-				clipboardData.setData("text", str);
-			} catch (e) {
-				event.clipboardData.setData('text/plain', str); 
-		    }
+		  	
+		  	/*v132==>*/
+		    Sigma.Clipboard.set(str);
+		    /*<==v132*/
+		    
 		  }
 		  event.preventDefault();
 		  break;
