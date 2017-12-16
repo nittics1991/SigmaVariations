@@ -64,7 +64,7 @@ v1.3.1 17-12-16
 	demos/variations
 		_template.htm 新規追加 デモhtmlテンプレート作成(開発用)
 		v140validRule.htm 新規追加
-v1.3.2 17-12-16
+v1.4.0 17-12-16
 	src/lib/gtv_clipboard.js
 		ファイル新規追加
 	src/gt_grid.js

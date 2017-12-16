@@ -1734,9 +1734,9 @@ Sigma.GridDefault = {
 		  
 		  if (str) {
 		  	
-		  	/*v132==>*/
+		  	/*v140==>*/
 		    Sigma.Clipboard.set(str);
-		    /*<==v132*/
+		    /*<==v140*/
 		    
 		  }
 		  event.preventDefault();
