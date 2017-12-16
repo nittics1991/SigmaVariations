@@ -56,6 +56,10 @@ Sigma.Validator = {
   getValidator: function(rule) {
     return Sigma.Validator[rule];
   },
+  
+  /**
+  *	メッセージフォーマットを#{n}で判定式の引数を表示するように変更
+  **/
   getMessage: function(msgKey) {
       /*v110==>*/
 	/*
@@ -104,14 +108,15 @@ Sigma.Validator = {
 		return msg;
 	}
 	
-    for (var i = 1; i <= msgKey.length - 1; i++) {
-      var param = msgKey[i];
-      var rex = RegExp("#\\{" + i + "\\}");
-	  msg = msg.replace(rex, param);
-    }
 	/*<==v110*/
 	
-    return msg;
+	/*v131*/
+	var args = [].concat(msgKey);
+	args.shift();
+	args.unshift(msg);
+	return Sigma.$msg.apply(this, args);
+	/*v131*/
+	
   },
 
   required: function(values) {

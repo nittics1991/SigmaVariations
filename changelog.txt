@@ -56,8 +56,14 @@ v1.3.0 17-12-16
 		ファイル新規追加
 	src/lib/gtv_cookie.js
 		ファイル新規追加
-
-
+v1.3.1 17-12-16
+	grid/gtv_msg_en.js
+		gtv_msg_en.js 新規追加 デモメッセージ作成(開発用)
+	src/gt_varidator.js
+		getMessage() メッセージをSigma.$msgを利用する形に変更
+	demos/variations
+		_template.htm 新規追加 デモhtmlテンプレート作成(開発用)
+		v140validRule.htm 新規追加
 
 	
 	
