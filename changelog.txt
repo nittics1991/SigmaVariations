@@ -72,5 +72,10 @@ v1.4.0 17-12-16 nittics1991
 v1.5.0 17-12-17 nittics1991
 	grid/skin/default/images/variations
 		ファイル新規追加
+v1.6.0 17-12-17 nittics1991
+	src/lib/gtv_csv.js
+		ファイル新規追加
+	demos/variations
+		v160csv.htm 新規追加
 	
 	
