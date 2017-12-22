@@ -28,7 +28,14 @@ Sigma.Clipboard = {
 			try {
 				clipboardData.setData('text', value);
 			} catch (e) {
+				/*v161==>*/
+				var textarea = document.createElement("textarea");
+				textarea.value= value;
+				document.body.appendChild(textarea);
+				textarea.select();
 				document.execCommand('copy');
+				textarea.parentElement.removeChild(textarea);
+				/*<==v161*/
 			}
 			this.value = value;
 		} catch (e) {

@@ -1683,6 +1683,10 @@ Sigma.GridDefault = {
 		  }
 							
 		  if (event.ctrlKey) {
+			/*v161==>*/  
+		    grid.selectedRows = [];
+			/*<==v161*/
+			
 			grid.forEachRow(function(row, record, counter, grid) {
 				grid.selectRow(row, true);
 			});
