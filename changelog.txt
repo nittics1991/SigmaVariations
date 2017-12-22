@@ -82,5 +82,12 @@ v1.6.1 17-12-23 nittics1991
 		set() Firefox対応
 	src/gt_grid.js
 		_onKeydown() Ctrl+A時grid.selectedRowに前回記憶値が残る不具合の対策
+v1.7.0 17-12-23 nittics1991
+	src/lib/gtv_local_storage.js
+		ファイル新規追加
+	src/lib/gtv_http_download.js
+		ファイル新規追加
+	src/lib/gtv_encoder.js
+		ファイル新規追加
 	
 	
