@@ -4605,7 +4605,12 @@ Sigma.GridDefault = {
     }
     return this;
   },
-
+  
+  
+  
+  /**
+  *	updateでもvalidate実行
+  **/
   /**
    * @description {Method} save To save modifications to server side.
    * @param {Object} onNav Whether pop up alter if nothing changed.
@@ -4629,6 +4634,11 @@ Sigma.GridDefault = {
     } else {
       //var validResult=this.activeEditor.doValid(value,this.activeRecord,this.activeColumn,this);
       var rows = this.gridTable.tFoot ? this.gridTable.tFoot.rows : [];
+      
+      /*v171==>*/
+      var respD = {};
+      /*v171==>*/
+      
       for (var i = 0, len = _insert.length; i < len; i++) {
         var _ir = _insert[i];
         for (var cn = 0; cn < this.columnList.length; cn++) {
@@ -4636,13 +4646,54 @@ Sigma.GridDefault = {
           if (colObj.editor) {
             var value = _ir[colObj.fieldIndex];
             var cell = rows[i] ? rows[i].cells[colObj.colIndex] : null;
-            if (this.validValue(colObj, value, _ir, cell) !== true) {
-              return false;
+            
+            /*v171==>*/
+            //if (this.validValue(colObj, value, _ir, cell) !== true) {
+            //  return false;
+            //}
+
+            try {
+	            if (this.validValue(colObj, value, _ir, cell) !== true) {
+            	  respD[this.CONST.exception] = "update data invalid";
+               	  this.saveFailure(respD);
+	              return false;
+	            }
+            } catch (e) {
+            	respD[this.CONST.exception] = "update data invalid";
+            	this.saveFailure(respD);
+            	return false;
+            }
+            /*v171==>*/
+            
+          }
+        }
+      }
+	  
+	  /*v171==>*/
+      for (var i = 0, len = _update.length; i < len; i++) {
+        var _ir = _update[i];
+        for (var cn = 0; cn < this.columnList.length; cn++) {
+          var colObj = this.columnList[cn];
+          if (colObj.editor) {
+            var value = _ir[colObj.fieldIndex];
+            var cell = rows[i] ? rows[i].cells[colObj.colIndex] : null;
+
+            try {
+	            if (this.validValue(colObj, value, _ir, cell) !== true) {
+            	  respD[this.CONST.exception] = "update data invalid";
+               	  this.saveFailure(respD);
+	              return false;
+	            }
+            } catch (e) {
+            	respD[this.CONST.exception] = "update data invalid";
+            	this.saveFailure(respD);
+            	return false;
             }
           }
         }
       }
-
+	  /*<==v171*/
+	  
       var reqParam = this.getSaveParam();
       reqParam[this.CONST.action] = "save";
       reqParam[this.CONST.insertedRecords] = _insert;
@@ -5155,7 +5206,14 @@ Sigma.GridDefault = {
   },
   /**
    * @description {Method} refreshRow To refresh /update row.
-   * @param {Object} row Row Object.
+   *
+   * v171==>
+   *
+   * X	@param {Object} row Row Object.
+   * @param {int | Object} rowNo | Row Object
+   *
+   * <==v171
+   *
    * @param {Array or Object} record New record for update row. If not specified, just refresh the row.
    */
   refreshRow: function(row, record) {

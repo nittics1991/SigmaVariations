@@ -89,5 +89,17 @@ v1.7.0 17-12-23 nittics1991
 		ファイル新規追加
 	src/lib/gtv_encoder.js
 		ファイル新規追加
-	
-	
+v1.7.1 17-12-23 nittics1991
+	src/gt_grid.js
+		refreshRow() 引数コメント修正
+		save() データ変更時(update)にデータ検証validateしない対策
+	docs/sigma_grid.html
+		refreshRow() 引数コメント修正
+
+
+
+
+
+
+
+
