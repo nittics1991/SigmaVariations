@@ -1583,7 +1583,8 @@ Sigma.GridDefault = {
 *	マウスオーバー時のみTAB移動許可(grid以外のTAG移動ができない対策)
 *	Ctrl+Aで全データ選択
 *	Ctrl+Cでセルデータクリップボードコピー
-*	Ctrl+Cで行データクリップボードコピー
+*	Ctrl+Shist+Cで表示行データクリップボードコピー
+*	Ctrl+Alt+Cでレコードデータクリップボードコピー
 **/
   _onKeydown: function(event) {
     var oldCell = this.activeCell;
@@ -1694,13 +1695,15 @@ Sigma.GridDefault = {
 		  }
 		  break;
 		
-	    //ctrl+C ctrl+shift+C
+	    //ctrl+C ctrl+shift+C ctrl+alt+C
 		case 67:
 		  if (!grid.mouseOvered) {
 			return;
 		  }
 		  
-		  if (event.ctrlKey && event.shiftKey) {
+		  /*v172==>*/
+		  //レコードコピー
+		  if (event.ctrlKey && event.altKey) {
 			var str = "";
 			var tmp = "";
 			var obj;
@@ -1732,6 +1735,38 @@ Sigma.GridDefault = {
 				tmp += "\n";
 				str += tmp.substr(1);
 			}
+		  
+		  //表示コピー
+		  } else if (event.ctrlKey && event.shiftKey) {
+			var str = "";
+			var tmp = "";
+			var obj;
+			var field;
+			
+			var records =  this.getSelectedRecords() || [];
+			var columnList = this.columnList;
+			
+			for (var i=0; i<records.length; i++) {
+				tmp = "";
+					
+				for (var j=0; j<columnList.length; j++) {
+					if (Sigma.$type(records[i], 'object')) {
+						field = columnList[j].fieldIndex;
+						if (field.indexOf('_') != 0) {
+							tmp += ',' + records[i][field];
+						}
+					} else {
+						field = columnList[j].fieldIndex;
+						tmp += ',' + records[i][field];
+					}
+				}
+				tmp += "\n";
+				str += tmp.substr(1);
+			}
+		  /*<==v172*/
+		  
+		  
+		  //セルコピー
 		  } else if (event.ctrlKey) {
 			  str = grid.activeValue;
 		  }

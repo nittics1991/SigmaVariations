@@ -95,8 +95,13 @@ v1.7.1 17-12-23 nittics1991
 		save() データ変更時(update)にデータ検証validateしない対策
 	docs/sigma_grid.html
 		refreshRow() 引数コメント修正
-
-
+v1.7.2 17-12-24 nittics1991
+	src/gt_grid.js
+		_onKeydown() recordデータコピーと表示コピーを分ける
+	demo/data/test_data_obj.js
+		ファイル新規追加
+	demo/script/dataAr2Obj.awk
+		ファイル新規追加
 
 
 

@@ -15,8 +15,12 @@
 	
     <script type="text/javascript" src="../../grid/gtv_msg_en.js"></script>
 	
+    <script type="text/javascript" src="../../src/lib/gtv_clipboard.js"></script>
     <script type="text/javascript" src="../../src/lib/gtv_compressor.js"></script>
     <script type="text/javascript" src="../../src/lib/gtv_cookie.js"></script>
+    
+    <script type="text/javascript" src="../../src/tool/gtv_copy_rows.js"></script>
+	
 	
 	<script type="text/javascript" src="../../src/gt_const.js"></script>
 	<script type="text/javascript" src="../../src/gt_base.js"></script>
@@ -33,6 +37,7 @@
     <script type="text/javascript" src="../../grid/flashchart/fusioncharts/FusionCharts.js"></script>
 	
 	<script type="text/javascript" src="../data/test_data.js"></script>
+	<script type="text/javascript" src="../data/test_data_obj.js"></script>
 	
 <title>デモ作成用テンプレート</title>
 </head>
@@ -66,8 +71,15 @@ var dsOption= {
 		{name : 'orderDate' ,type:'date'  }
 		
 	],
-	recordType : 'array',
-	data : __TEST_DATA__
+	
+	//recordType : 'array',
+	//data : __TEST_DATA__
+	
+	recordType : 'object',
+	data : __TEST_DATA_OBJ__
+	
+	
+	
 }
 
 var colsOption = [
@@ -100,7 +112,7 @@ var gridOption={
 	pageSize : 10 ,
 	pageSizeList:[10, 20, 50, 100],
 	toolbarPosition:"top",
-	toolbarContent :"nav goto | pagesize | reload | filter | state ",
+	toolbarContent :"nav goto | pagesize | reload | filter | add del | save | state ",
 	selectRowByChec:true,
 	showGridMenu:true,
 	allowFreeze:true,
@@ -116,21 +128,14 @@ var gridOption={
 gridOption.onCellClick=function(value,record,cell,row,colNo,columnObj,grid) {
 	
 	if (cell.className.indexOf("2005") > 0) {
-		var msg = Sigma.Msg.Validator["default"][Sigma.Validator.KeyMapping["I"]];
-		var val = Sigma.$msg(msg, 123);
-		console.log(	val	);
-	
 		
+		
+		
+	} else if (cell.className.indexOf("2006") > 0) {
 		
 	}
 	
-	extr = "#{1} must be an integer.";
-	cmd = "r=extr.replace(/#\\{1\\}/gm, \"123\")";
-	eval(cmd);
-	console.log(	r	);
-	
-	
-	
+		
 }
 
 
