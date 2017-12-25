@@ -312,6 +312,9 @@ Sigma.Dialog
 
 */
 
+/**
+*	findMenuByText() HTMLテキスト属性からBaseMenuItemオブジェクトを取得
+**/
 Sigma.BaseMenuItem = Sigma.$class({
   id: null,
 
@@ -497,7 +500,29 @@ Sigma.BaseMenuItem = Sigma.$class({
     }
 
     return this;
-  }
+  },
+  
+  
+  /*v190==>*/
+  /**
+  *	HTMLテキスト属性からBaseMenuItemオブジェクトを取得
+  *
+  *	@param string メニューで表示するTEXT文字列
+  *	@return object this
+  **/
+  findMenuByText:function(innerText) {
+	var menu = null;
+	this.subMenu.itemList.some(function(obj, idx) {
+		if (obj.text.toLowerCase() == innerText) {
+			menu = obj;
+			return false;
+		}
+	});
+	return menu;
+  },
+  /*<==v190*/
+  
+  
 });
 
 Sigma.Button = Sigma.BaseMenuItem.extend({

@@ -3716,16 +3716,64 @@ Sigma.GridDefault = {
   getTotalRowNum: function(refresh) {
     return this.getPageInfo(refresh).totalRowNum;
   },
-
+  
+  
+  /**
+  *	skinメニューにボタンを追加する
+  *	引数が文字列でMsgが未設定の場合、skin名を設定
+  **/
   addSkin: function(skin) {
     if (Sigma.$type(skin, "string")) {
+	  /*v190==>*/
+	  skinName = skin.charAt(0).toUpperCase() + skin.slice(1);
+	  
       skin = {
-        text: this.getMsg("STYLE_NAME_" + skin.toUpperCase()),
+        //text: this.getMsg("STYLE_NAME_" + skin.toUpperCase()),
+        text: this.getMsg("STYLE_NAME_" + skin.toUpperCase()) || skinName,
+		/*<==v190*/
+		
         value: skin.toLowerCase()
       };
     }
     this.skinList.push(skin);
+	
+  　/*v190==>*/
+	this.addSkinMenuItem(
+		this.skinList.indexOf(skin)
+	);
+  　/*<==v190*/
+	
   },
+  
+  
+  /*v190==>*/
+  /**
+  *	skinメニューにボタンを追加する
+  *
+  *	@param int skinListのインデックス
+  **/
+  addSkinMenuItem:function(index) {
+	var menuItem = this.gridMenuButton.findMenuByText.call(this.gridMenuButton, "skins");
+	if (menuItem == null) {
+		return;
+	}
+	
+	var _this = this;
+    var button = new Sigma.MenuItem({
+		gridId: this.id,
+		type: "radiobox",
+		text: this.skinList[index].text,
+		checked: false,
+		onclick: function () {
+			Sigma.Grid.changeSkin(_this, _this.skinList[index].value)
+		}
+	});
+	
+	menuItem.addMenuItems(button);
+	
+  },
+  /*<==v190*/
+
 
   addRows: function(rows) {
     for (var i = 0; i < rows.length; i++) {
@@ -5647,12 +5695,11 @@ Sigma.$extend(Sigma.Grid, {
     classNames.push(Sigma.Const.Grid.SKIN_CLASSNAME_PREFIX + skinName);
     grid.gridDiv.className = classNames.join(" ");
 	
-	/*171209==>*/
+	/*v102==>*/
 	grid.skin = skinName;
 	grid.closeGridMenu();
-	/*<==171209*/
+	/*<==v102*/
   },
-
   
 /**
 *	チェックボックスのname属性を行毎別々に

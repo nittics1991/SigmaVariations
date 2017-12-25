@@ -107,8 +107,22 @@ v1.8.0 17-12-24 nittics1991
 		ファイル新規追加
 	demos/variations/v180copyRows.htm
 		新規追加
-
-
-
-
+v1.9.0 17-12-26 nittics1991
+	src/gt_grid.js
+		addSkin() skin追加時にスキンメニューへ表示登録
+        addSkin() Msgが未設定の場合、skin名を設定
+		addSkinMenuItem() skin追加時にスキンメニューへ表示登録
+	src/gt_tool.js
+		findMenuByText() BaseMenuItemを検索する
+	src/lib/gtv_sort_condition.js
+		新規追加
+	src/lib/gtv_sort_table.js
+		新規追加
+	demo/script/ar2obj.awk
+		新規追加
+	demo/data/test_data_obj.js
+		新規追加
+	
+	
+	
 
