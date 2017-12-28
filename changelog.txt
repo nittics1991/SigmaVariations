@@ -122,7 +122,9 @@ v1.9.0 17-12-26 nittics1991
 		新規追加
 	demo/data/test_data_obj.js
 		新規追加
-	
+v1.10.0 17-12-28 nittics1991
+	src/gt_template.js
+		expand() 新規追加
 	
 	
 

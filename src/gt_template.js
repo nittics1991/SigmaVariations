@@ -5,6 +5,7 @@ if (!Sigma.Template) {
 }
 
 Sigma.$extend(Sigma.Template, {
+  /*v1100==>*/
   /**
   *	変数展開	
   *
@@ -17,6 +18,7 @@ Sigma.$extend(Sigma.Template, {
     	return Object.prototype.hasOwnProperty.call(values, key)? values[key]:"";
   	});
   },
+  /*<==v1100*/
   
   Grid: {
     main: function(grid) {
