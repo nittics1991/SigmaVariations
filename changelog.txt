@@ -125,6 +125,13 @@ v1.9.0 17-12-26 nittics1991
 v1.10.0 17-12-28 nittics1991
 	src/gt_template.js
 		expand() 新規追加
+V1.11.0 17-12-29 nittics1991
+	src/gt_base.js
+		Sigma.EventCache has(),get(),getNodeList(),getEventList()追加
+	src/lib/gtv_row_height.js
+		新規追加
+	src/lib/gtv_selected_check.js
+		新規追加
 	
 	
 

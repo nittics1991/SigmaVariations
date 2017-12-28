@@ -1426,6 +1426,10 @@ Sigma.$event = function(event) {
   return event;
 };
 
+
+/**
+*	has(),get(),getNodeList(),getEventList()追加
+**/
 Sigma.EventCache = (function() {
   var listEvents = [];
   var nodeList = [];
@@ -1498,7 +1502,36 @@ Sigma.EventCache = (function() {
       Sigma.destroyGrids && Sigma.destroyGrids();
       Sigma.destroyWidgets && Sigma.destroyWidgets();
       window.CollectGarbage && CollectGarbage();
-    }
+    },
+	
+	/*v1110==>*/
+	has:function(node, type) {
+      var idx = Sigma.U.indexOf(nodeList, node);
+      var key = idx + "_" + node + "_" + node.id;
+      if (idx < 0 || !eventList[key] || !!type == false) {
+        return false;
+      }
+	  return eventList[key][type] != null;
+	},
+	
+	get:function(node, type) {
+      var idx = Sigma.U.indexOf(nodeList, node);
+      var key = idx + "_" + node + "_" + node.id;
+      if (idx < 0 || !eventList[key] || !!type == false) {
+        return null;
+      }
+	  return eventList[key][type];
+	},
+	
+	getNodeList:function() {
+		return nodeList;
+	},
+	
+	getEventList:function() {
+		return eventList;
+	},
+	/*<==v1110*/
+	
   };
 })();
 
