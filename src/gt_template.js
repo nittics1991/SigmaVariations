@@ -5,6 +5,19 @@ if (!Sigma.Template) {
 }
 
 Sigma.$extend(Sigma.Template, {
+  /**
+  *	変数展開	
+  *
+  *	@param string
+  *	@param object
+  *	@return string
+  **/
+  expand:function(template, values) {
+  	return template.replace(/\$\{(.*?)\}/g, function(all, key){
+    	return Object.prototype.hasOwnProperty.call(values, key)? values[key]:"";
+  	});
+  },
+  
   Grid: {
     main: function(grid) {
       var gid = grid.id;
