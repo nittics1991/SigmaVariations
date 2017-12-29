@@ -128,10 +128,18 @@ v1.10.0 17-12-28 nittics1991
 V1.11.0 17-12-29 nittics1991
 	src/gt_base.js
 		Sigma.EventCache has(),get(),getNodeList(),getEventList()追加
-	src/lib/gtv_row_height.js
+	src/tool/gtv_row_height.js
 		新規追加
-	src/lib/gtv_selected_check.js
+	src/tool/gtv_selected_check.js
 		新規追加
-	
+V1.12.0 17-12-29 nittics1991
+	src/lib/gtv_local_storage.js
+		has(),length(),keys(),map()追加
+	src/tool/gtv_bookmark.js
+		新規追加
+	demo/variations/v1120bookmark.htm
+		新規追加
+	demo/variations/v1120localStorage.htm
+		新規追加
 	
 

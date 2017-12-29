@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+    
+    <link rel="stylesheet" type="text/css" media="all" href="../grid/calendar/calendar-blue.css" />
+    <script type="text/javascript" src="../../grid/calendar/calendar.js"></script>
+    <script type="text/javascript" src="../../grid/calendar/calendar-setup.js"></script>
+	
+    <link rel="stylesheet" type="text/css" href="../../grid/gt_grid.css" />
+    <link rel="stylesheet" type="text/css" href="../../grid/skin/default/skinstyle.css" />
+    <link rel="stylesheet" type="text/css" href="../../grid/skin/mac/skinstyle.css" />
+    <link rel="stylesheet" type="text/css" href="../../grid/skin/pink/skinstyle.css" />
+    <link rel="stylesheet" type="text/css" href="../../grid/skin/vista/skinstyle.css" />
+	
+    <script type="text/javascript" src="../../grid/gtv_msg_en.js"></script>
+	
+    <script type="text/javascript" src="../../src/lib/gtv_clipboard.js"></script>
+    <script type="text/javascript" src="../../src/lib/gtv_compressor.js"></script>
+    <script type="text/javascript" src="../../src/lib/gtv_cookie.js"></script>
+    
+    <script type="text/javascript" src="../../src/lib/gtv_local_storage.js"></script>
+    <script type="text/javascript" src="../../src/tool/gtv_bookmark.js"></script>
+	
+	
+	<script type="text/javascript" src="../../src/gt_const.js"></script>
+	<script type="text/javascript" src="../../src/gt_base.js"></script>
+	<script type="text/javascript" src="../../src/gt_tool.js"></script>
+	<script type="text/javascript" src="../../src/gt_editor.js"></script>
+	<script type="text/javascript" src="../../src/gt_dialog.js"></script>
+	<script type="text/javascript" src="../../src/gt_grid.js"></script>
+	<script type="text/javascript" src="../../src/gt_ajax.js"></script>
+	<script type="text/javascript" src="../../src/gt_column.js"></script>
+	<script type="text/javascript" src="../../src/gt_dataset.js"></script>
+	<script type="text/javascript" src="../../src/gt_template.js"></script>
+	<script type="text/javascript" src="../../src/gt_validator.js"></script>	
+	
+    <script type="text/javascript" src="../../grid/flashchart/fusioncharts/FusionCharts.js"></script>
+	
+	<script type="text/javascript" src="../data/test_data.js"></script>
+	<script type="text/javascript" src="../data/test_data_obj.js"></script>
+	
+<title>デモ作成用テンプレート</title>
+</head>
+<body>
+
+<h4>タイトル</h4>
+<ol>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+</ol>
+
+<div id="content"></div>
+
+
+<script>
+
+var grid_demo_id = "myGrid1" ;
+
+var dsOption= {
+	fields :[
+		{name : 'no'  },
+		{name : 'country'  },
+		{name : 'customer'  },
+		{name : 'employee'  },
+		{name : 'bill2005' ,type: 'float' },
+		{name : 'bill2006' ,type: 'float' },
+		{name : 'bill2007' ,type: 'float' },
+		{name : 'bill2008' ,type: 'float' },
+		{name : 'orderDate' ,type:'date'  }
+		
+	],
+	
+	//recordType : 'array',
+	//data : __TEST_DATA__
+	
+	recordType : 'object',
+	data : __TEST_DATA_OBJ__
+	
+	
+	
+}
+
+var colsOption = [
+     {id: 'no' , header: "Order No" , width :60, frozen:true},
+     {id: 'employee' , header: "Employee" , width :80, frozen:true},
+	 {id: 'country' , header: "Country" , width :40},
+	 {id: 'customer' , header: "Customer" , width :80},
+	 {id: 'bill2005' , header: "2005" , width :60},
+	 {id: 'bill2006' , header: "2006" , width :60},
+	 {id: 'bill2007' , header: "2007" , width :60},
+	 {id: 'bill2008' , header: "2008" , width :60},
+	 {id: 'orderDate' , header: "Delivery Date" , width :100}
+       
+];
+ 
+
+var gridOption={
+  	id : "myGrid1",
+	width: "700",
+	height: "300",
+	container : 'gridbox', 
+	replaceContainer : true, 
+	dataset : dsOption ,
+	columns : colsOption,
+	pageSize : 10 ,
+	pageSizeList:[10, 20, 50, 100],
+	toolbarPosition:"top",
+	toolbarContent :"nav goto | pagesize | reload | filter | add del | save | state ",
+	selectRowByChec:true,
+	showGridMenu:true,
+	allowFreeze:true,
+	allowGroup:true,
+	allowHide:true,
+	allowCustomSkin:true,
+	stripeRows:true,
+	skin:"default",
+	
+};
+
+var my_bookmark;
+
+gridOption.onCellClick=function(value,record,cell,row,colNo,columnObj,grid) {
+	my_bookmark = my_bookmark ||  new Sigma.Tool.Bookmark(this)
+	
+	if (cell.className.indexOf("2005") > -1) {
+		my_bookmark.attach("myId", this.getFilterInfo());
+		
+	} else if (cell.className.indexOf("2006") > -1) {
+		my_bookmark.apply("myId");
+		
+	} else if (cell.className.indexOf("2007") > -1) {
+		my_bookmark.detach("myId");
+		
+	} else if (cell.className.indexOf("2008") > -1) {
+		my_bookmark.save();
+		
+	} else if (cell.className.indexOf("country") > -1) {
+		my_bookmark.load();
+	} else if (cell.className.indexOf("customer") > -1) {
+		my_bookmark.remove();
+	}
+	
+	
+}
+
+
+
+
+
+
+
+
+
+var mygrid=new Sigma.Grid( gridOption );
+Sigma.Util.onLoad( Sigma.Grid.render(mygrid) );
+
+
+</script>
+
+</body>
+</html>
