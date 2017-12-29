@@ -47,7 +47,9 @@ Sigma.Clipboard = {
 	*	内部保存値取得
 	*
 	**/
-	get:function(value) {
+	/*v1130==>*/
+	get:function() {
+	/*<==v1130*/
 		return this.value;
 	}	
 };
