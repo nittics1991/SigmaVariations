@@ -99,7 +99,9 @@ if (!Sigma.Msg.Validator){
 }
 
 Sigma.Msg.Validator.en={
-
+		
+		/*v1140==>*/
+		/*
 		'required'	: '{0#This field} is required.',
 		'date'		: '{0#This field} must be in proper format ({1#YYYY-MM-DD}).',
 		'time'		: '{0#This field} must be in proper format ({1#HH:mm}).',
@@ -119,7 +121,31 @@ Sigma.Msg.Validator.en={
 		'cnchar'	: '{0} must be Chinese charactors',
 		'minlength'	: '{0} must contain more than {1} characters.',
 		'maxlength'	: '{0} must contain less than {1} characters.'
-
+		*/
+		
+		'required'	: 'This field is required.',
+		'date'		: 'must be in proper format.',
+		'time'		: 'must be in proper format.',
+		'datetime'	: 'must be in proper format.',
+		'email'		: 'must be in proper email format.',
+		'telephone'	: 'must be in proper phone no format.',
+		'number'	: 'must be a number.',
+		'integer'	: 'must be an integer.',
+		'float'		: 'must be integer or decimal.',
+		'money'		: 'must be integer or decimal with 2 fraction digits.',
+		'range'		: 'must be between #{1} and #{2}.',
+		'equals'	: 'must be same as #{1}.',
+		'lessthen'	: 'must be less than #{1}.',
+		'greatethen': 'must be greater than #{1}.',
+		'less'	    : 'must be less #{1}.',
+		'greater'  	: 'must be greater #{1}.',
+		'idcard'	: 'must be in proper ID format.',
+		'cnchar'	: 'must be Chinese charactors.',
+		'minlength' : 'must contain more than #{1} characters.',
+		'maxlength' : 'must contain less than #{1} characters.',
+		
+		/*<==v1140*/
+		
 }
 
 Sigma.Msg.Validator['default'] = Sigma.Msg.Validator.en;

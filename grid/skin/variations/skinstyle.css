@@ -1,0 +1,570 @@
+@charset "UTF-8";
+
+.gt-skin-variations {
+}
+
+/*
+
+.gt-skin-variations .gt-simple-scrollbar {
+	scrollbar-3dlight-color: #cccccc;
+	scrollbar-darkshadow-color: #cccccc;
+	scrollbar-arrow-color:#999999;
+	scrollbar-face-color:#e7eff7;
+	scrollbar-highlight-color:#f3f3fc;
+	scrollbar-shadow-color:#f3f3fc;
+	scrollbar-track-color:#f3f3fc;
+}
+
+*/
+
+
+.gt-skin-variations .gt-head-div {
+	background-image:url("");
+	border-color:  #cccccc;
+	background-color:#FF9100;
+}
+
+.gt-skin-variations .gt-hd-row TD {
+	border-right: 1px solid #668899;
+	border-bottom: 1px solid #668899;
+	background-image:url("");
+	background-color:#FF9100;
+}
+
+
+/*
+
+
+.gt-skin-variations .gt-table thead tr td , .gt-skin-variations .gt-table thead th td {
+	color : #ffffff ;
+	background: #ebeadb url(./images/hd_row_bg.gif) repeat-x;
+}
+
+*/
+
+.gt-skin-variations .gt-hd-row td .gt-inner {
+	color : #000000 ;
+}
+
+/*
+
+.gt-skin-variations .gt-hd-row .gt-hd-row-over {
+	background: #ebeadb url(./images/hd_row_over_bg.gif) repeat-x;
+}
+
+
+.gt-skin-variations .gt-row td.gt-index-col {
+	background: #e0e0e0 url(./images/cell_index_bg.gif) repeat-x ;
+}
+
+.gt-skin-variations .gt-hd-icon {
+	background-image: url(./images/s_sort_asc_desc.gif);
+}
+
+
+*/
+
+.gt-skin-variations  .gt-toolbar-box {
+	background-image:url("");
+}
+
+
+/*
+
+.gt-skin-variations .gt-dialog-head {
+	background-image: url(./images/toolbar_bg.gif);
+}
+
+
+*/
+
+
+.gt-skin-variations  .gt-row-even {
+	background-color:#DCF4FF;
+}
+
+.gt-skin-variations .gt-row-selected {
+	background-color:#FFBF00;
+}
+
+.gt-skin-variations .gt-row-selected td {
+	background-color:#FFBF00;
+}
+
+
+
+/*
+
+.gt-skin-variations .gt-viewport {
+	background-color: #ffffff;
+	border-color :#cccccc;
+}
+
+.gt-skin-variations .gt-head-div {
+	background: #ebeadb url(./images/hd_row_over_bg.gif) repeat-x;
+
+}
+
+.gt-skin-variations .gt-simple-scrollbar {
+
+	scrollbar-arrow-color:#999999;
+	scrollbar-face-color:#DDDDDD;
+	scrollbar-highlight-color:#DDDDDD;
+	scrollbar-shadow-color:#DDDDDD;
+	scrollbar-3dlight-color:#C0C0C0;
+	scrollbar-darkshadow-color:#C0C0C0;
+	scrollbar-track-color:#E9E9E9;
+
+
+}
+
+.gt-skin-variations .gt-row {
+	background-color:#ffffff;
+}
+
+*/
+
+.gt-skin-variations .gt-hd-row .gt-hd-row-over {
+	background-color:#FFBF00;
+}
+
+.gt-skin-variations td.gt-cell-actived {
+	background-color:#FF9100;
+}
+
+
+
+/*
+
+.gt-skin-variations .gt-hd-row td ,.gt-row td {
+
+	border-right: 1px solid #668899;
+	border-bottom: 1px solid #668899;
+
+}
+
+.gt-skin-variations .gt-hd-row td {
+	border-right-color:  #778899;
+	border-bottom-color:  #778899;
+	background: #ebeadb url(./images/hd_row_bg.gif) repeat-x;
+}
+
+.gt-skin-variations .gt-hd-row td .gt-inner {
+	color : #333333 ;
+
+}
+
+.gt-skin-variations .gt-table thead tr td , .gt-table thead th td {
+	background: #ebeadb url(./images/hd_row_bg.gif) repeat-x;
+}
+
+.gt-skin-variations .gt-row td.gt-index-col {
+	background: #e0e0e0 url(./images/cell_index_bg.gif) repeat-x ;
+}
+
+
+*/
+
+.gt-skin-variations .gt-row-over td {
+	border-bottom-color:#ff0000;
+}
+
+/*
+
+.gt-skin-variations .gt-row-over td.gt-cell-group {
+	background-image: url();
+}
+
+
+.gt-skin-variations .gt-row-selected {
+	background-color: #ddeeff;
+}
+
+.gt-skin-variations .gt-row-selected td.gt-cell-group {
+	background-color: #eef6ff;
+}
+
+.gt-skin-variations .gt-row-del td{
+	background : #dddddd url(./images/row_del.gif) repeat-x center center ;
+}
+
+*/
+
+.gt-skin-variations .gt-row-new {
+	background-color:#99ffff;
+}
+
+/*
+
+.gt-skin-variations .gt-cell-group {
+	background-color: #eef6ff;
+}
+
+.gt-skin-variations .gt-hd-split {
+	background: url(./images/tool_split.gif)  repeat-y 3px center;
+
+}
+
+.gt-skin-variations .gt-split-line {
+	background-color: #cccccc;
+
+}
+
+.gt-skin-variations .gt-hd-icon {
+
+	background: url(./images/s_sort_asc_desc.gif) no-repeat 11px 11px;
+}
+
+.gt-skin-variations .gt-freeze-div {
+	border-right-color: #999999;
+
+}
+
+*/
+
+
+/*customHeadでfreeze行が1行ずれる不具合対策*/
+.gt-skin-variations .gt-freeze-div .gt-head-table tbody .gt-hd-hidden {
+	display:none;
+}
+
+
+/*
+
+
+.gt-skin-variations .gt-input-text {
+	border-color: #aabbcc;
+}
+
+.gt-skin-variations .gt-input-button {
+
+	background : url(./images/input_button_bg.gif) repeat-x 0px -2px;
+}
+
+
+*/
+
+.gt-skin-variations .gt-toolbar-box {
+	border-color:  #cccccc;
+	background-color:#FF9100;
+}
+
+	
+/*
+
+
+.gt-skin-variations .gt-toolbar-box-top {
+	border-color: #cccccc;
+}
+
+.gt-skin-variations .gt-tool-resize {
+
+	background:url(./images/tool_resize.gif) no-repeat 0px 0px;
+}
+
+*/
+
+.gt-skin-variations .gt-cell-tooltip {
+	border-color:#000000;
+	background-color:#FFBF00;
+	box-shadow:2px 2px 2px 2px rgba(0,0,0,0.4);
+}
+
+/*
+
+.gt-skin-variations .gt-grid-mask {
+
+	border-color: #ff0000;
+
+}
+
+.gt-skin-variations .gt-grid-mask-bg {
+	background-color: #eeeeee;
+}
+
+
+.gt-skin-variations .gt-grid-mask-bg {
+	background-color : #eceef3;
+	border-color: #336699;
+}
+
+
+.gt-skin-variations .gt-grid-waiting-icon {
+	background:url(./images/s_loading.gif) no-repeat; 
+}
+
+
+.gt-skin-variations .gt-dialog-head {
+	border-bottom-color: #b0c7d7;
+	background-image: url(./images/toolbar_bg.gif);
+
+}
+
+.gt-skin-variations .gt-dialog-head-button {
+	border-color: #ff0000;
+}
+
+.gt-skin-variations .gt-dialog-head-button a {
+	background : url(./images/dialog_close_btn.gif) no-repeat 0px 0px;
+}
+
+.gt-skin-variations .gt-column-dialog , .gt-filter-dialog {
+
+	background-color:#ffffff;
+	border-color:#999999;
+}
+
+.gt-skin-variations .gt-editor-container {
+	border-color: #335599;
+	background-color:#ffffff;
+}
+
+.gt-skin-variations .gt-editor-text , .gt-editor-select {
+
+	border-color: #558899;
+}
+
+.gt-skin-variations .gt-editor-date{
+
+	border-color: #dddddd;
+	background:transparent url(./images/icon_calendar.gif) no-repeat center center;
+
+}
+
+
+*/
+
+td.gt-cell-updated {
+	background-repeat:no-repeat;
+	background-position:right top;
+	background-image:url(./images/signal_cellular_4_bar.png);
+}
+
+/*
+
+
+.gt-skin-variations .gt-editor-err {
+	border-color: #ff0000;
+}
+
+
+.gt-skin-variations .gt-cell-actived {
+	background-color:#ffddee;
+
+}
+
+.gt-skin-variations .gt-cell-actived-editable {
+	background-color:#eeffdd;
+}
+
+.gt-skin-variations .gt-cell-vaildfailed {
+	background-color:#ffaabb;
+}
+
+
+.gt-skin-variations .gt-grid-ghost-rect {
+	border-color: #3366cc;
+	background-color: #dde0e3;
+}
+
+.gt-skin-variations .gt-head-ghost {
+
+	color: #000000;
+	background-color: #cccccc;
+}
+
+.gt-skin-variations .gt-column-moveflag  {
+	background-color: #6693ff;
+}
+
+.gt-skin-variations .gt-popmenu {
+
+	border:1px solid #99bbdd;
+	background-color:  #ffffff ;
+}
+
+.gt-skin-variations .gt-menuitem {
+	border-color: #ff0000;
+	color:#335566;
+}
+
+.gt-skin-variations .gt-menuitem:hover {
+	background-color: #ccddee;
+}
+
+.gt-skin-variations .gt-menu-activemenu {
+	background-color: #eef3ff;
+}
+
+.gt-skin-variations .gt-menu-icon {
+
+	border-color: #ff000;
+	background-color:  #ddeeff;
+}
+
+.gt-skin-variations .gt-checkboxtext {
+
+	border-color: #00ff00;
+}
+
+.gt-skin-variations .gt-aftericon {
+	border-color: #ff0000;
+}
+
+
+.gt-skin-variations .gt-menu-parent {
+	background-image: url(./images/menu_hassub.gif) ;
+}
+
+.gt-skin-variations .gt-icon-freeze {
+	background-image: url(./images/menu_icon_lock.gif);
+
+}
+.gt-skin-variations .gt-icon-skin {
+	background-image: url(./images/menu_icon_themes.gif);
+
+}
+.gt-skin-variations .gt-icon-hidecol {
+	background-image: url(./images/menu_icon_hidecol.gif);
+
+}
+.gt-skin-variations .gt-icon-groupcol {
+	background-image: url(./images/menu_icon_column_group.gif);
+
+}
+
+.gt-skin-variations .gt-icon-checkbox {
+	background-image: url(./images/s_checked.gif);
+}
+.gt-skin-variations .gt-icon-radiobox {
+	background-image: url(./images/s_radiochecked.gif);
+}
+
+
+.gt-skin-variations .gt-icon-unchecked {
+	background-image: url(./images/s_unchecked.gif);
+}
+
+
+*/
+
+
+/*
+
+.gt-skin-variations .gt-image-button {
+	border-color: #336699;
+}
+
+.gt-skin-variations .gt-image-button:hover {
+	background : url(./images/button_bg.gif) no-repeat center center;
+}
+
+
+.gt-skin-variations .gt-image-button div , .gt-image-button button{
+
+	border-color: #ff0000;
+}
+
+
+.gt-skin-variations .gt-image-button-down {
+	background : url(./images/button_down_bg.gif) no-repeat center center;
+}
+
+*/
+
+
+/*
+
+.gt-skin-variations .gt-button-disable:hover {
+	background : url();
+}
+
+.gt-skin-variations .gt-button-split {
+
+	background : url(./images/tool_split.gif)  no-repeat center center
+}
+
+*/
+
+
+
+.gt-skin-variations .gt-first-page {
+	background:url(./images/skip_previous.png) no-repeat center center;
+}
+
+.gt-skin-variations .gt-prev-page {
+	background:url(./images/playback_arrow.png) no-repeat center center;
+}
+
+.gt-skin-variations .gt-next-page {
+	background:url(./images/play_arrow.png) no-repeat center center;
+}
+
+.gt-skin-variations .gt-last-page {
+	background:url(./images/skip_next.png) no-repeat center center;
+}
+
+.gt-skin-variations .gt-goto-page {
+	background:url(./images/forward.png) no-repeat center center;
+}
+
+.gt-skin-variations .gt-toolbar-text {
+	color:#000000;
+}
+
+.gt-skin-variations .gt-page-input {
+	height:14px;
+}
+
+.gt-skin-variations .gt-pagesize-select {
+	height:19px;
+}
+
+.gt-skin-variations .gt-page-state {
+	color:#000000;
+}
+
+.gt-skin-variations .gt-tool-gridmenu {
+	background:url(./images/format_align_justify.png) no-repeat center center;
+}
+
+.gt-skin-variations .gt-tool-add {
+	background:url(./images/add_circle_outline.png) no-repeat center center;
+}
+
+.gt-skin-variations .gt-tool-del {
+	background:url(./images/remove_circle_outline.png) no-repeat center center;
+}
+
+.gt-skin-variations .gt-tool-save {
+	background:url(./images/save.png) no-repeat center center;
+}
+
+.gt-skin-variations .gt-tool-reload {
+	background:url(./images/loop.png) no-repeat center center;
+}
+
+/*
+
+.gt-skin-variations .gt-tool-exp-print {
+	background : url(./images/tool_print.gif) no-repeat center center;
+}
+.gt-skin-variations .gt-tool-exp-xls {
+	background : url(./images/tool_xls.gif) no-repeat center center;
+}
+
+.gt-skin-variations .gt-tool-exp-csv {
+	background : url(./images/tool_csv.gif) no-repeat center center;
+}
+
+*/
+
+.gt-skin-variations .gt-tool-filter {
+	background:url(./images/filter_list.png) no-repeat center center;
+}
+
+.gt-skin-variations .gt-tool-chart {
+	background:url(./images/insert_chart.png) no-repeat center center;
+}
+
+

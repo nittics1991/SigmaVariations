@@ -146,3 +146,12 @@ V1.13.0 17-12-29 nittics1991
 		get() 引数間違い修正
 	src/tool/gtv_fill_columns.js
 		新規追加
+V1.14.0 17-12-30 nittics1991
+	src/grid/gt_msg_en.js
+		Sigma.Msg.Validator.en	Varidationメッセージ変更
+	grid/skin/variations/images
+		ファイル名変更、ファイル追加
+	grid/skin/skinstyle.css
+		設定全面変更
+	demos/variations/v1140skin.htm
+		新規追加
