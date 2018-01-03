@@ -228,28 +228,33 @@
 	display:none;
 }
 
-
 /*
-
 
 .gt-skin-variations .gt-input-text {
 	border-color: #aabbcc;
 }
 
-.gt-skin-variations .gt-input-button {
+*/
 
-	background : url(./images/input_button_bg.gif) repeat-x 0px -2px;
+/*v1150==>*/
+.gt-skin-variations .gt-input-button {
+	background:url("");
+	background-color:#FF9100;
+	
 }
 
-
-*/
+.gt-skin-variations .gt-input-button:hover{
+	background:url("");
+	background-color:#FFBF00;
+	
+}
+/*<==v1150*/
 
 .gt-skin-variations .gt-toolbar-box {
 	border-color:  #cccccc;
 	background-color:#FF9100;
 }
 
-	
 /*
 
 
@@ -294,15 +299,14 @@
 }
 
 
+*/
+
 .gt-skin-variations .gt-dialog-head {
-	border-bottom-color: #b0c7d7;
-	background-image: url(./images/toolbar_bg.gif);
-
+	background-image:url("");
+	background-color:#FF9100;
 }
 
-.gt-skin-variations .gt-dialog-head-button {
-	border-color: #ff0000;
-}
+/*
 
 .gt-skin-variations .gt-dialog-head-button a {
 	background : url(./images/dialog_close_btn.gif) no-repeat 0px 0px;
@@ -335,9 +339,14 @@
 */
 
 td.gt-cell-updated {
+	
+	/*v1150==>*/
 	background-repeat:no-repeat;
-	background-position:right top;
+	background-position:right bottom;
 	background-image:url(./images/signal_cellular_4_bar.png);
+	background-size:20% 50%;
+	/*<==v1150*/
+	
 }
 
 /*

@@ -121,18 +121,20 @@ var gridOption={
 };
 
 var my_bookmark;
+var cnt = 1;
 
 gridOption.onCellClick=function(value,record,cell,row,colNo,columnObj,grid) {
 	my_bookmark = my_bookmark ||  new Sigma.Tool.Bookmark(this)
+	var id = "myId" + cnt;
 	
 	if (cell.className.indexOf("2005") > -1) {
-		my_bookmark.attach("myId", this.getFilterInfo());
+		my_bookmark.attach(id, this.getFilterInfo());
 		
 	} else if (cell.className.indexOf("2006") > -1) {
-		my_bookmark.apply("myId");
+		my_bookmark.apply(id);
 		
 	} else if (cell.className.indexOf("2007") > -1) {
-		my_bookmark.detach("myId");
+		my_bookmark.detach(id);
 		
 	} else if (cell.className.indexOf("2008") > -1) {
 		my_bookmark.save();
@@ -141,6 +143,13 @@ gridOption.onCellClick=function(value,record,cell,row,colNo,columnObj,grid) {
 		my_bookmark.load();
 	} else if (cell.className.indexOf("customer") > -1) {
 		my_bookmark.remove();
+	} else if (cell.className.indexOf("employee") > -1) {
+		cnt++;
+	} else if (cell.className.indexOf("no") > -1) {
+		my_bookmark.map(function(key, idx, ar) {
+			console.log(key);
+			console.log(idx);
+		});
 	}
 	
 	

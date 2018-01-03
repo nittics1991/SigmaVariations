@@ -147,7 +147,7 @@ V1.13.0 17-12-29 nittics1991
 	src/tool/gtv_fill_columns.js
 		新規追加
 V1.14.0 17-12-30 nittics1991
-	src/grid/gt_msg_en.js
+	grid/gt_msg_en.js
 		Sigma.Msg.Validator.en	Varidationメッセージ変更
 	grid/skin/variations/images
 		ファイル名変更、ファイル追加
@@ -155,3 +155,17 @@ V1.14.0 17-12-30 nittics1991
 		設定全面変更
 	demos/variations/v1140skin.htm
 		新規追加
+V1.15.0 18-01-03 nittics1991
+	src/tool/gtv_bookmark.js
+		has(),length(),keys(),map()追加
+		Sigma.Tool.BookmarkDialog 新規追加
+	grid/variations/skinstyle.css
+		td.gt-cell-updated サイズ変更
+	grid/gt_msg_en.js
+		BookmarkDialog用メッセージ追加
+	src/lib/gtv_local_storage.js
+		length() 引数修正
+		keys() 引数修正
+	
+	
+	

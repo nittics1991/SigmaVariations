@@ -87,8 +87,15 @@ Sigma.Msg.Grid.en={
 	TOOL_CSV : "Export to csv" ,
 	TOOL_XML : "Export to xml",
 	TOOL_FILTER : "Filter" ,
-	TOOL_CHART : "Chart" 
-
+	TOOL_CHART : "Chart",
+	
+	/*v1150==>*/
+	DIAG_TITLE_BOOKMARK:"Filter Bookmark",
+	TEXT_ADD_BOOKMARK:"Add",
+	TEXT_DEL_BOOKMARK:"Del",
+	TEXT_EXEC_BOOKMARK:"Exec",
+	/*<==v1150*/
+	
 };
 
 Sigma.Msg.Grid['default']=Sigma.Msg.Grid.en;

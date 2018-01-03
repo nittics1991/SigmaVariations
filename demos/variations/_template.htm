@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
     
-    <link rel="stylesheet" type="text/css" media="all" href="../grid/calendar/calendar-blue.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../../grid/calendar/calendar-blue.css" />
     <script type="text/javascript" src="../../grid/calendar/calendar.js"></script>
     <script type="text/javascript" src="../../grid/calendar/calendar-setup.js"></script>
 	
@@ -20,9 +20,9 @@
 	
     <script type="text/javascript" src="../../src/lib/gtv_clipboard.js"></script>
     <script type="text/javascript" src="../../src/lib/gtv_compressor.js"></script>
-    <script type="text/javascript" src="../../src/lib/gtv_cookie.js"></script>
+    <script type="text/javascript" src="../../src/lib/gtv_local_storage.js"></script>
     
-    <script type="text/javascript" src="../../src/tool/gtv_copy_rows.js"></script>
+    <script type="text/javascript" src="../../src/tool/gtv_bookmark.js"></script>
 	
 	
 	<script type="text/javascript" src="../../src/gt_const.js"></script>
@@ -55,6 +55,10 @@
 </ol>
 
 <div id="content"></div>
+
+<hr>
+
+<div id="content2"></div>
 
 
 <script>
@@ -106,9 +110,9 @@ var colsOption = [
 
 var gridOption={
   	id : "myGrid1",
+	container : 'content', 
 	width: "100%",
 	height: "300",
-	container : 'gridbox', 
 	replaceContainer : true, 
 	dataset : dsOption ,
 	columns : colsOption,
@@ -136,23 +140,59 @@ gridOption.onComplete = function(grid) {
 	
 };
 
+var bookmark;
+var cnt = 1;
+
 gridOption.onCellClick=function(value,record,cell,row,colNo,columnObj,grid) {
 	
 	if (cell.className.indexOf("2005") > -1) {
-		this.showCellToolTip(cell);
+		Sigma.Tool.BookmarkDialog.create(this).show();
 		
 		
 		
 	} else if (cell.className.indexOf("2006") > -1) {
+		bookmark = bookmark || new Sigma.Tool.Bookmark(this);
+		bookmark.attach('filter_test' + cnt, this.getFilterInfo());
+		bookmark.save();
+		cnt++;
+		
+	} else if (cell.className.indexOf("2007") > -1) {
+		this.applyFilter({
+			columnId:"no",
+			fieldName:"no",
+			logic:"like",
+			value:"020",
+		});
+		
+	} else if (cell.className.indexOf("2008") > -1) {
+		bookmark = bookmark || new Sigma.Tool.Bookmark(this);
+		var keys = bookmark.keys();
+		bookmark.apply(keys[0]);
+		
+		
 		
 	}
+	
 	
 		
 }
 
 
+//////////////////////////////////////////////////////////////
+
 var mygrid=new Sigma.Grid( gridOption );
 Sigma.Util.onLoad( Sigma.Grid.render(mygrid) );
+
+//////////////////////////////////////////////////////////////
+
+gridOption2 = gridOption;
+gridOption2.id="myGrid2";
+gridOption2.container='content2';
+
+var mygrid2=new Sigma.Grid( gridOption2 );
+Sigma.Util.onLoad( Sigma.Grid.render(mygrid2) );
+
+//////////////////////////////////////////////////////////////
 
 
 </script>

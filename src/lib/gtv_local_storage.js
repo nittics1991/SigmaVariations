@@ -62,7 +62,7 @@ Sigma.LocalStorage.prototype.has = function(name) {
 *
 * 	@return int
 **/
-Sigma.LocalStorage.prototype.length = function(fn) {
+Sigma.LocalStorage.prototype.length = function() {
 	return localStorage.length;
 };
 
@@ -71,7 +71,7 @@ Sigma.LocalStorage.prototype.length = function(fn) {
 *
 * 	@return array
 **/
-Sigma.LocalStorage.prototype.keys = function(fn) {
+Sigma.LocalStorage.prototype.keys = function() {
 	var result = [];
 	for (var i=0; i<localStorage.length; i++) {
 		result.push(localStorage.key(i));
