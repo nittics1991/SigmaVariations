@@ -96,6 +96,11 @@ Sigma.Msg.Grid.en={
 	TEXT_EXEC_BOOKMARK:"Exec",
 	/*<==v1150*/
 	
+	/*v1160==>*/
+	DIAG_TITLE_AGGREGATE:"Table Aggregate",
+	/*<==v1160*/
+	
+	
 };
 
 Sigma.Msg.Grid['default']=Sigma.Msg.Grid.en;

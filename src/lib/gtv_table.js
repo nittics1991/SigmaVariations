@@ -130,7 +130,11 @@ Sigma.Table.prototype.transpose = function() {
 **/
 Sigma.Table.prototype.getColumn = function(colId) {
 	if (this.transverse == null) {
-		return null;
+		
+		/*v1160==>*/
+		this.transpose();
+		/*<==v1160*/
+		
 	}
 	return (this.hasKey(colId))? this.transverse[colId]:null;
 };
@@ -196,7 +200,12 @@ Sigma.Table.prototype.max = function(colId) {
 	var ar = this.getColumn(colId).filter(function(val) {
 		return isFinite(val);
 	});
-	return Math.max.apply(null, ar);
+	
+	/*v1160==>*/
+	var result = Math.max.apply(null, ar);
+	return isFinite(result)? result:0;
+	/*<==v1160*/
+	
 };
 
 /**
@@ -213,7 +222,12 @@ Sigma.Table.prototype.min = function(colId) {
 	var ar = this.getColumn(colId).filter(function(val) {
 		return isFinite(val);
 	});
-	return Math.min.apply(null, ar);
+	
+	/*v1160==>*/
+	var result = Math.min.apply(null, ar);
+	return isFinite(result)? result:0;
+	/*<==v1160*/
+	
 };
 
 /**

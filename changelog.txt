@@ -166,6 +166,19 @@ V1.15.0 18-01-03 nittics1991
 	src/lib/gtv_local_storage.js
 		length() 引数修正
 		keys() 引数修正
-	
-	
-	
+V1.16.0 18-01-03 nittics1991
+	src/tool/gtv_aggregate.js
+		新規追加
+	demos/variations/v150filterDialog.htm
+		新規追加
+	src/lib/gtv_table.js
+		getColumn()	transverse==null時動作修正
+		max() 文字以外の結果が返る対策
+		min() 文字以外の結果が返る対策
+	grid/gt_msg_en.js
+		AggregateDialog用メッセージ追加
+	demos/variations/v1160aggregate.htm
+		新規追加
+
+
+
