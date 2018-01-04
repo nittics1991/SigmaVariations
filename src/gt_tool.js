@@ -1002,7 +1002,56 @@ Sigma.ToolFactroy = {
     fill: function(grid) {
       var button = "";
       return button;
-    }
+    },
+    
+	/*v1170==>*/
+    bookmark: {
+      onclick: function(event, grid) {
+        grid.lastAction = "bookmark";
+        grid.showDialog("bookmark");
+      }
+    },
+    
+    aggregate: {
+      onclick: function(event, grid) {
+        grid.lastAction = "aggregate";
+        grid.showDialog("aggregate");
+      }
+    },
+ 
+    copy: {
+      onclick: function(event, grid) {
+        Sigma.Tool.CopyRows.set(grid);
+      }
+    },
+	
+    paste: {
+      onclick: function(event, grid) {
+        Sigma.Tool.CopyRows.add(grid);
+      }
+    },
+	
+    fillcolumn: {
+      onclick: function(event, grid) {
+        Sigma.Tool.FillColumns.paste(grid);
+      }
+    },
+	
+    rowheight: {
+      onclick: function(event, grid) {
+        Sigma.Tool.RowHeight.toggle(grid);
+      }
+    },
+	
+    selectedcheck: {
+      onclick: function(event, grid) {
+        Sigma.Tool.CheckSelectedRows.toggle(grid);
+      }
+    },
+	
+    /*<==v1170*/
+    
+    
   }
 };
 

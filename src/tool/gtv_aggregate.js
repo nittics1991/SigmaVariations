@@ -33,6 +33,12 @@ Sigma.Tool.AggregateDialog = {
 		var closeFn = function(){Sigma.WidgetCache[dialogId].close();};
 		
 		var viewHead = function() {
+			
+			/*v1170==>*/
+			var thead = document.querySelector('#' + dialogId + '_div thead'); 
+			while (thead.firstChild) thead.removeChild(thead.firstChild);
+			/*<==v1170*/
+				
 			var tmp = '<tr class="gt-hd-row"><td></td>';
 			
 			_grid.columnList.forEach(function(colObj) {
@@ -41,7 +47,6 @@ Sigma.Tool.AggregateDialog = {
 			
 			tmp += '</tr><tbody></tbody>';
 			
-			var thead = document.querySelector('#' + dialogId + '_div thead'); 
 			thead.insertAdjacentHTML('beforeend', tmp);
 		};
 		
@@ -70,11 +75,16 @@ Sigma.Tool.AggregateDialog = {
 		};
 		
 		var viewList = function() {
+			
+			/*v1170==>*/
+			var tbody = document.querySelector('#' + dialogId + '_div tbody'); 
+			while (tbody.firstChild) tbody.removeChild(tbody.firstChild);
+			/*<==v1170*/
+			
 			var tmp = '';
 			tmp += _viewInList(_grid.getSelectedRecords());
 			tmp += _viewInList(_grid.dataset.data, 'gt-row-even');
 			
-			var tbody = document.querySelector('#' + dialogId + '_div tbody'); 
 			tbody.insertAdjacentHTML('beforeend', tmp);
 		};
 		

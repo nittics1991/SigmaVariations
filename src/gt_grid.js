@@ -410,12 +410,17 @@ Sigma.GridDefault = {
   properties: function() {
     return {
       skinList: [
+	  
+		/*v1170==>*/
         { text: this.getMsg("STYLE_NAME_DEFAULT"), value: "default" },
+        { text: this.getMsg("STYLE_NAME_MAC"), value: "mac" },
         { text: this.getMsg("STYLE_NAME_PINK"), value: "pink" },
+        { text: this.getMsg("STYLE_NAME_VARIATIONS"), value: "variations" },
         { text: this.getMsg("STYLE_NAME_VISTA"), value: "vista" },
-        { text: this.getMsg("STYLE_NAME_MAC"), value: "mac" }
+		/*<==v1170*/
+		
       ],
-
+	  
       encoding: null, //Sigma.$encoding(), //'utf-8',
       mimeType: null, //'text/html',
       /**
@@ -4039,7 +4044,18 @@ Sigma.GridDefault = {
     var grid = this;
     Sigma.$invoke(this, "beforeDestroy");
     this.cleanTable();
-    var dList = ["gridMenuButton", "filterDialog", "charDialog", "navigator"];
+    
+	/*v1170==>*/
+    var dList = [
+		"gridMenuButton",
+		"filterDialog",
+		"charDialog",
+		"navigator",
+		"bookmark",
+		"aggregate",
+	];
+	/*<==v1170*/
+    
     Sigma.$each(dList, function(k, i) {
       if (grid[k] && grid[k].destroy) {
         grid[k].destroy();
@@ -4870,22 +4886,12 @@ Sigma.GridDefault = {
 
   /**
    * @description {Method} showDialog To show a dialog.
-   * @param {String} type Could be 'filter' or 'chart'.
+   * @param {String} type Could be 'filter' or 'chart', 'bookmark'.
    */
   showDialog: function(type) {
     var grid = this;
     switch (type) {
       case "filter":
-        /*
-				grid.filterDialog= grid.filterDialog || new Sigma.Dialog({
-					gridId : grid.id , container : grid.gridMask ,
-					id: "filterDialog" ,
-					width: 300,height:200 ,
-					autoRerender : true,
-					title : "filterDialog",
-					body : "filter dialogasdasdsad"
-				} );
-				*/
         grid.filterDialog =
           grid.filterDialog ||
           Sigma.createFilterDialog({
@@ -4948,6 +4954,29 @@ Sigma.GridDefault = {
           grid.chart.generateChart();
         }
         break;
+        
+        /*v1170==>*/
+       case "bookmark":
+			grid.bookmarkDialog =
+			grid.bookmarkDialog ||
+			Sigma.Tool.BookmarkDialog.create(this);
+			
+			if (grid.bookmarkDialog) {
+				grid.bookmarkDialog.show();
+			}
+			break;
+       case "aggregate":
+			grid.aggregateDialog =
+			grid.aggregateDialog ||
+			Sigma.Tool.AggregateDialog.create(this);
+			
+			if (grid.aggregateDialog) {
+				grid.aggregateDialog.show();
+			}
+			break;
+        /*<==v1170*/
+        
+        
     }
   },
 

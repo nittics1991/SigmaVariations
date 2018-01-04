@@ -71,7 +71,11 @@ Sigma.Msg.Grid.en={
 	STYLE_NAME_PINK : "Pink",
 	STYLE_NAME_VISTA : "Vista",
 	STYLE_NAME_MAC : "Mac",
-
+	
+	/*v1170==>*/
+	STYLE_NAME_VARIATIONS:"Variations",
+	/*<==v1170*/
+	
 	MENU_FREEZE_COL : "Lock Columns",
 	MENU_SHOW_COL : "Hide Columns",
 	MENU_GROUP_COL : "Group Span",

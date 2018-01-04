@@ -179,6 +179,23 @@ V1.16.0 18-01-03 nittics1991
 		AggregateDialog用メッセージ追加
 	demos/variations/v1160aggregate.htm
 		新規追加
-
+V1.17.0 18-01-04 nittics1991
+	src/tool/gtv_aggregate.js
+		create() 繰り返し表示不具合対応
+	src/tool/gtv_row_height.js
+		toggle() 自gridのみ対応
+	src/gt_grid.js
+		skinList variations追加
+		destroy() bookmark,aggregete追加
+		showDialog() bookmark,aggregete追加
+	grid/gt_msg_en.js
+		スキン名追加
+	src/gt_tool.js
+		Sigma.ToolFactroy.tools bookmark,aggregete,copy,paste,fillcolumn
+			rowheight,selectedcheck追加
+	grid/variations/skinstyle.css
+		bookmark,aggregete,copy,paste,fillcolumn,rowheight,selectedcheck追加
+	demos/variations/v1170icon.htm
+		新規追加
 
 

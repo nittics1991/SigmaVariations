@@ -22,10 +22,14 @@ Sigma.Tool.RowHeight = {
 	*	@param Object grid
 	**/
 	toggle:function(grid) {
-		var collections = document.getElementsByClassName("gt-inner");
-		if (collections.length == 0) {
+		
+		/*v1170==>*/
+		var collections = document.querySelectorAll('#' + grid.id + '_div .gt-row .gt-inner');
+		if (collections == null || collections.length == 0) {
 			return;
 		}
+		/*<==v1170*/
+		
 		var style = collections[0].currentStyle
 			|| document.defaultView.getComputedStyle(collections[0], '');
 		
@@ -43,7 +47,7 @@ Sigma.Tool.RowHeight = {
 		
 		var searchGridId = function(elm, id) {
 			var parent = elm.parentNode;
-			if (parent.id.indexOf(id) > -1) {
+			if (parent.id == null || parent.id.indexOf(id) > -1) {
 				return true;
 			}
 			

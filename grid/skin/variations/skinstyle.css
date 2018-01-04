@@ -576,4 +576,34 @@ td.gt-cell-updated {
 	background:url(./images/insert_chart.png) no-repeat center center;
 }
 
+/*v1170==>*/
+.gt-skin-variations .gt-tool-bookmark {
+	background:url(./images/local_offer.png) no-repeat center center;
+}
+
+.gt-skin-variations .gt-tool-aggregate {
+	background:url(./images/functions.png) no-repeat center center;
+}
+
+.gt-skin-variations .gt-tool-copy {
+	background:url(./images/content_copy.png) no-repeat center center;
+}
+
+.gt-skin-variations .gt-tool-paste {
+	background:url(./images/content_paste.png) no-repeat center center;
+}
+
+.gt-skin-variations .gt-tool-fillcolumn {
+	background:url(./images/format_indent_increase.png) no-repeat center center;
+}
+
+.gt-skin-variations .gt-tool-rowheight {
+	background:url(./images/format_line_spacing.png) no-repeat center center;
+}
+
+.gt-skin-variations .gt-tool-selectedcheck {
+	background:url(./images/assignment_turned_in.png) no-repeat center center;
+}
+
+/*<==v1170*/
 
