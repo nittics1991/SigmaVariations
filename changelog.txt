@@ -197,5 +197,7 @@ V1.17.0 18-01-04 nittics1991
 		bookmark,aggregete,copy,paste,fillcolumn,rowheight,selectedcheck追加
 	demos/variations/v1170icon.htm
 		新規追加
-
+V1.17.1 18-01-04 nittics1991
+	grid/gt_msg_en.js
+		TOOL_xxx追加
 

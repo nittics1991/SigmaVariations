@@ -93,6 +93,16 @@ Sigma.Msg.Grid.en={
 	TOOL_FILTER : "Filter" ,
 	TOOL_CHART : "Chart",
 	
+	/*v1171==>*/
+	TOOL_BOOKMARK:"Bookmark",
+	TOOL_AGGREGATE:"Aggregate",
+	TOOL_COPY:"CopySelectedRows",
+	TOOL_PASTE:"AddPasteRows",
+	TOOL_FILLCOLUMN:"FillPasteColumns",
+	TOOL_ROWHEIGHT:"ChangeRowHeight",
+	TOOL_SELECTEDCHECK:"CheckSelectedRows",
+	/*<==v1171*/
+	
 	/*v1150==>*/
 	DIAG_TITLE_BOOKMARK:"Filter Bookmark",
 	TEXT_ADD_BOOKMARK:"Add",
