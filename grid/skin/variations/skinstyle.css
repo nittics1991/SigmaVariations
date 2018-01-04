@@ -607,3 +607,9 @@ td.gt-cell-updated {
 
 /*<==v1170*/
 
+/*v1180==>*/
+.gt-skin-variations .gt-tool-downloadcsv {
+	background:url(./images/file_csv.png) no-repeat center center;
+}
+/*<==v1170*/
+

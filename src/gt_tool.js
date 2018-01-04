@@ -1049,6 +1049,12 @@ Sigma.ToolFactroy = {
       }
     },
 	
+    downloadcsv: {
+      onclick: function(event, grid) {
+        Sigma.Tool.DownloadCsv.download(grid);
+      }
+    },
+	
     /*<==v1170*/
     
     

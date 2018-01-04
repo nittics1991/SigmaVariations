@@ -125,14 +125,14 @@ v1.9.0 17-12-26 nittics1991
 v1.10.0 17-12-28 nittics1991
 	src/gt_template.js
 		expand() 新規追加
-V1.11.0 17-12-29 nittics1991
+v1.11.0 17-12-29 nittics1991
 	src/gt_base.js
 		Sigma.EventCache has(),get(),getNodeList(),getEventList()追加
 	src/tool/gtv_row_height.js
 		新規追加
 	src/tool/gtv_selected_check.js
 		新規追加
-V1.12.0 17-12-29 nittics1991
+v1.12.0 17-12-29 nittics1991
 	src/lib/gtv_local_storage.js
 		has(),length(),keys(),map()追加
 	src/tool/gtv_bookmark.js
@@ -141,12 +141,12 @@ V1.12.0 17-12-29 nittics1991
 		新規追加
 	demo/variations/v1120localStorage.htm
 		新規追加
-V1.13.0 17-12-29 nittics1991
+v1.13.0 17-12-29 nittics1991
 	src/lib/gtv_clipboard.js
 		get() 引数間違い修正
 	src/tool/gtv_fill_columns.js
 		新規追加
-V1.14.0 17-12-30 nittics1991
+v1.14.0 17-12-30 nittics1991
 	grid/gt_msg_en.js
 		Sigma.Msg.Validator.en	Varidationメッセージ変更
 	grid/skin/variations/images
@@ -155,7 +155,7 @@ V1.14.0 17-12-30 nittics1991
 		設定全面変更
 	demos/variations/v1140skin.htm
 		新規追加
-V1.15.0 18-01-03 nittics1991
+v1.15.0 18-01-03 nittics1991
 	src/tool/gtv_bookmark.js
 		has(),length(),keys(),map()追加
 		Sigma.Tool.BookmarkDialog 新規追加
@@ -166,7 +166,7 @@ V1.15.0 18-01-03 nittics1991
 	src/lib/gtv_local_storage.js
 		length() 引数修正
 		keys() 引数修正
-V1.16.0 18-01-03 nittics1991
+v1.16.0 18-01-03 nittics1991
 	src/tool/gtv_aggregate.js
 		新規追加
 	demos/variations/v150filterDialog.htm
@@ -179,7 +179,7 @@ V1.16.0 18-01-03 nittics1991
 		AggregateDialog用メッセージ追加
 	demos/variations/v1160aggregate.htm
 		新規追加
-V1.17.0 18-01-04 nittics1991
+v1.17.0 18-01-04 nittics1991
 	src/tool/gtv_aggregate.js
 		create() 繰り返し表示不具合対応
 	src/tool/gtv_row_height.js
@@ -193,11 +193,24 @@ V1.17.0 18-01-04 nittics1991
 	src/gt_tool.js
 		Sigma.ToolFactroy.tools bookmark,aggregete,copy,paste,fillcolumn
 			rowheight,selectedcheck追加
-	grid/variations/skinstyle.css
+	grid/skin/variations/skinstyle.css
 		bookmark,aggregete,copy,paste,fillcolumn,rowheight,selectedcheck追加
 	demos/variations/v1170icon.htm
 		新規追加
-V1.17.1 18-01-04 nittics1991
+v1.17.1 18-01-04 nittics1991
 	grid/gt_msg_en.js
 		TOOL_xxx追加
+v1.18.0 18-01-04 nittics1991
+	src/tool/gtv_download_csv.js
+		新規追加
+	demos/variations/v1180csvDownload.htm
+		新規追加
+	src/gt_tool.js
+		Sigma.ToolFactroy.tools downloadcsv追加
+	grid/skin/variations/skinstyle.css
+		downloadcsv追加
+	grid/skin/variations/images
+		crop_portrait.png,file_csv.png追加
+
+
 
