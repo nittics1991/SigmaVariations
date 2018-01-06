@@ -611,5 +611,29 @@ td.gt-cell-updated {
 .gt-skin-variations .gt-tool-downloadcsv {
 	background:url(./images/file_csv.png) no-repeat center center;
 }
-/*<==v1170*/
+/*<==v1180*/
+
+/*v1190==>*/
+.gt-skin-variations .gt-tool-skin {
+	background:url(./images/color_lens.png) no-repeat center center;
+}
+
+.gt-skin-variations .gt-tool-config {
+	background:url(./images/manual_record.png) no-repeat center center;
+}
+
+.gt-skin-variations .gt-tool-unconfig {
+	background:url(./images/block.png) no-repeat center center;
+	background-size:75% 75%;
+}
+
+.gt-skin-variations .gt-tool-downloadconfig {
+	background:url(./images/file_download.png) no-repeat center center;
+}
+
+.gt-skin-variations .gt-tool-uploadconfig {
+	background:url(./images/file_upload.png) no-repeat center center;
+}
+/*<==v1190*/
+
 

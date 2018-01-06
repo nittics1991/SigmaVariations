@@ -93,6 +93,13 @@ Sigma.Msg.Grid.en={
 	TOOL_FILTER : "Filter" ,
 	TOOL_CHART : "Chart",
 	
+	/*v1190==>*/
+	TOOL_PAGE_FIRST:"TopPage",
+	TOOL_PAGE_PREV:"PrevPage",
+	TOOL_PAGE_NEXT:"NextPage",
+	TOOL_PAGE_LAST:"LastPage",
+	/*<==v1190*/
+	
 	/*v1171==>*/
 	TOOL_BOOKMARK:"Bookmark",
 	TOOL_AGGREGATE:"Aggregate",
@@ -102,6 +109,14 @@ Sigma.Msg.Grid.en={
 	TOOL_ROWHEIGHT:"ChangeRowHeight",
 	TOOL_SELECTEDCHECK:"CheckSelectedRows",
 	/*<==v1171*/
+	
+	/*v1190==>*/
+	TOOL_SKIN:"SaveSkin",
+	TOOL_CONFIG:"SaveConfig",
+	TOOL_UNCONFIG:"DeleteConfig",
+	TOOL_DOWNLOADCONFIG:"DownloadConfig",
+	TOOL_UPLOADCONFIG:"UploadConfig",
+	/*<==v1190*/
 	
 	/*v1150==>*/
 	DIAG_TITLE_BOOKMARK:"Filter Bookmark",
@@ -113,6 +128,10 @@ Sigma.Msg.Grid.en={
 	/*v1160==>*/
 	DIAG_TITLE_AGGREGATE:"Table Aggregate",
 	/*<==v1160*/
+	
+	/*v1190==>*/
+	DIAG_TITLE_FILEREADER:"FileReader",
+	/*<==v1190*/
 	
 	
 };

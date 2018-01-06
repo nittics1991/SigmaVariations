@@ -213,4 +213,28 @@ v1.18.0 18-01-04 nittics1991
 		crop_portrait.png,file_csv.png追加
 
 
-
+v1.19.0 18-01-06 nittics1991
+	src/tool/gtv_skin_inf.js
+		新規追加
+	src/tool/gtv_grid_inf.js
+		新規追加
+	src/tool/gtv_file_reader.js
+		新規追加
+	src/gt_tool.js
+		Sigma.ToolFactroy.tools skin,config,unconfig,downloadconfig,uploadconfig追加
+	src/gt_grid.js
+		render() 初期表示時config,skin反映
+		destroy() uploadconfig追加
+		showDialog() uploadconfig追加
+	grid/skin/variations/skinstyle.css
+		skin,config,unconfig,downloadconfig,uploadconfig追加
+	grid/gt_msg_en.js
+		skin,config,unconfig,downloadconfig,uploadconfig,filereader追加
+		page_first/next/prev/last追加
+	demos/variations/images
+		manual_record,radio_button_checked,radio_button_unchecked.png追加
+	demos/variations/v1190config.htm
+		新規追加
+	
+	
+	

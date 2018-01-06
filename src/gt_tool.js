@@ -1057,7 +1057,44 @@ Sigma.ToolFactroy = {
 	
     /*<==v1170*/
     
-    
+    /*v1190==>*/
+    skin: {
+      onclick: function(event, grid) {
+        Sigma.Tool.SkinInf.save(grid);
+		alert(grid.getMsg("TOOL_SAVE"));
+      }
+    },
+	
+    config: {
+      onclick: function(event, grid) {
+        var config = new Sigma.Tool.GridInf(grid);
+		config.save();
+		alert(grid.getMsg("TOOL_SAVE"));
+      }
+    },
+	
+    unconfig: {
+      onclick: function(event, grid) {
+        var config = new Sigma.Tool.GridInf(grid);
+		config.del();
+		alert(grid.getMsg("TOOL_SAVE"));
+      }
+    },
+	
+    downloadconfig: {
+      onclick: function(event, grid) {
+        var config = new Sigma.Tool.GridInf(grid);
+		config.download();
+      }
+    },
+	
+    uploadconfig: {
+      onclick: function(event, grid) {
+		grid.showDialog("uploadconfig");
+	  }
+    },
+    /*<==v1190*/
+	
   }
 };
 

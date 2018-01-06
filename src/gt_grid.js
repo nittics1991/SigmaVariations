@@ -4053,6 +4053,11 @@ Sigma.GridDefault = {
 		"navigator",
 		"bookmark",
 		"aggregate",
+		
+		/*v1190==>*/
+		"uploadconfig",
+		/*<==v1190*/
+		
 	];
 	/*<==v1170*/
     
@@ -4702,6 +4707,18 @@ Sigma.GridDefault = {
       this.createBody();
       this.rendered = true;
     }
+	
+	/*v1190==>*/
+	if (typeof Sigma.Tool.SkinInf == 'object') {
+		Sigma.Tool.SkinInf.apply(this)
+	}
+	
+	var config = new Sigma.Tool.GridInf(this);
+	if (config) {
+		config.apply();
+	}
+	/*<==v1190*/
+	
     return this;
   },
   
@@ -4886,7 +4903,8 @@ Sigma.GridDefault = {
 
   /**
    * @description {Method} showDialog To show a dialog.
-   * @param {String} type Could be 'filter' or 'chart', 'bookmark'.
+   * @param {String} type Could be 'filter' or 'chart','bookmark'
+   * 			,'aggregate','uploadconfigDialog'.
    */
   showDialog: function(type) {
     var grid = this;
@@ -4958,8 +4976,8 @@ Sigma.GridDefault = {
         /*v1170==>*/
        case "bookmark":
 			grid.bookmarkDialog =
-			grid.bookmarkDialog ||
-			Sigma.Tool.BookmarkDialog.create(this);
+				grid.bookmarkDialog ||
+				Sigma.Tool.BookmarkDialog.create(this);
 			
 			if (grid.bookmarkDialog) {
 				grid.bookmarkDialog.show();
@@ -4967,15 +4985,25 @@ Sigma.GridDefault = {
 			break;
        case "aggregate":
 			grid.aggregateDialog =
-			grid.aggregateDialog ||
-			Sigma.Tool.AggregateDialog.create(this);
+				grid.aggregateDialog ||
+				Sigma.Tool.AggregateDialog.create(this);
 			
 			if (grid.aggregateDialog) {
 				grid.aggregateDialog.show();
 			}
 			break;
         /*<==v1170*/
-        
+        /*v1190==>*/
+		case "uploadconfig":
+			grid.uploadconfigDialog =
+				grid.uploadconfigDialog ||
+				Sigma.Tool.GridInfDialog.create(this);
+			
+			if (grid.uploadconfigDialog) {
+				grid.uploadconfigDialog.show();
+			}
+			break;
+        /*<==v1190*/
         
     }
   },
