@@ -48,10 +48,7 @@
     <script type="text/javascript" src="../../src/tool/gtv_row_height.js"></script>
     <script type="text/javascript" src="../../src/tool/gtv_selected_check.js"></script>
     <script type="text/javascript" src="../../src/tool/gtv_skin_inf.js"></script>
-<<<<<<< HEAD
-=======
     <script type="text/javascript" src="../../src/tool/gtv_skin_jqui.js"></script>
->>>>>>> 1b2fbec... skin jqui
 	
 	<!--sigma-->
 	<script type="text/javascript" src="../../src/gt_const.js"></script>
@@ -165,7 +162,7 @@ var gridOption={
 	allowHide:true,
 	allowCustomSkin:true,
 	stripeRows:true,
-	skin:"variations",
+	//skin:"variations",
 	
 };
 
@@ -177,29 +174,15 @@ gridOption.onComplete = function(grid) {
 gridOption.onCellClick=function(value,record,cell,row,colNo,columnObj,grid) {
 	
 	if (cell.className.indexOf("2005") > -1) {
-<<<<<<< HEAD
-		Sigma.Tool.SkinInf.apply(this);
-=======
 		Sigma.Tool.SkinJqui.apply();
->>>>>>> 1b2fbec... skin jqui
 		
 	} else if (cell.className.indexOf("2006") > -1) {
-		var config = new Sigma.Tool.GridInf(this);
-		config.apply();
 		
 	} else if (cell.className.indexOf("2007") > -1) {
-		var dialog = new Sigma.Tool.FileReaderDialog(this);
-		//dialog.accept = "htm,text/html";
-		dialog.create(function(event, grid) {
-			console.log("aaaa");
-		})
-		.show();
 		
 	} else if (cell.className.indexOf("2008") > -1) {
-		this.showDialog("uploadconfig");
 		
 	} else if (cell.className.indexOf("employee") > -1) {
-		this.showWaiting();
 		
 	} else if (cell.className.indexOf("customer") > -1) {
 		
@@ -229,11 +212,8 @@ Sigma.Util.onLoad( Sigma.Grid.render(mygrid2) );
 
 
 </script>
-<<<<<<< HEAD
-=======
 	
 	
->>>>>>> 1b2fbec... skin jqui
 
 </body>
 </html>

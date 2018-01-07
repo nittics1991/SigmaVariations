@@ -238,5 +238,12 @@ v1.20.0 18-01-07 nittics1991
 		EDITORS jqdate追加
 	demos/variations/v1200datepicker.htm
 		新規追加
+v1.21.0 18-01-07 nittics1991
+	src/tool/gtv_skin_jqui.js
+		新規追加
+	demos/variations/v1210skinJqui.htm
+		新規追加
 	
-	
+
+
+
