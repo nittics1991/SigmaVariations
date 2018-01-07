@@ -45,13 +45,10 @@
     <script type="text/javascript" src="../../src/tool/gtv_file_reader.js"></script>
     <script type="text/javascript" src="../../src/tool/gtv_fill_columns.js"></script>
     <script type="text/javascript" src="../../src/tool/gtv_grid_inf.js"></script>
+    <script type="text/javascript" src="../../src/tool/gtv_skin_jqui.js"></script>
     <script type="text/javascript" src="../../src/tool/gtv_row_height.js"></script>
     <script type="text/javascript" src="../../src/tool/gtv_selected_check.js"></script>
     <script type="text/javascript" src="../../src/tool/gtv_skin_inf.js"></script>
-<<<<<<< HEAD
-=======
-    <script type="text/javascript" src="../../src/tool/gtv_skin_jqui.js"></script>
->>>>>>> 1b2fbec... skin jqui
 	
 	<!--sigma-->
 	<script type="text/javascript" src="../../src/gt_const.js"></script>
@@ -177,11 +174,7 @@ gridOption.onComplete = function(grid) {
 gridOption.onCellClick=function(value,record,cell,row,colNo,columnObj,grid) {
 	
 	if (cell.className.indexOf("2005") > -1) {
-<<<<<<< HEAD
-		Sigma.Tool.SkinInf.apply(this);
-=======
 		Sigma.Tool.SkinJqui.apply();
->>>>>>> 1b2fbec... skin jqui
 		
 	} else if (cell.className.indexOf("2006") > -1) {
 		var config = new Sigma.Tool.GridInf(this);
@@ -229,11 +222,6 @@ Sigma.Util.onLoad( Sigma.Grid.render(mygrid2) );
 
 
 </script>
-<<<<<<< HEAD
-=======
-	
-	
->>>>>>> 1b2fbec... skin jqui
 
 </body>
 </html>

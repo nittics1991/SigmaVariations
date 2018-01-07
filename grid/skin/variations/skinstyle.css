@@ -57,12 +57,25 @@
 	background: #e0e0e0 url(./images/cell_index_bg.gif) repeat-x ;
 }
 
+*/
+
+/*v1220=>*/
 .gt-skin-variations .gt-hd-icon {
-	background-image: url(./images/s_sort_asc_desc.gif);
+	/*background-image: url("");*/
 }
 
+.gt-hd-asc {
+	background-position:0px 0px;
+	background:url(./images/expand_less.png) no-repeat center center;
+}
 
-*/
+.gt-hd-desc {
+	background-position:0px 0px;
+	background:url(./images/expand_more.png) no-repeat center center;
+}
+/*<==v1220*/
+
+
 
 .gt-skin-variations  .gt-toolbar-box {
 	background-image:url("");

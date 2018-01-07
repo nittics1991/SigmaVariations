@@ -243,7 +243,11 @@ v1.21.0 18-01-07 nittics1991
 		新規追加
 	demos/variations/v1210skinJqui.htm
 		新規追加
-	
+v1.22.0 18-01-08 nittics1991
+	grid/skin/variations/skinstyle.css
+		sortアイコン変更
+
+
 
 
 
