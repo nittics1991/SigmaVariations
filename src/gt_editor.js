@@ -321,29 +321,6 @@ Sigma.$extend(Sigma.Editor, {
       editor.dom.appendChild(editor.valueDom);
       return editor;
     },
-    /*
-		pop : function(editor){
-			editor=new Sigma.Editor(editor);
-			editor.dom=Sigma.$e('div',{ 
-				style: {
-					width : editor.width,
-					height : editor.height;
-				}
-			});
-			if (editor.core){
-				editor.dom.innerHTML='<input id="test_value" type="text" />';
-			}			
-
-			editor.valueDom=Sigma.$e('input',{type:'text',value:editor.defaultValue||'',className:'gt-editor-text'});
-			editor.dom.appendChild(editor.valueDom);
-
-			editor.locked=true;
-			var grid=Sigma.$grid(editor.gridId);
-			editor.setSize=Sigma.$empty;
-			editor.dom.style.overflow='hidden';
-			editor.dom.appendChild(input);
-		},
-		*/
     date: function(editor) {
       editor = new Sigma.Editor(editor);
       var input = Sigma.$e("input", {
@@ -401,7 +378,38 @@ Sigma.$extend(Sigma.Editor, {
 
       editor.valueDom = input;
       return editor;
-    }
+    },
+    
+    /*v1200==>*/
+    jqdate: function(editor) {
+      editor = new Sigma.Editor(editor);
+      editor.valueDom = Sigma.$e("input", {
+        type: "text",
+        value: editor.defaultValue || "",
+        className: "gt-editor-text gt-editor-jqdate"
+      });
+      editor.dom.appendChild(editor.valueDom);
+      
+      if (typeof jQuery == 'undefined' || ! $.ui) {
+		  return;
+      }
+      
+	  $(function() {
+		if (editor.language) {
+			$.datepicker.setDefaults($.datepicker.regional[editor.language]);
+		}
+		var option = editor.option ||
+			{
+				dateFormat:"yy-mm-dd",
+				changeYear:true,
+				changeMonth:true,
+			};
+		$(".gt-editor-jqdate").not(".hasDatePicker").datepicker(option);
+	  });
+      return editor;
+    },
+    /*<==v1200*/
+    
   }
 });
 
