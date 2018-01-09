@@ -246,8 +246,12 @@ v1.21.0 18-01-07 nittics1991
 v1.22.0 18-01-08 nittics1991
 	grid/skin/variations/skinstyle.css
 		sortアイコン変更
+v1.22.1 18-01-09 nittics1991
+	src/gt_grid.js
+		render()	Sigma.Tool未定義時エラー対策
 
-
+		
+		
 
 
 

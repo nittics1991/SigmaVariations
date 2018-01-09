@@ -4708,14 +4708,22 @@ Sigma.GridDefault = {
       this.rendered = true;
     }
 	
+	/*v1221==>*/
+	if (!Sigma.Tool) {
+		return this;
+	}
+	/*<==v1221*/
+	
 	/*v1190==>*/
 	if (typeof Sigma.Tool.SkinInf == 'object') {
 		Sigma.Tool.SkinInf.apply(this)
 	}
 	
-	var config = new Sigma.Tool.GridInf(this);
-	if (config) {
+	/*v1221==>*/
+	if (typeof Sigma.Tool.GridInf == 'object') {
+		var config = new Sigma.Tool.GridInf(this);
 		config.apply();
+	/*<==v1221*/
 	}
 	/*<==v1190*/
 	
