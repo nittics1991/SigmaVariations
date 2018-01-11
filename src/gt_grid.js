@@ -4058,6 +4058,10 @@ Sigma.GridDefault = {
 		"uploadconfig",
 		/*<==v1190*/
 		
+		/*v1230==>*/
+		'dragsort',
+		/*<==v1230*/
+		
 	];
 	/*<==v1170*/
     
@@ -4912,7 +4916,7 @@ Sigma.GridDefault = {
   /**
    * @description {Method} showDialog To show a dialog.
    * @param {String} type Could be 'filter' or 'chart','bookmark'
-   * 			,'aggregate','uploadconfigDialog'.
+   * 			,'aggregate','uploadconfig','dragsort'.
    */
   showDialog: function(type) {
     var grid = this;
@@ -5001,7 +5005,8 @@ Sigma.GridDefault = {
 			}
 			break;
         /*<==v1170*/
-        /*v1190==>*/
+        
+		/*v1190==>*/
 		case "uploadconfig":
 			grid.uploadconfigDialog =
 				grid.uploadconfigDialog ||
@@ -5013,6 +5018,18 @@ Sigma.GridDefault = {
 			break;
         /*<==v1190*/
         
+		/*v1230==>*/
+		case "dragsort":
+			grid.dragsortDialog =
+				grid.dragsortDialog ||
+				Sigma.Tool.DragSortDialog.create(this);
+			
+			if (grid.dragsortDialog) {
+				grid.dragsortDialog.show();
+			}
+			break;
+        /*<==v1230*/
+		
     }
   },
 

@@ -1095,6 +1095,14 @@ Sigma.ToolFactroy = {
     },
     /*<==v1190*/
 	
+    /*v1230==>*/
+    dragsort: {
+      onclick: function(event, grid) {
+		grid.showDialog("dragsort");
+	  }
+    },
+    /*<==v1230*/
+	
   }
 };
 

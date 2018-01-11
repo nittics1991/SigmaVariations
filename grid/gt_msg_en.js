@@ -133,6 +133,11 @@ Sigma.Msg.Grid.en={
 	DIAG_TITLE_FILEREADER:"FileReader",
 	/*<==v1190*/
 	
+	/*v1230==>*/
+	DIAG_TITLE_DRAGSORT: "DragSort",
+	WARNING_DRAG_SORT: "sort failure",
+	/*<==v1230*/
+	
 	
 };
 

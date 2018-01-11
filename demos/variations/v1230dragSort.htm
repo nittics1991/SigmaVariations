@@ -158,7 +158,7 @@ var gridOption={
 	pageSize : 10 ,
 	pageSizeList:[10, 20, 50, 100],
 	toolbarPosition:"top",
-	toolbarContent :"skin | nav goto | pagesize | reload | filter bookmark | add del copy paste fillcolumn | save | rowheight selectedcheck | aggregate | config unconfig downloadconfig uploadconfig | state ",
+	toolbarContent :"skin | nav goto | pagesize | reload | filter bookmark | dragsort | add del copy paste fillcolumn | save | rowheight selectedcheck | aggregate | config unconfig downloadconfig uploadconfig | state ",
 	selectRowByChec:true,
 	showGridMenu:true,
 	allowFreeze:true,
@@ -178,14 +178,6 @@ gridOption.onComplete = function(grid) {
 gridOption.onCellClick=function(value,record,cell,row,colNo,columnObj,grid) {
 	
 	if (cell.className.indexOf("2005") > -1) {
-		
-		Sigma.Tool.DragSortDialog.create(this).show();
-		
-		
-		
-		
-		
-		
 		
 	} else if (cell.className.indexOf("2006") > -1) {
 		

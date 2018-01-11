@@ -249,9 +249,19 @@ v1.22.0 18-01-08 nittics1991
 v1.22.1 18-01-09 nittics1991
 	src/gt_grid.js
 		render()	Sigma.Tool未定義時エラー対策
-
-		
-		
-
-
+v1.23.0 18-01-11 nittics1991
+	src/tool/gtv_drag_sort.js
+		新規追加
+	grid/gt_msg_en.js
+		drag_sort追加
+	src/gt_grid.js
+		showDialog() dragsort追加
+	src/gt_tool.js
+		Sigma.ToolFactroy.tools drag_sort追加
+	grid/skin/variations/skinstyle.css
+		dragsort追加
+	demos/variations/v1230dragSort.htm
+		新規追加
+	
+	
 

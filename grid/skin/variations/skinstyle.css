@@ -649,4 +649,9 @@ td.gt-cell-updated {
 }
 /*<==v1190*/
 
+/*v1230==>*/
+.gt-skin-variations .gt-tool-dragsort {
+	background:url(./images/shuffle.png) no-repeat center center;
+}
+/*<==v1230*/
 
