@@ -34,7 +34,7 @@
 	<!--sigma variations/lib-->
     
 	<!--sigma variations/tool-->
-    <script type="text/javascript" src="../../src/tool/gtv_skin_jqui.js"></script>
+    <script type="text/javascript" src="../../src/tool/gtv_row_height.js"></script>
 	
 	<!--sigma-->
 	<script type="text/javascript" src="../../src/gt_const.js"></script>
@@ -56,13 +56,16 @@
 	<script type="text/javascript" src="../data/test_data.js"></script>
 	<script type="text/javascript" src="../data/test_data_obj.js"></script>
 	
-<title>v1200datePicker</title>
+<title>v1170rowHeight</title>
 </head>
 <body>
 
-<h4>jQueryUI datepicker</h4>
+<h4>行高さ切り替え(固定列否対応)</h4>
 <ol>
-	<li>Delivery DateをjQuery UI datepickerとする</li>
+	<li>TextArea列は改行で複数行を持つ</li>
+	<li>初期表示では１行表示</li>
+	<li>行高さ変更実行で行高さをwhite-space:none;に変更</li>
+	<li>再実行でwhite-space:nowrap;に変更</li>
 </ol>
 
 <div id="content"></div>
@@ -84,6 +87,11 @@ var dsOption= {
 		{name : 'bill2007' ,type: 'float' },
 		{name : 'bill2008' ,type: 'float' },
 		{name : 'orderDate' ,type:'date'  },
+		{name : 'textarea' , initValue : function(record){
+				return "abcd\nefgh\nijkl\n";
+			},
+		},
+		
 	],
 	
 	//recordType : 'array',
@@ -108,12 +116,8 @@ var colsOption = [
 	 },
 	 {id: 'bill2007' , header: "2007" , width :60},
 	 {id: 'bill2008' , header: "2008" , width :60},
-	 {id: 'orderDate' , header: "Delivery Date" , width :100
-	 	, editor:{
-	 		type:"jqdate",
-			language:"ja",
-	 	}
-	 },
+	 {id: 'orderDate' , header: "Delivery Date" , width :100},
+	 {id: 'textarea' , header: "TextArea" , width :50},
 ];
  
 var gridOption={
@@ -127,7 +131,7 @@ var gridOption={
 	pageSize : 10 ,
 	pageSizeList:[10, 20, 50, 100],
 	toolbarPosition:"top",
-	toolbarContent :"skin | nav goto | pagesize | reload | filter bookmark | add del copy paste fillcolumn | save | rowheight selectedcheck | aggregate | config unconfig downloadconfig uploadconfig | state ",
+	toolbarContent :"skin | nav goto | pagesize | reload | rowheight  | state ",
 	selectRowByChec:true,
 	showGridMenu:true,
 	allowFreeze:true,

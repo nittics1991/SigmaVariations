@@ -386,7 +386,7 @@ Sigma.$extend(Sigma.Editor, {
       editor.valueDom = Sigma.$e("input", {
         type: "text",
         value: editor.defaultValue || "",
-        className: "gt-editor-text gt-editor-jqdate"
+        className: "gt-editor-text gt-editor-jqdate",
       });
       editor.dom.appendChild(editor.valueDom);
       
@@ -394,18 +394,24 @@ Sigma.$extend(Sigma.Editor, {
 		  return;
       }
       
-	  $(function() {
+	  // $(function() {
 		if (editor.language) {
 			$.datepicker.setDefaults($.datepicker.regional[editor.language]);
 		}
+		
 		var option = editor.option ||
 			{
 				dateFormat:"yy-mm-dd",
 				changeYear:true,
+				
+				/*v1230==>*/
 				changeMonth:true,
+				/*<==v1230*/
+				
 			};
 		$(".gt-editor-jqdate").not(".hasDatePicker").datepicker(option);
-	  });
+		$(".ui-datepicker").draggable();
+	  // });
       return editor;
     },
     /*<==v1200*/

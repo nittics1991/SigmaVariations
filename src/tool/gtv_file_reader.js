@@ -5,6 +5,12 @@ if (!window.Sigma) {
   window.Sigma = {};
 }
 
+/*v1240==>*/
+if (!Sigma.Tool) {
+  Sigma.Tool = {};
+}
+/*<==v1240*/
+
 /**
 *	ダイアログ
 * 
@@ -47,8 +53,11 @@ Sigma.Tool.FileReaderDialog.prototype.create = function(fn) {
 	var dialogId = _grid.id + '_filereader';
 	var _this = this;
 	
-	var outW = 250;
-	var outH = 100;
+	/*v1230==>*/
+	var outW = 300;
+	var outH = 120;
+	/*<==v1230*/
+	
 	var inW = outW - 2;
 	var inH = outH - 60;
 	var fileW = 200;

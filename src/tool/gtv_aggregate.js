@@ -41,8 +41,18 @@ Sigma.Tool.AggregateDialog = {
 				
 			var tmp = '<tr class="gt-hd-row"><td></td>';
 			
-			_grid.columnList.forEach(function(colObj) {
-				tmp += '<td><div class="gt-inner  gt-inner-center">' + colObj.header + '</div></td>';
+			/*v1230==.*/
+			var dataset = _grid.dataset.data[0] || {};
+			var keys = Object.keys(dataset).filter(function(key) {
+				return key.substr(0, 1) != '_';
+			});
+			
+			_grid.columns.forEach(function(col) {
+				if (keys.indexOf(col.id) > -1) {
+			/*<==v1230*/
+					
+					tmp += '<td><div class="gt-inner  gt-inner-center">' + col.header + '</div></td>';
+				}
 			});
 			
 			tmp += '</tr><tbody></tbody>';

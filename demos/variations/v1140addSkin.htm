@@ -2,11 +2,25 @@
 <html lang="ja">
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+	
+	<!--jquery ui-->
+	<!--
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    -->
+	<script src="../../../jquery-ui/external/jquery/jquery.js"></script>
+    <link rel="stylesheet" href="../../../jquery-ui/jquery-ui.css">
+	<script src="../../../jquery-ui/jquery-ui.min.js"></script>
+	<script src="../../../jquery-ui/i18n/datepicker-ja.js"></script>
     
+	<!--sigma calendar-->
     <link rel="stylesheet" type="text/css" media="all" href="../../grid/calendar/calendar-blue.css" />
     <script type="text/javascript" src="../../grid/calendar/calendar.js"></script>
+    <script type="text/javascript" src="../../grid/calendar/calendar-en.js"></script>
     <script type="text/javascript" src="../../grid/calendar/calendar-setup.js"></script>
 	
+	<!--sigma css-->
     <link rel="stylesheet" type="text/css" href="../../grid/gt_grid.css" />
     <link rel="stylesheet" type="text/css" href="../../grid/skin/default/skinstyle.css" />
     <link rel="stylesheet" type="text/css" href="../../grid/skin/mac/skinstyle.css" />
@@ -14,25 +28,14 @@
     <link rel="stylesheet" type="text/css" href="../../grid/skin/vista/skinstyle.css" />
     <link rel="stylesheet" type="text/css" href="../../grid/skin/variations/skinstyle.css" />
 	
+	<!--sigma msg-->
     <script type="text/javascript" src="../../grid/gt_msg_en.js"></script>
 	
-    <script type="text/javascript" src="../../src/lib/gtv_clipboard.js"></script>
-    <script type="text/javascript" src="../../src/lib/gtv_http_downloader.js"></script>
-    <script type="text/javascript" src="../../src/lib/gtv_local_storage.js"></script>
-    <script type="text/javascript" src="../../src/lib/gtv_table.js"></script>
+	<!--sigma variations/lib-->
     
-    
-    <script type="text/javascript" src="../../src/tool/gtv_aggregate.js"></script>
-    <script type="text/javascript" src="../../src/tool/gtv_bookmark.js"></script>
-    <script type="text/javascript" src="../../src/tool/gtv_copy_rows.js"></script>
-    <script type="text/javascript" src="../../src/tool/gtv_file_reader.js"></script>
-    <script type="text/javascript" src="../../src/tool/gtv_fill_columns.js"></script>
-    <script type="text/javascript" src="../../src/tool/gtv_grid_inf.js"></script>
-    <script type="text/javascript" src="../../src/tool/gtv_row_height.js"></script>
-    <script type="text/javascript" src="../../src/tool/gtv_selected_check.js"></script>
-    <script type="text/javascript" src="../../src/tool/gtv_skin_inf.js"></script>
+	<!--sigma variations/tool-->
 	
-	
+	<!--sigma-->
 	<script type="text/javascript" src="../../src/gt_const.js"></script>
 	<script type="text/javascript" src="../../src/gt_base.js"></script>
 	<script type="text/javascript" src="../../src/gt_tool.js"></script>
@@ -45,29 +48,27 @@
 	<script type="text/javascript" src="../../src/gt_template.js"></script>
 	<script type="text/javascript" src="../../src/gt_validator.js"></script>	
 	
+	<!--sigma chart-->
     <script type="text/javascript" src="../../grid/flashchart/fusioncharts/FusionCharts.js"></script>
 	
+	<!--sigma test data-->
 	<script type="text/javascript" src="../data/test_data.js"></script>
 	<script type="text/javascript" src="../data/test_data_obj.js"></script>
 	
-<title>デモ作成用テンプレート</title>
+<title>v1140addSkin</title>
 </head>
 <body>
 
-<h4>タイトル</h4>
+<h4>スキン追加でメニューにも追加</h4>
 <ol>
-	<li></li>
-	<li></li>
-	<li></li>
-	<li></li>
+	<li>スキンメニューを確認して閉じる</li>
+	<li>セルをクリックするとスキンが変わる</li>
+	<li>スキンメニューを開き、最下段にスキンが追加されている事を確認</li>
 </ol>
 
 <div id="content"></div>
-
 <hr>
-
 <div id="content2"></div>
-
 
 <script>
 
@@ -83,8 +84,7 @@ var dsOption= {
 		{name : 'bill2006' ,type: 'float' },
 		{name : 'bill2007' ,type: 'float' },
 		{name : 'bill2008' ,type: 'float' },
-		{name : 'orderDate' ,type:'date'  }
-		
+		{name : 'orderDate' ,type:'date'  },
 	],
 	
 	//recordType : 'array',
@@ -92,9 +92,6 @@ var dsOption= {
 	
 	recordType : 'object',
 	data : __TEST_DATA_OBJ__
-	
-	
-	
 }
 
 var colsOption = [
@@ -112,11 +109,9 @@ var colsOption = [
 	 },
 	 {id: 'bill2007' , header: "2007" , width :60},
 	 {id: 'bill2008' , header: "2008" , width :60},
-	 {id: 'orderDate' , header: "Delivery Date" , width :100}
-       
+	 {id: 'orderDate' , header: "Delivery Date" , width :100},
 ];
  
-
 var gridOption={
   	id : "myGrid1",
 	container : 'content', 
@@ -136,7 +131,7 @@ var gridOption={
 	allowHide:true,
 	allowCustomSkin:true,
 	stripeRows:true,
-	skin:"variations",
+	skin:"default",
 	
 };
 
@@ -144,34 +139,26 @@ var gridOption={
 gridOption.onComplete = function(grid) {
 };
 
-
 gridOption.onCellClick=function(value,record,cell,row,colNo,columnObj,grid) {
-	
-	if (cell.className.indexOf("2005") > -1) {
-		Sigma.Tool.SkinInf.apply(this);
-		
-	} else if (cell.className.indexOf("2006") > -1) {
-		var config = new Sigma.Tool.GridInf(this);
-		config.apply();
-		
-	} else if (cell.className.indexOf("2007") > -1) {
-		var dialog = new Sigma.Tool.FileReaderDialog(this);
-		//dialog.accept = "htm,text/html";
-		dialog.create(function(event, grid) {
-			console.log("aaaa");
-		})
-		.show();
-		
-	} else if (cell.className.indexOf("2008") > -1) {
-		this.showDialog("uploadconfig");
-		
-		
+	if (! this.getSkin() !=  "variations") {
+		this.addSkin( "variations");
+		Sigma.Grid.changeSkin(this, "variations");
 	}
 	
-	
+	if (cell.className.indexOf("2005") > -1) {
 		
+	} else if (cell.className.indexOf("2006") > -1) {
+		
+	} else if (cell.className.indexOf("2007") > -1) {
+		
+	} else if (cell.className.indexOf("2008") > -1) {
+		
+	} else if (cell.className.indexOf("employee") > -1) {
+		
+	} else if (cell.className.indexOf("customer") > -1) {
+		
+	}
 }
-
 
 //////////////////////////////////////////////////////////////
 

@@ -34,7 +34,6 @@
 	<!--sigma variations/lib-->
     
 	<!--sigma variations/tool-->
-    <script type="text/javascript" src="../../src/tool/gtv_skin_jqui.js"></script>
 	
 	<!--sigma-->
 	<script type="text/javascript" src="../../src/gt_const.js"></script>
@@ -56,13 +55,14 @@
 	<script type="text/javascript" src="../data/test_data.js"></script>
 	<script type="text/javascript" src="../data/test_data_obj.js"></script>
 	
-<title>v1200datePicker</title>
+<title>v110validRule</title>
 </head>
 <body>
 
-<h4>jQueryUI datepicker</h4>
+<h4>validRuleメッセージ確認</h4>
 <ol>
-	<li>Delivery DateをjQuery UI datepickerとする</li>
+	<li>bill2006列を選択し、数値かつ3以上でない値を入れる</li>
+	<li>アラートに「must be greatethen 3.」を表示する</li>
 </ol>
 
 <div id="content"></div>
@@ -83,7 +83,7 @@ var dsOption= {
 		{name : 'bill2006' ,type: 'float' },
 		{name : 'bill2007' ,type: 'float' },
 		{name : 'bill2008' ,type: 'float' },
-		{name : 'orderDate' ,type:'date'  },
+		{name : 'orderDate' ,type:'date'  }
 	],
 	
 	//recordType : 'array',
@@ -108,14 +108,10 @@ var colsOption = [
 	 },
 	 {id: 'bill2007' , header: "2007" , width :60},
 	 {id: 'bill2008' , header: "2008" , width :60},
-	 {id: 'orderDate' , header: "Delivery Date" , width :100
-	 	, editor:{
-	 		type:"jqdate",
-			language:"ja",
-	 	}
-	 },
+	 {id: 'orderDate' , header: "Delivery Date" , width :100},
 ];
  
+
 var gridOption={
   	id : "myGrid1",
 	container : 'content', 
@@ -156,7 +152,6 @@ gridOption.onCellClick=function(value,record,cell,row,colNo,columnObj,grid) {
 	} else if (cell.className.indexOf("employee") > -1) {
 		
 	} else if (cell.className.indexOf("customer") > -1) {
-		
 	}
 }
 
@@ -175,7 +170,6 @@ var mygrid2=new Sigma.Grid( gridOption2 );
 Sigma.Util.onLoad( Sigma.Grid.render(mygrid2) );
 
 //////////////////////////////////////////////////////////////
-
 
 </script>
 

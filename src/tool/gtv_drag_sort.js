@@ -20,7 +20,8 @@ Sigma.Tool.DragSortDialog = {
 	**/
 	create:function(grid) {
 		var _grid = grid;
-		var bookmark = new Sigma.Tool.Bookmark(grid);
+		/*v1230==>*/
+		/*v<==1230*/
 		var dialogId = grid.id + '_dragsort';
 		var dataProxy = grid.dataset.dataProxy;
 		

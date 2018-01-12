@@ -34,7 +34,6 @@
 	<!--sigma variations/lib-->
     
 	<!--sigma variations/tool-->
-    <script type="text/javascript" src="../../src/tool/gtv_skin_jqui.js"></script>
 	
 	<!--sigma-->
 	<script type="text/javascript" src="../../src/gt_const.js"></script>
@@ -56,18 +55,55 @@
 	<script type="text/javascript" src="../data/test_data.js"></script>
 	<script type="text/javascript" src="../data/test_data_obj.js"></script>
 	
-<title>v1200datePicker</title>
+<title>v102customizeHead</title>
 </head>
 <body>
 
-<h4>jQueryUI datepicker</h4>
+<h4>frozen列のあるcustomizeHead</h4>
 <ol>
-	<li>Delivery DateをjQuery UI datepickerとする</li>
+	<li>frozen列のあるcustomizeHeadが設定出来る事を確認</li>
+	<li>注意：ソート出来ない列がある</li>
 </ol>
 
 <div id="content"></div>
 <hr>
 <div id="content2"></div>
+
+<table id="myHead1" style="display:none">
+	<tr>
+		<td rowspan="2" columnId='no' resizable='false'>Order No</td>
+		<td rowspan="2" columnId='employee' resizable='false'>Employee</td>
+		<td colspan="7">Order Info</td>
+	</tr>
+	<tr>
+		<td columnId='country'>Country</td>
+		<td columnId='customer'>Customer</td>
+		<td columnId='bill2005'>2005</td>
+		<td columnId='bill2006'>2006</td>
+		<td columnId='bill2007'>2007</td>
+		<td columnId='bill2008'>2008</td>
+		<td columnId='orderDate'>Ship Date</td>
+	</tr>
+</table>
+
+<table id="myHead2" style="display:none">
+	<tr>
+		<td rowspan="2" columnId='no' resizable='false'>Order No</td>
+		<td rowspan="2" columnId='employee' resizable='false'>Employee</td>
+		<td colspan="7">Order Info</td>
+	</tr>
+	<tr>
+		<td columnId='country'>Country</td>
+		<td columnId='customer'>Customer</td>
+		<td columnId='bill2005'>2005</td>
+		<td columnId='bill2006'>2006</td>
+		<td columnId='bill2007'>2007</td>
+		<td columnId='bill2008'>2008</td>
+		<td columnId='orderDate'>Ship Date</td>
+	</tr>
+</table>
+
+
 
 <script>
 
@@ -94,7 +130,6 @@ var dsOption= {
 }
 
 var colsOption = [
-	 {id: 'chk', isCheckColumn:true, frozen:true},
      {id: 'no' , header: "Order No" , width :60, frozen:true},
      {id: 'employee' , header: "Employee" , width :80, frozen:true},
 	 {id: 'country' , header: "Country" , width :40},
@@ -108,12 +143,7 @@ var colsOption = [
 	 },
 	 {id: 'bill2007' , header: "2007" , width :60},
 	 {id: 'bill2008' , header: "2008" , width :60},
-	 {id: 'orderDate' , header: "Delivery Date" , width :100
-	 	, editor:{
-	 		type:"jqdate",
-			language:"ja",
-	 	}
-	 },
+	 {id: 'orderDate' , header: "Delivery Date" , width :100},
 ];
  
 var gridOption={
@@ -137,8 +167,8 @@ var gridOption={
 	stripeRows:true,
 	skin:"variations",
 	
+	customHead : 'myHead1',
 };
-
 
 gridOption.onComplete = function(grid) {
 };
@@ -170,6 +200,7 @@ Sigma.Util.onLoad( Sigma.Grid.render(mygrid) );
 gridOption2 = gridOption;
 gridOption2.id="myGrid2";
 gridOption2.container='content2';
+gridOption2.customHead='myHead2';
 
 var mygrid2=new Sigma.Grid( gridOption2 );
 Sigma.Util.onLoad( Sigma.Grid.render(mygrid2) );

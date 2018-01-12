@@ -4256,6 +4256,17 @@ Sigma.GridDefault = {
    * @description {Method} endEdit To close current cell editor and update current cell value.
    */
   endEdit: function() {
+	
+	/*v1230==>*/
+	//jQuery UI datepicker月替え出来ない対策
+	if (jQuery && $.ui) {
+		var datepicker = document.querySelector("#ui-datepicker-div");
+		if (datepicker && datepicker.style.display && datepicker.style.display != 'none') {
+			return;
+		}
+	}
+	/*<==v1230*/
+	
     if (
       (this.activeEditor && this.activeEditor.locked === true) ||
       (this.activeDialog != this.activeEditor &&
@@ -4724,7 +4735,10 @@ Sigma.GridDefault = {
 	}
 	
 	/*v1221==>*/
-	if (typeof Sigma.Tool.GridInf == 'object') {
+	/*v1230==>*/
+	if (typeof Sigma.Tool.GridInf == 'function') {
+	/*<==v1230*/
+		
 		var config = new Sigma.Tool.GridInf(this);
 		config.apply();
 	/*<==v1221*/

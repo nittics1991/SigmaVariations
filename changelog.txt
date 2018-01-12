@@ -262,6 +262,22 @@ v1.23.0 18-01-11 nittics1991
 		dragsort追加
 	demos/variations/v1230dragSort.htm
 		新規追加
+v1.24.0 18-01-12 nittics1991
+	src/tool/gtv_file_reader.js
+		Sigma.Toolの初期化抜け対策
+		create() ダイアログサイズ変更
+	src/gt_grid.js
+		render() Sigma.Tool.GridInf判定修正
+		endEdit() jqdate月替え出来ない対策
+	src/tool/gtv_grid_inf.js
+		apply() freeze列動作不具合修正
+	src/gt_editor.js
+		EDITOR.jqdate() 月替え許可漏れ
+	src/tool/gtv_grid_inf.js
+		create() 不要なbookmarkを削除
+	src/tool/gtv_aggregate.js
+		create() datasetに無いカラムを表示しない対策
+	demos/variations/*		
+		全面見直し
 	
 	
-

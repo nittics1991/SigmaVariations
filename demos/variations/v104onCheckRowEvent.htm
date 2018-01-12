@@ -34,7 +34,6 @@
 	<!--sigma variations/lib-->
     
 	<!--sigma variations/tool-->
-    <script type="text/javascript" src="../../src/tool/gtv_skin_jqui.js"></script>
 	
 	<!--sigma-->
 	<script type="text/javascript" src="../../src/gt_const.js"></script>
@@ -56,13 +55,13 @@
 	<script type="text/javascript" src="../data/test_data.js"></script>
 	<script type="text/javascript" src="../data/test_data_obj.js"></script>
 	
-<title>v1200datePicker</title>
+<title>v104onCheckRowEvent</title>
 </head>
 <body>
 
-<h4>jQueryUI datepicker</h4>
+<h4>onRowCheckイベント</h4>
 <ol>
-	<li>Delivery DateをjQuery UI datepickerとする</li>
+	<li>チェックボックスon/offでonRowCheckイベントが動きデバッグコンソールにメッセージを表示する</li>
 </ol>
 
 <div id="content"></div>
@@ -108,12 +107,7 @@ var colsOption = [
 	 },
 	 {id: 'bill2007' , header: "2007" , width :60},
 	 {id: 'bill2008' , header: "2008" , width :60},
-	 {id: 'orderDate' , header: "Delivery Date" , width :100
-	 	, editor:{
-	 		type:"jqdate",
-			language:"ja",
-	 	}
-	 },
+	 {id: 'orderDate' , header: "Delivery Date" , width :100},
 ];
  
 var gridOption={
@@ -142,6 +136,11 @@ var gridOption={
 
 gridOption.onComplete = function(grid) {
 };
+
+gridOption.onRowCheck = function(row, chk, grid) {
+	console.log("check=" + chk);
+	
+}
 
 gridOption.onCellClick=function(value,record,cell,row,colNo,columnObj,grid) {
 	

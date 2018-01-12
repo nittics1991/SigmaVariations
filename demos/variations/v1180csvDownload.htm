@@ -2,15 +2,28 @@
 <html lang="ja">
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+	
+	<!--encoding js-->
+	<script src="../../../encoding.js/1.0.24/encoding.js"></script>
+	
+	<!--jquery ui-->
+	<!--
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    -->
+	<script src="../../../jquery-ui/external/jquery/jquery.js"></script>
+    <link rel="stylesheet" href="../../../jquery-ui/jquery-ui.css">
+	<script src="../../../jquery-ui/jquery-ui.min.js"></script>
+	<script src="../../../jquery-ui/i18n/datepicker-ja.js"></script>
     
-    <script type="text/javascript" src="../../../encoding.js"></script>
-    
-    
-    
+	<!--sigma calendar-->
     <link rel="stylesheet" type="text/css" media="all" href="../../grid/calendar/calendar-blue.css" />
     <script type="text/javascript" src="../../grid/calendar/calendar.js"></script>
+    <script type="text/javascript" src="../../grid/calendar/calendar-en.js"></script>
     <script type="text/javascript" src="../../grid/calendar/calendar-setup.js"></script>
 	
+	<!--sigma css-->
     <link rel="stylesheet" type="text/css" href="../../grid/gt_grid.css" />
     <link rel="stylesheet" type="text/css" href="../../grid/skin/default/skinstyle.css" />
     <link rel="stylesheet" type="text/css" href="../../grid/skin/mac/skinstyle.css" />
@@ -18,27 +31,18 @@
     <link rel="stylesheet" type="text/css" href="../../grid/skin/vista/skinstyle.css" />
     <link rel="stylesheet" type="text/css" href="../../grid/skin/variations/skinstyle.css" />
 	
-	
-	
+	<!--sigma msg-->
     <script type="text/javascript" src="../../grid/gt_msg_en.js"></script>
 	
-    <script type="text/javascript" src="../../src/lib/gtv_clipboard.js"></script>
+	<!--sigma variations/lib-->
     <script type="text/javascript" src="../../src/lib/gtv_csv.js"></script>
     <script type="text/javascript" src="../../src/lib/gtv_encoder.js"></script>
     <script type="text/javascript" src="../../src/lib/gtv_http_downloader.js"></script>
-    <script type="text/javascript" src="../../src/lib/gtv_local_storage.js"></script>
-    <script type="text/javascript" src="../../src/lib/gtv_table.js"></script>
-     
     
-    <script type="text/javascript" src="../../src/tool/gtv_aggregate.js"></script>
-    <script type="text/javascript" src="../../src/tool/gtv_bookmark.js"></script>
-    <script type="text/javascript" src="../../src/tool/gtv_copy_rows.js"></script>
-    <script type="text/javascript" src="../../src/tool/gtv_fill_columns.js"></script>
-    <script type="text/javascript" src="../../src/tool/gtv_row_height.js"></script>
-    <script type="text/javascript" src="../../src/tool/gtv_selected_check.js"></script>
+	<!--sigma variations/tool-->
     <script type="text/javascript" src="../../src/tool/gtv_download_csv.js"></script>
 	
-	
+	<!--sigma-->
 	<script type="text/javascript" src="../../src/gt_const.js"></script>
 	<script type="text/javascript" src="../../src/gt_base.js"></script>
 	<script type="text/javascript" src="../../src/gt_tool.js"></script>
@@ -51,29 +55,28 @@
 	<script type="text/javascript" src="../../src/gt_template.js"></script>
 	<script type="text/javascript" src="../../src/gt_validator.js"></script>	
 	
+	<!--sigma chart-->
     <script type="text/javascript" src="../../grid/flashchart/fusioncharts/FusionCharts.js"></script>
 	
+	<!--sigma test data-->
 	<script type="text/javascript" src="../data/test_data.js"></script>
 	<script type="text/javascript" src="../data/test_data_obj.js"></script>
 	
-<title>デモ作成用テンプレート</title>
+<title>v1180csvDownload</title>
 </head>
 <body>
 
-<h4>タイトル</h4>
+<h4>CSVローカルダウンロード</h4>
 <ol>
-	<li></li>
-	<li></li>
-	<li></li>
-	<li></li>
+	<li>encoding.jsを読み込む</li>
+	<li>Customer列のセルにマルチバイト文字を入力</li>
+	<li>CSVダウンロードを実行</li>
+	<li>EXCELで内容を確認</li>
 </ol>
 
 <div id="content"></div>
-
 <hr>
-
 <div id="content2"></div>
-
 
 <script>
 
@@ -89,8 +92,7 @@ var dsOption= {
 		{name : 'bill2006' ,type: 'float' },
 		{name : 'bill2007' ,type: 'float' },
 		{name : 'bill2008' ,type: 'float' },
-		{name : 'orderDate' ,type:'date'  }
-		
+		{name : 'orderDate' ,type:'date'  },
 	],
 	
 	//recordType : 'array',
@@ -98,9 +100,6 @@ var dsOption= {
 	
 	recordType : 'object',
 	data : __TEST_DATA_OBJ__
-	
-	
-	
 }
 
 var colsOption = [
@@ -108,7 +107,11 @@ var colsOption = [
      {id: 'no' , header: "Order No" , width :60, frozen:true},
      {id: 'employee' , header: "Employee" , width :80, frozen:true},
 	 {id: 'country' , header: "Country" , width :40},
-	 {id: 'customer' , header: "Customer" , width :80},
+	 {id: 'customer' , header: "Customer" , width :80,
+		editor:{
+	 		type:"text",
+		},
+	},
 	 {id: 'bill2005' , header: "2005" , width :60},
 	 {id: 'bill2006' , header: "2006" , width :60
 	 	, editor:{
@@ -118,11 +121,9 @@ var colsOption = [
 	 },
 	 {id: 'bill2007' , header: "2007" , width :60},
 	 {id: 'bill2008' , header: "2008" , width :60},
-	 {id: 'orderDate' , header: "Delivery Date" , width :100}
-       
+	 {id: 'orderDate' , header: "Delivery Date" , width :100},
 ];
  
-
 var gridOption={
   	id : "myGrid1",
 	container : 'content', 
@@ -134,7 +135,7 @@ var gridOption={
 	pageSize : 10 ,
 	pageSizeList:[10, 20, 50, 100],
 	toolbarPosition:"top",
-	toolbarContent :"nav goto | pagesize | reload | filter bookmark | add del copy paste fillcolumn | save downloadcsv | rowheight selectedcheck | aggregate | state ",
+	toolbarContent :"skin | nav goto | pagesize | reload | downloadcsv | state ",
 	selectRowByChec:true,
 	showGridMenu:true,
 	allowFreeze:true,
@@ -150,11 +151,9 @@ var gridOption={
 gridOption.onComplete = function(grid) {
 };
 
-
 gridOption.onCellClick=function(value,record,cell,row,colNo,columnObj,grid) {
 	
 	if (cell.className.indexOf("2005") > -1) {
-		Sigma.Tool.DownloadCsv.download(this);
 		
 	} else if (cell.className.indexOf("2006") > -1) {
 		
@@ -162,12 +161,12 @@ gridOption.onCellClick=function(value,record,cell,row,colNo,columnObj,grid) {
 		
 	} else if (cell.className.indexOf("2008") > -1) {
 		
-	}
-	
-	
+	} else if (cell.className.indexOf("employee") > -1) {
 		
+	} else if (cell.className.indexOf("customer") > -1) {
+		
+	}
 }
-
 
 //////////////////////////////////////////////////////////////
 

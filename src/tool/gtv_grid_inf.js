@@ -57,6 +57,11 @@ Sigma.Tool.GridInf.prototype.apply = function() {
 	
 	this.grid.columnList.forEach(function(colObj, idx) {
 		var _grid = grid;
+		
+		/*v1230==>*/
+		_grid.frozenColumnList = [];
+		/*<==v1230*/
+		
 		config.columns.forEach(function(obj) {
 			var __grid = _grid;
 			if (colObj.id == obj.id) {
@@ -64,13 +69,11 @@ Sigma.Tool.GridInf.prototype.apply = function() {
 					colObj.setWidth(obj.width);
 				}
 				
-				if (colObj.frozen != obj.frozen) {
-					if (obj.width) {
-						colObj.freeze();
-					} else{
-						colObj.unfreeze();
-					}
+				/*v1230==>*/
+				if (obj.frozen) {
+					__grid.frozenColumnList.push()
 				}
+				/*<==v1230*/
 				
 				if (colObj.hidden != obj.hidden) {
 					if (obj.hidden) {

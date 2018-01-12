@@ -34,7 +34,7 @@
 	<!--sigma variations/lib-->
     
 	<!--sigma variations/tool-->
-    <script type="text/javascript" src="../../src/tool/gtv_skin_jqui.js"></script>
+    <script type="text/javascript" src="../../src/tool/gtv_selected_check.js"></script>
 	
 	<!--sigma-->
 	<script type="text/javascript" src="../../src/gt_const.js"></script>
@@ -56,13 +56,14 @@
 	<script type="text/javascript" src="../data/test_data.js"></script>
 	<script type="text/javascript" src="../data/test_data_obj.js"></script>
 	
-<title>v1200datePicker</title>
+<title>v1110selectedRowCheck</title>
 </head>
 <body>
 
-<h4>jQueryUI datepicker</h4>
+<h4>選択行のチェックボックスチェック切り替え</h4>
 <ol>
-	<li>Delivery DateをjQuery UI datepickerとする</li>
+	<li>行を選択する(複数行可)</li>
+	<li>チェック切り替えを実行し、チェックボックスのon/off切り替えを確認</li>
 </ol>
 
 <div id="content"></div>
@@ -108,12 +109,7 @@ var colsOption = [
 	 },
 	 {id: 'bill2007' , header: "2007" , width :60},
 	 {id: 'bill2008' , header: "2008" , width :60},
-	 {id: 'orderDate' , header: "Delivery Date" , width :100
-	 	, editor:{
-	 		type:"jqdate",
-			language:"ja",
-	 	}
-	 },
+	 {id: 'orderDate' , header: "Delivery Date" , width :100},
 ];
  
 var gridOption={
@@ -127,7 +123,7 @@ var gridOption={
 	pageSize : 10 ,
 	pageSizeList:[10, 20, 50, 100],
 	toolbarPosition:"top",
-	toolbarContent :"skin | nav goto | pagesize | reload | filter bookmark | add del copy paste fillcolumn | save | rowheight selectedcheck | aggregate | config unconfig downloadconfig uploadconfig | state ",
+	toolbarContent :"skin | nav goto | pagesize | reload | selectedcheck |  state ",
 	selectRowByChec:true,
 	showGridMenu:true,
 	allowFreeze:true,

@@ -32,22 +32,8 @@
     <script type="text/javascript" src="../../grid/gt_msg_en.js"></script>
 	
 	<!--sigma variations/lib-->
-    <script type="text/javascript" src="../../src/lib/gtv_clipboard.js"></script>
-    <script type="text/javascript" src="../../src/lib/gtv_http_downloader.js"></script>
-    <script type="text/javascript" src="../../src/lib/gtv_local_storage.js"></script>
-    <script type="text/javascript" src="../../src/lib/gtv_table.js"></script>
-    
     
 	<!--sigma variations/tool-->
-    <script type="text/javascript" src="../../src/tool/gtv_aggregate.js"></script>
-    <script type="text/javascript" src="../../src/tool/gtv_bookmark.js"></script>
-    <script type="text/javascript" src="../../src/tool/gtv_copy_rows.js"></script>
-    <script type="text/javascript" src="../../src/tool/gtv_file_reader.js"></script>
-    <script type="text/javascript" src="../../src/tool/gtv_fill_columns.js"></script>
-    <script type="text/javascript" src="../../src/tool/gtv_grid_inf.js"></script>
-    <script type="text/javascript" src="../../src/tool/gtv_row_height.js"></script>
-    <script type="text/javascript" src="../../src/tool/gtv_selected_check.js"></script>
-    <script type="text/javascript" src="../../src/tool/gtv_skin_inf.js"></script>
     <script type="text/javascript" src="../../src/tool/gtv_skin_jqui.js"></script>
 	
 	<!--sigma-->
@@ -70,25 +56,19 @@
 	<script type="text/javascript" src="../data/test_data.js"></script>
 	<script type="text/javascript" src="../data/test_data_obj.js"></script>
 	
-<title>デモ作成用テンプレート</title>
+<title>v1210skinJqueryui</title>
 </head>
 <body>
 
-<h4>タイトル</h4>
+<h4>jQuery UI skin</h4>
 <ol>
-	<li></li>
-	<li></li>
-	<li></li>
-	<li></li>
+	<li>jQuery UIを導入する</li>
+	<li>セルをクリックし、ツールボックス等がそのtheme色である事を確認</li>
 </ol>
 
-
 <div id="content"></div>
-
 <hr>
-
 <div id="content2"></div>
-
 
 <script>
 
@@ -104,8 +84,7 @@ var dsOption= {
 		{name : 'bill2006' ,type: 'float' },
 		{name : 'bill2007' ,type: 'float' },
 		{name : 'bill2008' ,type: 'float' },
-		{name : 'orderDate' ,type:'date'  }
-		
+		{name : 'orderDate' ,type:'date'  },
 	],
 	
 	//recordType : 'array',
@@ -113,9 +92,6 @@ var dsOption= {
 	
 	recordType : 'object',
 	data : __TEST_DATA_OBJ__
-	
-	
-	
 }
 
 var colsOption = [
@@ -133,16 +109,9 @@ var colsOption = [
 	 },
 	 {id: 'bill2007' , header: "2007" , width :60},
 	 {id: 'bill2008' , header: "2008" , width :60},
-	 {id: 'orderDate' , header: "Delivery Date" , width :100,
-		  editor:{
-			  type:"jqdate",
-			  language:"ja",
-		  },
-	 }
-       
+	 {id: 'orderDate' , header: "Delivery Date" , width :100},
 ];
  
-
 var gridOption={
   	id : "myGrid1",
 	container : 'content', 
@@ -162,7 +131,7 @@ var gridOption={
 	allowHide:true,
 	allowCustomSkin:true,
 	stripeRows:true,
-	//skin:"variations",
+	skin:"default",
 	
 };
 
@@ -170,11 +139,10 @@ var gridOption={
 gridOption.onComplete = function(grid) {
 };
 
-
 gridOption.onCellClick=function(value,record,cell,row,colNo,columnObj,grid) {
+		Sigma.Tool.SkinJqui.apply();
 	
 	if (cell.className.indexOf("2005") > -1) {
-		Sigma.Tool.SkinJqui.apply();
 		
 	} else if (cell.className.indexOf("2006") > -1) {
 		
@@ -186,13 +154,8 @@ gridOption.onCellClick=function(value,record,cell,row,colNo,columnObj,grid) {
 		
 	} else if (cell.className.indexOf("customer") > -1) {
 		
-		
 	}
-	
-	
-		
 }
-
 
 //////////////////////////////////////////////////////////////
 
@@ -212,8 +175,6 @@ Sigma.Util.onLoad( Sigma.Grid.render(mygrid2) );
 
 
 </script>
-	
-	
 
 </body>
 </html>

@@ -37,11 +37,11 @@
     <script type="text/javascript" src="../../src/lib/gtv_local_storage.js"></script>
     <script type="text/javascript" src="../../src/lib/gtv_table.js"></script>
     
-    
 	<!--sigma variations/tool-->
     <script type="text/javascript" src="../../src/tool/gtv_aggregate.js"></script>
     <script type="text/javascript" src="../../src/tool/gtv_bookmark.js"></script>
     <script type="text/javascript" src="../../src/tool/gtv_copy_rows.js"></script>
+    <script type="text/javascript" src="../../src/tool/gtv_drag_sort.js"></script>
     <script type="text/javascript" src="../../src/tool/gtv_file_reader.js"></script>
     <script type="text/javascript" src="../../src/tool/gtv_fill_columns.js"></script>
     <script type="text/javascript" src="../../src/tool/gtv_grid_inf.js"></script>
@@ -49,10 +49,6 @@
     <script type="text/javascript" src="../../src/tool/gtv_row_height.js"></script>
     <script type="text/javascript" src="../../src/tool/gtv_selected_check.js"></script>
     <script type="text/javascript" src="../../src/tool/gtv_skin_inf.js"></script>
-	
-	
-    <script type="text/javascript" src="../../src/tool/gtv_drag_sort.js"></script>
-	
 	
 	<!--sigma-->
 	<script type="text/javascript" src="../../src/gt_const.js"></script>
@@ -86,13 +82,9 @@
 	<li></li>
 </ol>
 
-
 <div id="content"></div>
-
 <hr>
-
 <div id="content2"></div>
-
 
 <script>
 
@@ -108,8 +100,7 @@ var dsOption= {
 		{name : 'bill2006' ,type: 'float' },
 		{name : 'bill2007' ,type: 'float' },
 		{name : 'bill2008' ,type: 'float' },
-		{name : 'orderDate' ,type:'date'  }
-		
+		{name : 'orderDate' ,type:'date'  },
 	],
 	
 	//recordType : 'array',
@@ -117,9 +108,6 @@ var dsOption= {
 	
 	recordType : 'object',
 	data : __TEST_DATA_OBJ__
-	
-	
-	
 }
 
 var colsOption = [
@@ -137,16 +125,9 @@ var colsOption = [
 	 },
 	 {id: 'bill2007' , header: "2007" , width :60},
 	 {id: 'bill2008' , header: "2008" , width :60},
-	 {id: 'orderDate' , header: "Delivery Date" , width :100,
-		  editor:{
-			  type:"jqdate",
-			  language:"ja",
-		  },
-	 }
-       
+	 {id: 'orderDate' , header: "Delivery Date" , width :100},
 ];
  
-
 var gridOption={
   	id : "myGrid1",
 	container : 'content', 
@@ -174,18 +155,9 @@ var gridOption={
 gridOption.onComplete = function(grid) {
 };
 
-
 gridOption.onCellClick=function(value,record,cell,row,colNo,columnObj,grid) {
 	
 	if (cell.className.indexOf("2005") > -1) {
-		
-		Sigma.Tool.DragSortDialog.create(this).show();
-		
-		
-		
-		
-		
-		
 		
 	} else if (cell.className.indexOf("2006") > -1) {
 		
@@ -197,13 +169,8 @@ gridOption.onCellClick=function(value,record,cell,row,colNo,columnObj,grid) {
 		
 	} else if (cell.className.indexOf("customer") > -1) {
 		
-		
 	}
-	
-	
-		
 }
-
 
 //////////////////////////////////////////////////////////////
 
