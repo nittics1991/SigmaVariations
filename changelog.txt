@@ -279,5 +279,8 @@ v1.24.0 18-01-12 nittics1991
 		create() datasetに無いカラムを表示しない対策
 	demos/variations/*		
 		全面見直し
-	
-	
+v1.25.0 18-01-14 nittics1991
+	grid/encodingjs/*
+	grid/lzbase62/*
+	grid/moment/*
+		外部ライブラリ組み込み
