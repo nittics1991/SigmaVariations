@@ -4,15 +4,6 @@
     <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
 	
 	<!--jquery ui-->
-	<!--
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    -->
-	<script src="../../../jquery-ui/external/jquery/jquery.js"></script>
-    <link rel="stylesheet" href="../../../jquery-ui/jquery-ui.css">
-	<script src="../../../jquery-ui/jquery-ui.min.js"></script>
-	<script src="../../../jquery-ui/i18n/datepicker-ja.js"></script>
     
 	<!--sigma calendar-->
     <link rel="stylesheet" type="text/css" media="all" href="../../grid/calendar/calendar-blue.css" />
@@ -34,7 +25,7 @@
 	<!--sigma variations/lib-->
     
 	<!--sigma variations/tool-->
-    <script type="text/javascript" src="../../src/tool/gtv_drag_sort.js"></script>
+    <script type="text/javascript" src="../../src/tool/gtv_row_sync.js"></script>
 	
 	<!--sigma-->
 	<script type="text/javascript" src="../../src/gt_const.js"></script>
@@ -56,15 +47,31 @@
 	<script type="text/javascript" src="../data/test_data.js"></script>
 	<script type="text/javascript" src="../data/test_data_obj.js"></script>
 	
-<title>v1230dragSort</title>
+<title>v1260rowSync</title>
+<style>
+	.gt-inner {
+		display: block;
+		height:auto;
+		white-space:normal;
+		word-break:normal;
+	}
+	
+	.gt-b-ie .gt-row td {
+		height:auto;
+	}
+	
+	.gt-b-ie .gt-hd-row td , .gt-b-safari .gt-hd-row td {
+		height:auto;
+	}
+</style>
 </head>
 <body>
 
-<h4>ドラッグソート</h4>
+<h4>固定列高さ同期</h4>
 <ol>
-	<li>ドラッグソートを実行し、ダイアログを表示する</li>
-	<li>行をドラッグ&ドロップで入れ替える</li>
-	<li>ソート実行ボタンを実行し、表が並び変わる事を確認</li>
+	<li>固定列を持つ表を高さ不定で作る</li>
+	<li>customer列に改行を含むデータを入力し、行高さを変える</li>
+	<li>高さ同期実行ボタンを実行し、行高さが一致する事を確認</li>
 </ol>
 
 <div id="content"></div>
@@ -100,7 +107,11 @@ var colsOption = [
      {id: 'no' , header: "Order No" , width :60, frozen:true},
      {id: 'employee' , header: "Employee" , width :80, frozen:true},
 	 {id: 'country' , header: "Country" , width :40},
-	 {id: 'customer' , header: "Customer" , width :80},
+	 {id: 'customer' , header: "Customer" , width :80
+	 	, editor:{
+			type:'textarea',
+		},
+	 },
 	 {id: 'bill2005' , header: "2005" , width :60},
 	 {id: 'bill2006' , header: "2006" , width :60
 	 	, editor:{
@@ -124,7 +135,7 @@ var gridOption={
 	pageSize : 10 ,
 	pageSizeList:[10, 20, 50, 100],
 	toolbarPosition:"top",
-	toolbarContent :"skin | nav goto | pagesize | reload | dragsort | state ",
+	toolbarContent :"skin | nav goto | pagesize | reload | rowsync | state ",
 	selectRowByChec:true,
 	showGridMenu:true,
 	allowFreeze:true,

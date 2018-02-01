@@ -284,3 +284,23 @@ v1.25.0 18-01-14 nittics1991
 	grid/lzbase62/*
 	grid/moment/*
 		外部ライブラリ組み込み
+v1.26.0 18-02-01 nittics1991
+	grid/skin/variations/images
+		format_list_bulleted,menu追加
+	grid/skin/variations/skinstyle.css
+		menuボタン変更,rowsync追加
+	grid/gt_msg_en.js
+		rowsync追加
+	src/gt-tool.js
+		Sigma.Tool.RowSync追加
+	src/tool/gtv_row_sync.js
+		新規追加
+	demo/variations/v1260rowSync.htm
+		新規追加
+	demo/variations/v1230dragSort.htm
+		タイトル修正
+	src/gt_grid.js
+		endEdit() jquery読込判定修正
+	
+	
+

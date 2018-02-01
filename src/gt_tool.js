@@ -1103,6 +1103,15 @@ Sigma.ToolFactroy = {
     },
     /*<==v1230*/
 	
+    /*v1260==>*/
+    rowsync: {
+      onclick: function(event, grid) {
+		Sigma.Tool.RowSync.sync(grid);
+	  }
+    },
+    /*<==v1260*/
+	
+	
   }
 };
 

@@ -138,6 +138,9 @@ Sigma.Msg.Grid.en={
 	WARNING_DRAG_SORT: "sort failure",
 	/*<==v1230*/
 	
+	/*v1260==>*/
+	TOOL_ROWSYNC:"SyncRowHeight",
+	/*<==v1260*/
 	
 };
 

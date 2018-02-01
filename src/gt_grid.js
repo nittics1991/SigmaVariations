@@ -4259,7 +4259,10 @@ Sigma.GridDefault = {
 	
 	/*v1230==>*/
 	//jQuery UI datepicker月替え出来ない対策
-	if (jQuery && $.ui) {
+	/*v1260==>*/
+	//if (jQuery && $.ui) {
+	if (typeof jQuery != 'undefined' && typeof $.ui != 'undefined') {
+	/*<==v1230*/
 		var datepicker = document.querySelector("#ui-datepicker-div");
 		if (datepicker && datepicker.style.display && datepicker.style.display != 'none') {
 			return;

@@ -547,7 +547,9 @@ td.gt-cell-updated {
 }
 
 .gt-skin-variations .gt-tool-gridmenu {
-	background:url(./images/format_align_justify.png) no-repeat center center;
+	/*v1260==>*/
+	background:url(./images/menu.png) no-repeat center center;
+	/*<==v1260*/
 }
 
 .gt-skin-variations .gt-tool-add {
@@ -654,4 +656,10 @@ td.gt-cell-updated {
 	background:url(./images/shuffle.png) no-repeat center center;
 }
 /*<==v1230*/
+
+/*v1260==>*/
+.gt-skin-variations .gt-tool-rowsync {
+	background:url(./images/format_list_bulleted.png) no-repeat center center;
+}
+/*<==v1260*/
 
