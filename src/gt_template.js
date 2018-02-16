@@ -81,7 +81,12 @@ Sigma.$extend(Sigma.Template, {
           gid +
           '_export_form" target="' +
           gid +
-          '_export_iframe" style="width:0px;height:0px;margin:0px;padding:0xp" method="post" width="0" height="0" >',
+		  
+		//v1.26.1==>
+          //'_export_iframe" style="width:0px;height:0px;margin:0px;padding:0xp" method="post" width="0" height="0" >',
+          '_export_iframe" method="post">',
+		//<==v1.26.1
+		  
         '<input type="hidden" id="' +
           gid +
           '_export_filename" name="exportFileName"  value="" />',
@@ -90,13 +95,23 @@ Sigma.$extend(Sigma.Template, {
           '_export_exporttype" name="exportType" value="" />',
         '<textarea id="' +
           gid +
-          '_export_form_textarea" name="" style="width:0px;height:0px;display:none;" ></textarea>',
+		  
+		//v1.26.1==>
+          //'_export_form_textarea" name="" style="width:0px;height:0px;display:none;" ></textarea>',
+          '_export_form_textarea" style="width:0px;height:0px;display:none;" ></textarea>',
+		//<==v1.26.1
+		  
         "</form>",
         '<iframe id="' +
           gid +
           '_export_iframe"  name="' +
           gid +
-          '_export_iframe" scrolling="no" style="width:0px;height:0px;" width="0" height="0" border="0" frameborder="0" >',
+		  
+		//v1.26.1==>
+          //'_export_iframe" scrolling="no" style="width:0px;height:0px;" width="0" height="0" border="0" frameborder="0" >',
+          '_export_iframe" scrolling="no" style="width:0px;height:0px;" width="0" height="0" frameborder="0" >',
+		//<==v1.26.1
+		  
         "</iframe>",
         "</div>"
       ];
@@ -118,7 +133,12 @@ Sigma.$extend(Sigma.Template, {
           (col.headAlign ? " gt-inner-" + col.headAlign : "") +
           '" ',
         hidden ? 'style="padding-top:0px;padding-bottom:0px;height:1px;" ' : "",
-        'unselectable="on" title="' + col.title + '" >',
+		
+		//v1.26.1==>
+        //'unselectable="on" title="' + col.title + '" >',
+        'title="' + col.title + '" >',
+		//<==v1.26.1
+		
         "<span>",
         header,
         "</span>",

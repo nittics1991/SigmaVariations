@@ -536,7 +536,12 @@ Sigma.Button = Sigma.BaseMenuItem.extend({
       return;
     }
     this.itemBox = Sigma.$e("a", {
-      href: "javascript:void(0);return false;",
+		
+	//v1.26.1==>
+      //href: "javascript:void(0);return false;",
+      href: "javascript:void(0);return%20false;",
+	//<==v1.26.1
+	
       className: this.className,
       title: this.toolTip
     });
@@ -628,7 +633,12 @@ Sigma.MenuItem = Sigma.BaseMenuItem.extend({
       this.cls = this.checked ? "gt-icon-" + this.type : "gt-icon-unchecked";
     }
     this.itemBox = Sigma.$e("a", {
-      href: "javascript:void(0);return false;",
+      
+	//v1.26.1==>
+	  href: "javascript:void(0);return false;",
+      href: "javascript:void(0);return%20false;",
+	//<==v1.26.1
+	  
       className: "gt-menuitem"
     });
 

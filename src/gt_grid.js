@@ -3447,7 +3447,11 @@ Sigma.GridDefault = {
         className: "gt-tool-resize",
         innerHTML: "&#160;"
       });
-      this.resizeButton.setAttribute("unselectable", "on");
+      
+	  //v1.26.1==>
+	  //this.resizeButton.setAttribute("unselectable", "on");
+	  //<==v1.26.1
+	  
       this.toolBarBox.appendChild(this.resizeButton);
       var grid = this;
       Sigma.U.addEvent(this.resizeButton, "mousedown", function(event) {
@@ -3459,7 +3463,10 @@ Sigma.GridDefault = {
 		} else if (this.resizable && this.toolBarBox){
 			this.resizeButton=Sigma.$e("div",{ id:this.id +"_resizeButton",className:"gt-tool-resize", innerHTML:'&#160;'
 				});
-			this.resizeButton.setAttribute('unselectable','on');
+				
+			//v1.26.1==>
+			//this.resizeButton.setAttribute('unselectable','on');
+			//<==v1.26.1
 			
 			var stateBar = this.toolBarBox.cloneNode(false);
 			stateBar.style.height = "4px";

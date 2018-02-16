@@ -370,7 +370,11 @@ Sigma.ColumnDefault = {
   ) {
     if (!grid.hasIndexColumn) {
       freezeRow = row.cloneNode(false);
-      freezeRow.id = "";
+	  
+	  //v1.26.1==>
+      //freezeRow.id = "";
+	  //<==v1.26.1
+	  
       freezeRow.appendChild(cellTemplate.cloneNode(true));
       freezeTable.appendChild(freezeRow);
     }

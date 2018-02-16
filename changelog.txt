@@ -301,6 +301,15 @@ v1.26.0 18-02-01 nittics1991
 		タイトル修正
 	src/gt_grid.js
 		endEdit() jquery読込判定修正
-	
-	
-
+v1.26.1 18-02-16 nittics1991
+	src/gt-template.js
+		formIFrame() HTMLルール修正
+			_export_form,textarea,_export_iframe
+		createHeaderCell() unselectable属性削除
+	src/gt-grid.js	
+		initToolbar() unselectable属性削除
+	src/gt-tool.js
+		Sigma.Button.initialize() inner scriptの空白を%20
+		Sigma.MenuItem.initialize() inner scriptの空白を%20
+	src/gt-column.js
+		freezeCell() freezeRow.id設定削除
