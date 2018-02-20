@@ -313,3 +313,10 @@ v1.26.1 18-02-16 nittics1991
 		Sigma.MenuItem.initialize() inner scriptの空白を%20
 	src/gt-column.js
 		freezeCell() freezeRow.id設定削除
+v1.26.2 18-02-20 nittics1991
+	src/gt-column.js
+		freezeCell() freezeRow.id設定が無いと固定列クリックで他列の値が変わる
+		
+		
+		
+		

@@ -375,6 +375,10 @@ Sigma.ColumnDefault = {
       //freezeRow.id = "";
 	  //<==v1.26.1
 	  
+	  //v1.26.2==>
+      freezeRow.id = "";
+	  //<==v1.26.2
+	  
       freezeRow.appendChild(cellTemplate.cloneNode(true));
       freezeTable.appendChild(freezeRow);
     }
