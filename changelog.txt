@@ -316,7 +316,14 @@ v1.26.1 18-02-16 nittics1991
 v1.26.2 18-02-20 nittics1991
 	src/gt-column.js
 		freezeCell() freezeRow.id設定が無いと固定列クリックで他列の値が変わる
-		
-		
-		
+v1.26.3 18-02-22 nittics1991
+	src/tool/gtv_bookmark.js
+	src/tool/gtv_grid_inf.js
+	src/tool/gtv_skin_inf.js
+		lzbase62有で圧縮保存する
+	demo/variations/v170localStorage.htm
+	demo/variations/v1120bookmark2.htm
+	demo/variations/v1190gridConfig2.htm
+	demo/variations/v1190skinConfig2.htm
+		圧縮保存テスト追加
 		

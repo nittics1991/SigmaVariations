@@ -38,7 +38,7 @@ Sigma.Tool.GridInf.prototype.save = function() {
 		return obj;
 	});
 	
-	var storage = new Sigma.LocalStorage();
+	var storage = this._getStorage();
 	storage.set(this.id, JSON.stringify(config));
 };
 
@@ -47,7 +47,7 @@ Sigma.Tool.GridInf.prototype.save = function() {
 *
 **/
 Sigma.Tool.GridInf.prototype.apply = function() {
-	var storage = new Sigma.LocalStorage();
+	var storage = this._getStorage();
 	var config = storage.get(this.id);
 	if (config == null) {
 		return;
@@ -99,7 +99,7 @@ Sigma.Tool.GridInf.prototype.apply = function() {
 *
 **/
 Sigma.Tool.GridInf.prototype.del = function() {
-	var storage = new Sigma.LocalStorage();
+	var storage = this._getStorage();
 	storage.del(this.id);
 };
 
@@ -108,7 +108,7 @@ Sigma.Tool.GridInf.prototype.del = function() {
 *
 **/
 Sigma.Tool.GridInf.prototype.download = function() {
-	var storage = new Sigma.LocalStorage();
+	var storage = this._getStorage();
 	var config = storage.get(this.id);
 	
 	Sigma.HttpDownloader.execute(
@@ -116,6 +116,21 @@ Sigma.Tool.GridInf.prototype.download = function() {
 		new Blob([config], {type: "text/json"})
 	);
 };
+
+//v1263==>
+/**
+*	localStorage取得
+*
+* @return Sigma.LocalStorage
+**/
+Sigma.Tool.GridInf.prototype._getStorage = function() {
+	var compressor = (typeof lzbase62 == 'undefined')?
+		null:
+		new Sigma.Compressor();
+	
+	return new Sigma.LocalStorage(compressor);
+};
+//<==v1263
 
 /**
 *	アップロードダイアログ
@@ -132,10 +147,13 @@ Sigma.Tool.GridInfDialog = {
 		dialog.accept(".json, text/json");
 		
 		return dialog.create(function(event, reader, grid) {
-			var storage = new Sigma.LocalStorage();
+			var compressor = (typeof lzbase62 == 'undefined')?
+				null:
+				new Sigma.Compressor();
+			
+			var storage = new Sigma.LocalStorage(compressor);
 			storage.set(grifInf.id, reader.result);
 			grifInf.apply();
 		})
 	},
 };
-

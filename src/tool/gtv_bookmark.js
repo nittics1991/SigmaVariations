@@ -66,7 +66,7 @@ Sigma.Tool.Bookmark.prototype.detach = function(id) {
 * @return this
 **/
 Sigma.Tool.Bookmark.prototype.save = function() {
-	var storage = new Sigma.LocalStorage();
+	var storage = this._getStorage();
 	
 	try {
 		storage.set(this.id, JSON.stringify(this.filterInfos));
@@ -82,7 +82,7 @@ Sigma.Tool.Bookmark.prototype.save = function() {
 * @return this
 **/
 Sigma.Tool.Bookmark.prototype.load = function() {
-	var storage = new Sigma.LocalStorage();
+	var storage = this._getStorage();
 	
 	try {
 		var filter = storage.get(this.id);
@@ -100,7 +100,7 @@ Sigma.Tool.Bookmark.prototype.load = function() {
 * @return this
 **/
 Sigma.Tool.Bookmark.prototype.remove = function() {
-	var storage = new Sigma.LocalStorage();
+	var storage = this._getStorage();
 	
 	try {
 		this.filterInfos = storage.del(this.id);
@@ -109,6 +109,21 @@ Sigma.Tool.Bookmark.prototype.remove = function() {
 	}
 	return this;
 };
+
+//v1263==>
+/**
+*	localStorage取得
+*
+* @return Sigma.LocalStorage
+**/
+Sigma.Tool.Bookmark.prototype._getStorage = function() {
+	var compressor = (typeof lzbase62 == 'undefined')?
+		null:
+		new Sigma.Compressor();
+	
+	return new Sigma.LocalStorage(compressor);
+};
+//<==v1263
 
 /*v1150==>*/
 /**
