@@ -326,4 +326,14 @@ v1.26.3 18-02-22 nittics1991
 	demo/variations/v1190gridConfig2.htm
 	demo/variations/v1190skinConfig2.htm
 		圧縮保存テスト追加
-		
+v1.27.0 18-02-27 nittics1991
+	demo/variations/_template
+		ソースの読み込み順序をgt_grid_all.jsを解析して同じにした
+	demo2/*.html
+		demoをVariationsのソースに置き換え
+	
+	
+	
+	
+
+	
