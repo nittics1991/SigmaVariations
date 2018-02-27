@@ -331,7 +331,10 @@ v1.27.0 18-02-27 nittics1991
 		ソースの読み込み順序をgt_grid_all.jsを解析して同じにした
 	demo2/*.html
 		demoをVariationsのソースに置き換え
-	
+v1.27.1 18-02-27 nittics1991
+	demo/example_column_resizable.html
+	demo2/example_column_resizable.html
+		gridOption2.columnsがcolsOption2で無い為、resizeできた不具合の修正
 	
 	
 	
