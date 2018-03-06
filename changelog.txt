@@ -335,8 +335,9 @@ v1.27.1 18-02-27 nittics1991
 	demo/example_column_resizable.html
 	demo2/example_column_resizable.html
 		gridOption2.columnsがcolsOption2で無い為、resizeできた不具合の修正
-	
-	
+v1.28.0 18-03-06 nittics1991
+	src/gt_grid.js
+		render() afterRenderイベント追加
 	
 
 	

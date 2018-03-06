@@ -817,6 +817,13 @@ Sigma.GridDefault = {
       beforeRender: Sigma.$empty,
 	  /*<==v110*/
 	  
+	  /*==>v1280*/
+	  /**
+      * @description {Event} afterRender(grid)
+      * @param {Object} grid Grid object.
+	  */
+      afterRender: Sigma.$empty,
+	  /*<==v1280*/
 	  
       ////////////////////////////////////
 
@@ -4730,6 +4737,11 @@ Sigma.GridDefault = {
       this.initToolbar();
       this.initMainEvent();
       this.createBody();
+	  
+	  /*v1280==>*/
+	  Sigma.$invoke(this,'afterRender', [this]);
+	  /*<==v1280*/
+	  
       this.rendered = true;
     }
 	
