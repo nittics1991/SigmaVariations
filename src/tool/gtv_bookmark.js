@@ -210,6 +210,12 @@ Sigma.Tool.BookmarkDialog = {
 		};
 		
 		var delFn = function(event) {
+			/*v1281==>*/
+			if (!confirm(_grid.getMsg('TEXT_DEL_BOOKMARK') + '?')) {
+				return;
+			}
+			/*<==v1281*/
+			
 			var _bookmark = bookmark;
 			_bookmark.detach(event.target.value);
 			_bookmark.save();

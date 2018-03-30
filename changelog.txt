@@ -338,6 +338,12 @@ v1.27.1 18-02-27 nittics1991
 v1.28.0 18-03-06 nittics1991
 	src/gt_grid.js
 		render() afterRenderイベント追加
-	
-
-	
+v1.28.1 18-03-30 nittics1991
+	src/tool/gtv_bookmark.js
+		delFn() 削除時に確認メッセージ表示
+	grid/skin/default/skinstyle.css
+		gt-menuitem メニューが回り込む対策
+	src/tool/gtv_aggregate.js
+		viewList() 表示サイズ調整
+	demos/variations/v1180csvDownload.htm
+		encodingjs読込修正

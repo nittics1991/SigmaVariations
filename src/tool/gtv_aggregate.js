@@ -26,7 +26,11 @@ Sigma.Tool.AggregateDialog = {
 			document.documentElement.clientWidth:
 			window.innerWidth;
 		outW = Math.floor(outW * 0.8);
-		var outH = 360;
+		
+		/*v1281==>*/
+		var outH = 380;
+		/*<==v1281*/
+		
 		var inW = outW - 2;
 		var inH = outH - 60;
 		
@@ -93,6 +97,11 @@ Sigma.Tool.AggregateDialog = {
 			
 			var tmp = '';
 			tmp += _viewInList(_grid.getSelectedRecords());
+			
+			/*v1281==>*/
+			tmp += '<br>'
+			/*<==v1281*/
+			
 			tmp += _viewInList(_grid.dataset.data, 'gt-row-even');
 			
 			tbody.insertAdjacentHTML('beforeend', tmp);

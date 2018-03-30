@@ -248,6 +248,11 @@ td.gt-cell-updated {
 .gt-menuitem {
 	border-color: #ff0000;
 	color:#335566;
+	
+	/*v1281==>*/
+	clear:both;
+	/*<==v1281*/
+	
 }
 
 .gt-menuitem:hover {
