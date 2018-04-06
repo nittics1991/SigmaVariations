@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+	
+	<!--jquery ui-->
+    
+	<!--sigma calendar-->
+    <link rel="stylesheet" type="text/css" media="all" href="../../grid/calendar/calendar-blue.css" />
+    <script type="text/javascript" src="../../grid/calendar/calendar.js"></script>
+    <script type="text/javascript" src="../../grid/calendar/calendar-en.js"></script>
+    <script type="text/javascript" src="../../grid/calendar/calendar-setup.js"></script>
+	
+	<!--sigma css-->
+    <link rel="stylesheet" type="text/css" href="../../grid/gt_grid.css" />
+    <link rel="stylesheet" type="text/css" href="../../grid/skin/default/skinstyle.css" />
+    <link rel="stylesheet" type="text/css" href="../../grid/skin/mac/skinstyle.css" />
+    <link rel="stylesheet" type="text/css" href="../../grid/skin/pink/skinstyle.css" />
+    <link rel="stylesheet" type="text/css" href="../../grid/skin/vista/skinstyle.css" />
+    <link rel="stylesheet" type="text/css" href="../../grid/skin/variations/skinstyle.css" />
+	
+	<!--sigma msg-->
+    <script type="text/javascript" src="../../grid/gt_msg_en.js"></script>
+	
+	<!--sigma variations/lib-->
+    
+	<!--sigma variations/tool-->
+    <script type="text/javascript" src="../../src/tool/gtv_row_sync.js"></script>
+	
+	<!--sigma-->
+	<script type="text/javascript" src="../../src/gt_const.js"></script>
+	<script type="text/javascript" src="../../src/gt_base.js"></script>
+	<script type="text/javascript" src="../../src/gt_tool.js"></script>
+	<script type="text/javascript" src="../../src/gt_editor.js"></script>
+	<script type="text/javascript" src="../../src/gt_dialog.js"></script>
+	<script type="text/javascript" src="../../src/gt_grid.js"></script>
+	<script type="text/javascript" src="../../src/gt_ajax.js"></script>
+	<script type="text/javascript" src="../../src/gt_column.js"></script>
+	<script type="text/javascript" src="../../src/gt_dataset.js"></script>
+	<script type="text/javascript" src="../../src/gt_template.js"></script>
+	<script type="text/javascript" src="../../src/gt_validator.js"></script>	
+	
+	<!--sigma chart-->
+    <script type="text/javascript" src="../../grid/flashchart/fusioncharts/FusionCharts.js"></script>
+	
+	<!--sigma test data-->
+	<script type="text/javascript" src="../data/test_data.js"></script>
+	<script type="text/javascript" src="../data/test_data_obj.js"></script>
+	
+<title>v1290headerStyle</title>
+<style>
+	.header1 {
+		background-color:#ff0000;
+	}
+	.header2 {
+		color:#0000ff !important;
+	}
+	.header3 {
+		background-color:#00ff00;
+	}
+</style>
+</head>
+<body>
+
+<h4>Column.headerStyle</h4>
+<ol>
+	<li>colsOptionでheaderStyleを指定</li>
+	<li>ヘッダカラムのスタイルを確認</li>
+</ol>
+
+<div id="content"></div>
+<hr>
+<div id="content2"></div>
+
+<script>
+
+var grid_demo_id = "myGrid1" ;
+
+var dsOption= {
+	fields :[
+		{name : 'no'  },
+		{name : 'country'  },
+		{name : 'customer'  },
+		{name : 'employee'  },
+		{name : 'bill2005' ,type: 'float' },
+		{name : 'bill2006' ,type: 'float' },
+		{name : 'bill2007' ,type: 'float' },
+		{name : 'bill2008' ,type: 'float' },
+		{name : 'orderDate' ,type:'date'  },
+	],
+	
+	//recordType : 'array',
+	//data : __TEST_DATA__
+	
+	recordType : 'object',
+	data : __TEST_DATA_OBJ__
+}
+
+var colsOption = [
+	 {id: 'chk', isCheckColumn:true, frozen:true},
+     {id: 'no' , header: "Order No" , width :60, frozen:true},
+     {id: 'employee' , header: "Employee" , width :80, frozen:true, headerStyle:'header1 header2'},
+	 {id: 'country' , header: "Country" , width :40, headerStyle:'header3'},
+	 {id: 'customer' , header: "Customer" , width :80
+	 	, editor:{
+			type:'textarea',
+		},
+	 },
+	 {id: 'bill2005' , header: "2005" , width :60},
+	 {id: 'bill2006' , header: "2006" , width :60
+	 	, editor:{
+	 		type:"text",
+	 		validRule:["I", ["GT", 3]],
+	 	}
+	 },
+	 {id: 'bill2007' , header: "2007" , width :60},
+	 {id: 'bill2008' , header: "2008" , width :60},
+	 {id: 'orderDate' , header: "Delivery Date" , width :100},
+];
+ 
+var gridOption={
+  	id : "myGrid1",
+	container : 'content', 
+	width: "100%",
+	height: "300",
+	replaceContainer : true, 
+	dataset : dsOption ,
+	columns : colsOption,
+	pageSize : 10 ,
+	pageSizeList:[10, 20, 50, 100],
+	toolbarPosition:"top",
+	toolbarContent :"skin | nav goto | pagesize | reload | rowsync | state ",
+	selectRowByChec:true,
+	showGridMenu:true,
+	allowFreeze:true,
+	allowGroup:true,
+	allowHide:true,
+	allowCustomSkin:true,
+	stripeRows:true,
+	skin:"variations",
+	
+};
+
+
+gridOption.onComplete = function(grid) {
+};
+
+gridOption.onCellClick=function(value,record,cell,row,colNo,columnObj,grid) {
+	
+	if (cell.className.indexOf("2005") > -1) {
+		
+	} else if (cell.className.indexOf("2006") > -1) {
+		
+	} else if (cell.className.indexOf("2007") > -1) {
+		
+	} else if (cell.className.indexOf("2008") > -1) {
+		
+	} else if (cell.className.indexOf("employee") > -1) {
+		
+	} else if (cell.className.indexOf("customer") > -1) {
+		
+	}
+}
+
+//////////////////////////////////////////////////////////////
+
+var mygrid=new Sigma.Grid( gridOption );
+Sigma.Util.onLoad( Sigma.Grid.render(mygrid) );
+
+//////////////////////////////////////////////////////////////
+
+gridOption2 = gridOption;
+gridOption2.id="myGrid2";
+gridOption2.container='content2';
+
+var mygrid2=new Sigma.Grid( gridOption2 );
+Sigma.Util.onLoad( Sigma.Grid.render(mygrid2) );
+
+//////////////////////////////////////////////////////////////
+
+
+</script>
+
+</body>
+</html>

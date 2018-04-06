@@ -347,3 +347,10 @@ v1.28.1 18-03-30 nittics1991
 		viewList() 表示サイズ調整
 	demos/variations/v1180csvDownload.htm
 		encodingjs読込修正
+v1.29.0 18-04-07 nittics1991
+	src/gt_grid.js
+		createHeader() column.headerStyleでヘッダにclass追加
+		
+		
+		
+		

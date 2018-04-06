@@ -1372,7 +1372,11 @@ Sigma.GridDefault = {
       );
     }
   },
-
+  
+  /**
+  * column.headerStyleでヘッダにclass追加	
+  * 
+  */
   createHeader: function() {
     /* todo */
     var grid = this,
@@ -1400,6 +1404,17 @@ Sigma.GridDefault = {
         function(col, idx) {
           var cell = Sigma.T_G.createHeaderCell(grid, col);
           headRow.appendChild(cell);
+          
+          //v1290==>
+          if (col.headerStyle) {
+			col.headerStyle.split(' ').forEach(function(cls) {
+				if (cls.length > 0) {
+					cell.firstChild.classList.add(cls);
+				}
+			});
+		  }
+          //<==v1290
+          
           col.headCell = cell;
           Sigma.Grid.initColumnEvent(grid, col);
         },
