@@ -1518,7 +1518,18 @@ Sigma.GridDefault = {
           columnId ? Sigma.T_G.hdToolHTML : "",
           "</div>"
         ].join("");
-      }
+          
+          //v1290==>
+          if (col.headerStyle && cell.colSpan == 1) {
+			col.headerStyle.split(' ').forEach(function(cls) {
+				if (cls.length > 0) {
+					cell.firstChild.classList.add(cls);
+				}
+			});
+		  }
+          //<==v1290
+      
+     }
     }
 
     headRow = Sigma.$e("tr", {
