@@ -354,6 +354,10 @@ v1.29.0 18-04-07 nittics1991
 	demos/variations/v1290headerStyle.htm
 	demos/variations/v1290hecustomizeHeadStyle.htm
 		ファイル新規追加
+v1.29.1 18-04-13 nittics1991
+	src/gt_editor.js
+		jqdate() datepickerがクリックで表示しない不具合対策
+		
 		
 		
 		

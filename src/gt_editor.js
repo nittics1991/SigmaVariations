@@ -409,8 +409,13 @@ Sigma.$extend(Sigma.Editor, {
 				/*<==v1230*/
 				
 			};
-		$(".gt-editor-jqdate").not(".hasDatePicker").datepicker(option);
-		$(".ui-datepicker").draggable();
+		
+			/*v1291==>*/
+			$(editor.valueDom).not(".hasDatePicker").datepicker(option)
+			$(".ui-datepicker").draggable();
+			/*<==v1291*/
+			
+		
 	  // });
       return editor;
     },
