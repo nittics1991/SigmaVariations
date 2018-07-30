@@ -357,7 +357,9 @@ v1.29.0 18-04-07 nittics1991
 v1.29.1 18-04-13 nittics1991
 	src/gt_editor.js
 		jqdate() datepickerがクリックで表示しない不具合対策
-		
+v1.29.2 18-07-30 nittics1991
+    src/tool/gtv_row_height.js
+        toggle() 1行の文字数が長い時に折り返すよう対策
 		
 		
 		

@@ -40,9 +40,15 @@ Sigma.Tool.RowHeight = {
 		if (style.whiteSpace.toLowerCase () == 'normal') {
 			var s = 'nowrap';
 			var h = Sigma.Tool.RowHeight.cache[grid.id]  || '19px;';
+            /*v1292==>*/
+            var o = 'normal';
+            /*<==v1292*/
 		} else {
 			var s = 'normal';
 			var h = 'auto';
+            /*v1292==>*/
+            var o = 'break-word';
+            /*<==v1292*/
 		}
 		
 		var searchGridId = function(elm, id) {
@@ -64,6 +70,9 @@ Sigma.Tool.RowHeight = {
 			if (searchGridId(collections[i], grid.id)) {
 				collections[i].style.whiteSpace = s;
 				collections[i].style.height = h;
+                /*v1292==>*/
+				collections[i].style.overflowWrap = o;
+                /*<==v1292*/
 			}
 		}
 	},
