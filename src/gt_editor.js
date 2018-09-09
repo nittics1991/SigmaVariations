@@ -175,6 +175,11 @@ Sigma.EditorDefault = {
       if (validResult !== true) {
         var v_msg =
           Sigma.Validator.getMessage(this.validRule[i]) || String(validResult);
+        
+        /*v1293==>*/
+        v_msg = colObj.title + ': ' + v_msg;
+        /*v1293==>*/
+        
         errMsg.push(v_msg);
       }
     }
