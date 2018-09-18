@@ -363,3 +363,11 @@ v1.29.2 18-07-30 nittics1991
 v1.29.3 18-09-09 nittics1991
 	src/gt_editor.js
 		defaultValidator()	エラーメッセージの先頭に列名を表示する
+v1.30.0 18-09-18 nittics1991
+    src/lib/gtv_moveable.js
+        新規作成
+    src/gt-dialog.js
+        render()    ダイアログがdragで移動する登録追加
+    demo/variations/v1300moveableDialog.htm
+        新規作成
+

@@ -127,6 +127,13 @@ Sigma.DialogDefault = {
       this.setBody();
       this.setButtons();
       this.setTitle();
+      
+      
+      /*v1300==>*/
+      Sigma.Moveable.attach(this.dom);
+      /*<==v1300*/
+      
+      
       Sigma.$invoke(this, "afterRender", [this]);
     }
 
