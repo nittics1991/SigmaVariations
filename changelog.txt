@@ -370,4 +370,7 @@ v1.30.0 18-09-18 nittics1991
         render()    ダイアログがdragで移動する登録追加
     demo/variations/v1300moveableDialog.htm
         新規作成
+v1.31.0 19-12-20 nittics1991
+	src/gt_grid.js
+		createCheckColumn() チェックボックスのname属性を配列形式に
 

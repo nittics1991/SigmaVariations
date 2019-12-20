@@ -5910,6 +5910,7 @@ Sigma.$extend(Sigma.Grid, {
         : "";
 		
 		
+		/*v1310==>*/
 		/*v110==>*/
       // return (
         // '<input type="' +
@@ -5922,6 +5923,21 @@ Sigma.$extend(Sigma.Grid, {
         // checkBoxName +
         // '" />'
       // );
+      
+      // return (
+        // '<input type="' +
+        // checkType +
+        // '" class="gt-f-check" value="' +
+        // cvalue +
+        // '" ' +
+        // checkFlag +
+        // ' name="' +
+        // checkBoxName +
+		// rowNo +
+        // '" />'
+      // );
+	  /*<==v110*/
+	  
       return (
         '<input type="' +
         checkType +
@@ -5931,11 +5947,12 @@ Sigma.$extend(Sigma.Grid, {
         checkFlag +
         ' name="' +
         checkBoxName +
-		rowNo +
+		'[]' +
         '" />'
       );
-	  /*<==v110*/
-	  
+      
+	  /*<==v1310*/
+      
     };
     return cfg;
   }
