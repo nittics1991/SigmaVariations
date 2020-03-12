@@ -1,0 +1,100 @@
+/**
+*	チャート
+*
+*		標準CSSを上書きするので標準の後に読み込む
+**/
+@charset "UTF-8";
+
+.gt-body-div .gt-table .gt-inner {
+    overflow:visible;
+}
+
+.gtv-gantt-bar {
+	position:relative;
+    border:1px solid #000000;
+    background-color:#10FFFF;
+    border-radius:2px;
+    cursor:pointer;
+    min-height:16px;
+}
+
+
+/*barの下部に表示*/
+
+.gtv-gantt-progress {
+	position:relative;
+	height:4px;
+    background-color:#000000;
+    margin-bottom:1px;
+    margin-top:-4px;
+}
+
+/*barと同じ太さで表示*/
+
+.gtv-gantt-progress {
+	position:relative;
+	height:18px;
+    background-color:#8080F0;
+    margin-bottom:1px;
+    margin-top:-18px;
+	border-radius:2px;
+	opacity:0.7;
+	border-right:3px solid #000000;
+}
+
+
+.gtv-gantt-stone {
+	position:relative;
+    border:1px solid #000000;
+    background-color:#10FFFF;
+    border-radius:50%;
+    cursor:pointer;
+    min-height:16px;
+}
+
+.gtv-gantt-performed {
+	position:relative;
+    border:1px solid #000000;
+    background-color:#8080F0;
+    border-radius:25%;
+    cursor:pointer;
+    min-height:16px;
+}
+
+.gtv-gantt-today {
+   background-color:#00ff00;
+}
+
+.gtv-gantt-sunday {
+   background-color:#ff0000;
+}
+
+.gtv-gantt-pline-canvas {
+	position:relative;
+	z-index:12;
+}
+
+.ganttday-cls {
+	background:url(./skin/variations/images/gantt_day.png) no-repeat center center;
+}
+
+.ganttweek-cls {
+	background:url(./skin/variations/images/gantt_week.png) no-repeat center center;
+}
+
+.ganttmonth-cls {
+	background:url(./skin/variations/images/gantt_month.png) no-repeat center center;
+}
+
+.ganttreload-cls {
+	background:url(./skin/variations/images/loop.png) no-repeat center center;
+}
+
+.ganttpline-cls {
+	background:url(./skin/variations/images/show_chart.png) no-repeat center center;
+	transform:rotate(270deg);
+}
+
+.ganttplinedialog-cls {
+	background:url(./skin/variations/images/location_on.png) no-repeat center center;
+}

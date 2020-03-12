@@ -373,4 +373,71 @@ v1.30.0 18-09-18 nittics1991
 v1.31.0 19-12-20 nittics1991
 	src/gt_grid.js
 		createCheckColumn() チェックボックスのname属性を配列形式に
+v2.0.0 20-03-13 nittics1991
+    gantt機能追加
+    
+    demos/variations/gantt/data/data1.js
+    demos/variations/gantt/data/data2.js
+    demos/variations/gantt/data/data3.js
+    demos/variations/gantt/exception/gtv_gantt_error_loadfailure.htm
+    demos/variations/gantt/gtv_gantt_chart.htm
+    demos/variations/gantt/gtv_gantt_data.htm
+    demos/variations/gantt/gtv_gantt_data_collection.htm
+    demos/variations/gantt/gtv_gantt_factory.htm
+    demos/variations/gantt/gtv_gantt_render_base.htm
+    demos/variations/gantt/gtv_gantt_render_day.htm
+    demos/variations/gantt/gtv_gantt_render_month.htm
+    demos/variations/gantt/gtv_gantt_render_week.htm
+    demos/variations/gantt/gtv_gantt_sigma_coloption.htm
+    demos/variations/gantt/gtv_gantt_sigma_dsoption.htm
+    demos/variations/gantt/gtv_ganttchart.htm
+    demos/variations/gantt/gtv_ganttchart2.htm
+    demos/variations/gantt/gtv_ganttchart3.htm
+    demos/variations/gantt/gtv_ganttchart4.htm
+    demos/variations/gantt/gtv_manual_test.htm
+    demos/variations/gantt/preparations.bat
+    demos/variations/gantt/web/data1.php
+    demos/variations/gantt/web/grid
+    demos/variations/gantt/web/gtv_ganttchart3.htm
+    demos/variations/gantt/web/gtv_ganttchart4.htm
+    demos/variations/gantt/web/readme.txt
+    demos/variations/gantt/web/src
+    demos/variations/lib/gtv_assert.htm
+    demos/variations/lib/gtv_date.htm
+    grid/gtv_gantt.css
+    grid/gtv_gantt_msg_en.js
+    grid/skin/variations/images/gantt_day.png
+    grid/skin/variations/images/gantt_month.png
+    grid/skin/variations/images/gantt_week.png
+    grid/skin/variations/images/location_off.png
+    grid/skin/variations/images/location_on.png
+    grid/skin/variations/images/show_chart.png
+    src/gantt/exception/gtv_gantt_error_invalidargument.js
+    src/gantt/exception/gtv_gantt_error_loadcancel.js
+    src/gantt/exception/gtv_gantt_error_loadfailure.js
+    src/gantt/gtv_gantt_chart.js
+    src/gantt/gtv_gantt_data.js
+    src/gantt/gtv_gantt_data_collection.js
+    src/gantt/gtv_gantt_factory.js
+    src/gantt/gtv_gantt_pline.js
+    src/gantt/gtv_gantt_render_base.js
+    src/gantt/gtv_gantt_render_day.js
+    src/gantt/gtv_gantt_render_month.js
+    src/gantt/gtv_gantt_render_week.js
+    src/gantt/gtv_gantt_request.js
+    src/gantt/gtv_gantt_sigma_coloption.js
+    src/gantt/gtv_gantt_sigma_dsoption.js
+    src/gantt/gtv_ganttchart.js
+    src/gantt/todo.txt
+    src/lib/gtv_assert.js
+    src/lib/gtv_date.js
+        新規作成
+
+    grid/gt_grid.css
+        gantt用設定追加
+    grid/gtv_msg_en.js
+        削除
+
+
+
 

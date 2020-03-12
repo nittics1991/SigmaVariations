@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+	
+	<!--moment-->
+    <script type="text/javascript" src="../../../grid/moment/moment-with-locales.js"></script>
+	
+	<!--sigma variations/lib-->
+    <script type="text/javascript" src="../../../src/lib/gtv_assert.js"></script>
+    <script type="text/javascript" src="../../../src/lib/gtv_date.js"></script>
+	
+	<!--sigma variations/gantt-->
+	
+	<!--sigma-->
+	<script type="text/javascript" src="../../../src/gt_const.js"></script>
+	<script type="text/javascript" src="../../../src/gt_base.js"></script>
+	<script type="text/javascript" src="../../../src/gt_tool.js"></script>
+	<script type="text/javascript" src="../../../src/gt_editor.js"></script>
+	<script type="text/javascript" src="../../../src/gt_dialog.js"></script>
+	<script type="text/javascript" src="../../../src/gt_grid.js"></script>
+	<script type="text/javascript" src="../../../src/gt_ajax.js"></script>
+	<script type="text/javascript" src="../../../src/gt_column.js"></script>
+	<script type="text/javascript" src="../../../src/gt_dataset.js"></script>
+	<script type="text/javascript" src="../../../src/gt_template.js"></script>
+	<script type="text/javascript" src="../../../src/gt_validator.js"></script>	
+ 	
+<title></title>
+</head>
+<body>
+
+<h4>テスト</h4>
+<ol>
+	<li>consoleでassert確認</li>
+</ol>
+
+<div id="mocha"></div>
+
+<script>
+
+console.log('===test');
+
+Sigma.Assert.eqObj('object', typeof Sigma.Date(), "construct");
+
+Sigma.Assert.eqObj(
+	3,
+	Sigma.Date('2018-02-17').weekInMonth(),
+	"weekInMonth"
+);
+
+Sigma.Assert.eqObj(
+	'2018/01/23 11.22.33',
+	Sigma.Date('2018-01-23T11:22:33').format('YYYY/MM/DD HH.mm.ss'),
+	"format normal"
+);
+
+Sigma.Assert.eqObj(
+	'2018/01/4',
+	Sigma.Date('2018-01-23T11:22:33').exFormat('YYYY/MM/B'),
+	"format weekInMonth"
+);
+
+Sigma.Assert.eqObj(
+	'2018/12/1',
+	Sigma.Date('2018-12-01T00:00:00').exFormat('YYYY/MM/B'),
+	"format weekInMonth 12/1"
+);
+
+Sigma.Assert.eqObj(
+	'2018/12/6',
+	Sigma.Date('2018-12-30T15:00:00.000Z').exFormat('YYYY/MM/B'),
+	"format weekInMonth 12/31"
+);
+
+</script>
+
+</body>
+</html>

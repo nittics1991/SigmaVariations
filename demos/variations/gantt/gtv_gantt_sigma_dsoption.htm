@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+	
+	<!--moment-->
+    <script type="text/javascript" src="../../../grid/moment/moment-with-locales.js"></script>
+	
+	<!--sigma variations/lib-->
+    <script type="text/javascript" src="../../../src/lib/gtv_assert.js"></script>
+    <script type="text/javascript" src="../../../src/lib/gtv_date.js"></script>
+	
+	<!--sigma variations/gantt/exception-->
+    <script type="text/javascript" src="../../../src/gantt/exception/gtv_gantt_error_invalidargument.js"></script>
+	
+	<!--sigma variations/gantt-->
+    <script type="text/javascript" src="../../../src/gantt/gtv_gantt_factory.js"></script>
+    <script type="text/javascript" src="../../../src/gantt/gtv_gantt_data.js"></script>
+    <script type="text/javascript" src="../../../src/gantt/gtv_gantt_data_collection.js"></script>
+    <script type="text/javascript" src="../../../src/gantt/gtv_gantt_request.js"></script>
+    <script type="text/javascript" src="../../../src/gantt/gtv_gantt_sigma_dsoption.js"></script>
+	
+	<!--sigma-->
+	<script type="text/javascript" src="../../../src/gt_const.js"></script>
+	<script type="text/javascript" src="../../../src/gt_base.js"></script>
+	<script type="text/javascript" src="../../../src/gt_tool.js"></script>
+	<script type="text/javascript" src="../../../src/gt_editor.js"></script>
+	<script type="text/javascript" src="../../../src/gt_dialog.js"></script>
+	<script type="text/javascript" src="../../../src/gt_grid.js"></script>
+	<script type="text/javascript" src="../../../src/gt_ajax.js"></script>
+	<script type="text/javascript" src="../../../src/gt_column.js"></script>
+	<script type="text/javascript" src="../../../src/gt_dataset.js"></script>
+	<script type="text/javascript" src="../../../src/gt_template.js"></script>
+	<script type="text/javascript" src="../../../src/gt_validator.js"></script>	
+ 	
+<title></title>
+</head>
+<body>
+
+<h4>テスト</h4>
+<ol>
+	<li>consoleでassert確認</li>
+</ol>
+
+<div id="mocha"></div>
+
+<script>
+
+var obj;
+var expect;
+
+console.log("===success");
+
+var dsOption = {
+	fields :[
+		{name:'no'},
+		{name:'country'},
+		{name:'chart', type:'gantt'},
+	],
+	recordType:'object',
+};
+
+obj = Sigma.Gantt.Factory.get(
+	'SigmaDsOption',
+	dsOption
+);
+
+Sigma.Assert.eq(
+	true,
+	obj.isValid(),
+	"isValid true"
+);
+
+Sigma.Assert.eqObj(
+	dsOption,
+	obj.toSigmaObject(),
+	"toSigmaObject true"
+);
+
+Sigma.Assert.eq(
+	'chart',
+	obj.ganttFieldName(),
+	"ganttFieldName true"
+);
+
+
+console.log("===isValid");
+
+obj.dsOption.recordType = 'array';
+Sigma.Assert.eq(
+	false,
+	obj.isValid(),
+	"isValid false recordType"
+);
+
+var dsOption = {
+	fields :[
+		{name:'no'},
+		{name:'country'},
+		{name:'chart', type:'gantt'},
+	],
+	recordType:'array',
+};
+
+console.log("===not gantt field");
+
+var dsOption = {
+	fields :[
+		{name:'no'},
+		{name:'country'},
+		{name:'chart'},
+	],
+	recordType:'object',
+};
+
+obj = Sigma.Gantt.Factory.get(
+	'SigmaDsOption',
+	dsOption
+);
+
+var fn = function() {obj.ganttFieldName();};
+
+Sigma.Assert.ex(
+	fn,
+	[],
+	"not gantt field"
+);
+
+
+console.log("===loadDataset");
+
+var ganttChart = function() {};
+
+obj.sigmaGanttRequest = {
+	load:function(chart, url, params, fn, failure) {
+		fn.call(
+			null,
+			[
+			{
+				chart:[
+					{
+						id:10,
+						parent:null,
+						start:'2018-02-05',
+						end:'2018-02-28',
+						type:['bar', 'stone'],
+						progress:50,
+						format:'YYYY-MM-DD',
+					},
+				],
+			},	
+		]
+		);
+	},
+};
+
+obj.loadDataset(
+	ganttChart,
+	'url',
+	{},
+	function(dataCollection) {
+		console.error('error!!!');
+	},
+	function(dataCollection) {
+		console.log('onSuccess called. dataCollection=', dataCollection);
+	},
+);
+
+console.log("---require view message");
+
+</script>
+
+</body>
+</html>

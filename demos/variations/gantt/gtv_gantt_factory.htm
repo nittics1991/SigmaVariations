@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+	
+	<!--moment-->
+    <script type="text/javascript" src="../../../grid/moment/moment-with-locales.js"></script>
+	
+	<!--sigma variations/lib-->
+    <script type="text/javascript" src="../../../src/lib/gtv_assert.js"></script>
+    <script type="text/javascript" src="../../../src/lib/gtv_date.js"></script>
+	
+	<!--sigma variations/gantt-->
+    <script type="text/javascript" src="../../../src/gantt/gtv_gantt_request.js"></script>
+    <script type="text/javascript" src="../../../src/gantt/gtv_gantt_sigma_dsoption.js"></script>
+    <script type="text/javascript" src="../../../src/gantt/gtv_gantt_factory.js"></script>
+	
+	<!--sigma-->
+	<script type="text/javascript" src="../../../src/gt_const.js"></script>
+	<script type="text/javascript" src="../../../src/gt_base.js"></script>
+	<script type="text/javascript" src="../../../src/gt_tool.js"></script>
+	<script type="text/javascript" src="../../../src/gt_editor.js"></script>
+	<script type="text/javascript" src="../../../src/gt_dialog.js"></script>
+	<script type="text/javascript" src="../../../src/gt_grid.js"></script>
+	<script type="text/javascript" src="../../../src/gt_ajax.js"></script>
+	<script type="text/javascript" src="../../../src/gt_column.js"></script>
+	<script type="text/javascript" src="../../../src/gt_dataset.js"></script>
+	<script type="text/javascript" src="../../../src/gt_template.js"></script>
+	<script type="text/javascript" src="../../../src/gt_validator.js"></script>	
+ 	
+<title></title>
+</head>
+<body>
+
+<h4>テスト</h4>
+<ol>
+	<li>consoleでassert確認</li>
+</ol>
+
+<div id="mocha"></div>
+
+<script>
+
+console.log('===test');
+
+Sigma.Assert.eqObj(
+	new Sigma.Gantt.Request(),
+	Sigma.Gantt.Factory.get(
+		'Request'
+	),
+	"Request"
+);
+
+
+var dsOption = {
+	fields :[
+		{name:'no'},
+		{name:'country'},
+		{name:'chart'},
+	],
+	recordType:'object',
+};
+
+Sigma.Assert.eqObj(
+	new Sigma.Gantt.SigmaDsOption(
+		new Sigma.Gantt.Request(),
+		dsOption
+	),
+	Sigma.Gantt.Factory.get(
+		'SigmaDsOption',
+		dsOption
+	),
+	"SigmaDsOption"
+);
+
+</script>
+
+</body>
+</html>

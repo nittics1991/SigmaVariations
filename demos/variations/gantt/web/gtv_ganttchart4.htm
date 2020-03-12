@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+	
+	<!--for XSP-->
+	<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' localhost:8080; script-src 'self' 'unsafe-inline' localhost:8080;" />
+	
+	<!--sigma css-->
+    <link rel="stylesheet" type="text/css" href="./grid/gt_grid.css" />
+    <link rel="stylesheet" type="text/css" href="./grid/skin/default/skinstyle.css" />
+    <link rel="stylesheet" type="text/css" href="./grid/skin/variations/skinstyle.css" />
+	
+	<!--sigma variations/gantt css-->
+	<link rel="stylesheet" type="text/css" href="./grid/gtv_gantt.css" />
+	
+	<!--moment-->
+    <script type="text/javascript" src="./grid/moment/moment-with-locales.js"></script>
+	
+	<!--sigma msg-->
+    <script type="text/javascript" src="./grid/gt_msg_en.js"></script>
+	
+	<!--sigma variations/gantt msg-->
+    <script type="text/javascript" src="./grid/gtv_gantt_msg_en.js"></script>
+    
+	<!--sigma variations/lib-->
+    <script type="text/javascript" src="./src/lib/gtv_assert.js"></script>
+    <script type="text/javascript" src="./src/lib/gtv_date.js"></script>
+	
+	<!--sigma variations/gantt/exception-->
+    <script type="text/javascript" src="./src/gantt/exception/gtv_gantt_error_invalidargument.js"></script>
+    <script type="text/javascript" src="./src/gantt/exception/gtv_gantt_error_loadcancel.js"></script>
+    <script type="text/javascript" src="./src/gantt/exception/gtv_gantt_error_loadfailure.js"></script>
+	
+	<!--sigma variations/gantt-->
+    <script type="text/javascript" src="./src/gantt/gtv_gantt_chart.js"></script>
+    <script type="text/javascript" src="./src/gantt/gtv_gantt_data.js"></script>
+    <script type="text/javascript" src="./src/gantt/gtv_gantt_data_collection.js"></script>
+    <script type="text/javascript" src="./src/gantt/gtv_gantt_factory.js"></script>
+    <script type="text/javascript" src="./src/gantt/gtv_gantt_render_base.js"></script>
+    <script type="text/javascript" src="./src/gantt/gtv_gantt_render_day.js"></script>
+    <script type="text/javascript" src="./src/gantt/gtv_gantt_render_month.js"></script>
+    <script type="text/javascript" src="./src/gantt/gtv_gantt_render_week.js"></script>
+    <script type="text/javascript" src="./src/gantt/gtv_gantt_request.js"></script>
+    <script type="text/javascript" src="./src/gantt/gtv_gantt_sigma_coloption.js"></script>
+    <script type="text/javascript" src="./src/gantt/gtv_gantt_sigma_dsoption.js"></script>
+    <script type="text/javascript" src="./src/gantt/gtv_ganttchart.js"></script>
+	
+	<!--sigma-->
+	<script type="text/javascript" src="./src/gt_const.js"></script>
+	<script type="text/javascript" src="./src/gt_base.js"></script>
+	<script type="text/javascript" src="./src/gt_tool.js"></script>
+	<script type="text/javascript" src="./src/gt_editor.js"></script>
+	<script type="text/javascript" src="./src/gt_dialog.js"></script>
+	<script type="text/javascript" src="./src/gt_grid.js"></script>
+	<script type="text/javascript" src="./src/gt_ajax.js"></script>
+	<script type="text/javascript" src="./src/gt_column.js"></script>
+	<script type="text/javascript" src="./src/gt_dataset.js"></script>
+	<script type="text/javascript" src="./src/gt_template.js"></script>
+	<script type="text/javascript" src="./src/gt_validator.js"></script>	
+	
+	<!--sigma test data-->
+	<!--
+   <script type="text/javascript" src="./data/data1.js"></script>
+ 	-->
+ 	
+<title></title>
+</head>
+<body>
+
+<h4>テスト</h4>
+<ol>
+	<li>load fairure</li>
+</ol>
+
+<div id="content"></div>
+
+<script>
+
+var dsOption= {
+	fields :[
+		{name:'project'},
+		{name:'user'},
+		{name:'startDay', type:'date'},
+		{name:'endDay', type:'date'},
+		{name:'task'},
+		{name:'progress', type:'int'},
+		{name:'chart', type:'gantt'},
+	],
+	recordType:'object',
+	//data : __TEST_DATA_OBJ__
+}
+
+var colsOption = [
+     {id:'project', header:"プロジェクト", width:100, headAlign:"center", align:"left", frozen:true},
+     {id:'user', header:"担当", width:50, headAlign:"center", align:"left", frozen:true},
+     {id:'startDay', header:"開始日", width:80, headAlign:"center", align:"center", frozen:true},
+     {id:'endDay', header:"終了日", width:80, headAlign:"center", align:"center", frozen:true},
+     {id:'task', header:"タスク", width:100, headAlign:"center", align:"left", frozen:true},
+     {id:'progress', header:"進捗率", width:50, headAlign:"center", align:"right", frozen:true
+		, renderer:function(value, record, colObj, grid, colNo, rowNo) {
+			return '<a href="#">' + value + '</a>';
+		}
+	 },
+	 {id:'chart', header:"", width :50, headAlign:"center", align:"left", frozen:false},
+];
+ 
+ var chartOption = {
+	type:'month',
+	startDate:'2018-01-21',
+	endDate:'2018-03-01',
+	headerFormatDay:'MM/DD',
+	headerFormatWeek:'MM-B',
+	headerFormatMonth:'YYYYMM',
+	maxColumnCount:50,
+	eventClick:function(eventObj, value, record, cell, row, colNo, columnObj, grid) {
+	},
+	eventMouseover:function(eventObj, value, record, cell, row, colNo, columnObj, grid) {
+		this.target.setAttribute('title', value.user);
+	},
+	eventMouseout:function(eventObj, value, record, cell, row, colNo, columnObj, grid) {
+		this.target.removeAttribute('title');
+	},
+};
+
+var gridOption={
+  	id:"myGrid1",
+	container:'content', 
+	width:"100%",
+	height:"300",
+	replaceContainer :true, 
+	dataset:dsOption ,
+	columns:colsOption,
+	pageSize:10 ,
+	pageSizeList:[10, 20, 50, 100],
+	toolbarPosition:"top",
+	toolbarContent:"skin | nav goto | pagesize | ganttreload | filter bookmark | add del | save | ganttday ganttweek ganttmonth | state ",
+	selectRowByChec:true,
+	showGridMenu:true,
+	allowFreeze:true,
+	allowGroup:true,
+	allowHide:true,
+	allowCustomSkin:true,
+	stripeRows:true,
+	skin:"variations",
+	gantt:chartOption,
+	loadURL:'dataXXXXXXXXXXXXXXXXXXX.php',
+};
+
+gridOption.onComplete = function(grid) {
+};
+
+gridOption.onCellClick=function(value,record,cell,row,colNo,columnObj,grid) {
+};
+
+
+/////////////////////////////////////////
+
+try {
+	var obj = new Sigma.Gantt.GanttChart(Sigma.Gantt.Factory);
+	obj.build(gridOption);
+	
+	
+} catch (e) {
+	console.error(e.message);
+	console.error(e.stack);
+}
+
+</script>
+
+</body>
+</html>

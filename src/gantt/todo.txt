@@ -1,0 +1,16 @@
+実績線追加
+	data_collectionでデータを算出columnに置いているが、
+	実績線は位置が違う場合があるので、別にしなければならない?
+	buildDataset()で実績線のfieldNameを置く?
+	あるいはrenderでleftをマイナスする?
+chartカラムクリックでedit画面
+editable許可・禁止ボタンorメニューにある?
+edit編集のリアルタイム反映できるか?
+	reloadではなく、reflesh
+	追加行のチャート表示できるか?
+	表示month/week/dayはリロードで非リアルタイム
+DHTMLGanttの機能の参考
+	追加マーカー
+	クリティカル・パス
+	関連線表示
+	

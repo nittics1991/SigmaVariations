@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+	
+	<!--sigma css-->
+    <link rel="stylesheet" type="text/css" href="../../../grid/gt_grid.css" />
+    <link rel="stylesheet" type="text/css" href="../../../grid/skin/default/skinstyle.css" />
+    <link rel="stylesheet" type="text/css" href="../../../grid/skin/variations/skinstyle.css" />
+	
+	<!--sigma variations/gantt css-->
+	<link rel="stylesheet" type="text/css" href="../../../grid/gtv_gantt.css" />
+	
+	<!--moment-->
+    <script type="text/javascript" src="../../../grid/moment/moment-with-locales.js"></script>
+	
+	<!--sigma msg-->
+    <script type="text/javascript" src="../../../grid/gt_msg_en.js"></script>
+    
+	<!--sigma variations/lib-->
+    <script type="text/javascript" src="../../../src/lib/gtv_assert.js"></script>
+    <script type="text/javascript" src="../../../src/lib/gtv_date.js"></script>
+	
+	<!--sigma variations/gantt/exception-->
+    <script type="text/javascript" src="../../../src/gantt/exception/gtv_gantt_error_invalidargument.js"></script>
+    <script type="text/javascript" src="../../../src/gantt/exception/gtv_gantt_error_loadcancel.js"></script>
+    <script type="text/javascript" src="../../../src/gantt/exception/gtv_gantt_error_loadfailure.js"></script>
+	
+	<!--sigma variations/gantt-->
+    <script type="text/javascript" src="../../../src/gantt/gtv_gantt_chart.js"></script>
+    <script type="text/javascript" src="../../../src/gantt/gtv_gantt_data.js"></script>
+    <script type="text/javascript" src="../../../src/gantt/gtv_gantt_data_collection.js"></script>
+    <script type="text/javascript" src="../../../src/gantt/gtv_gantt_factory.js"></script>
+    <script type="text/javascript" src="../../../src/gantt/gtv_gantt_render_base.js"></script>
+    <script type="text/javascript" src="../../../src/gantt/gtv_gantt_render_day.js"></script>
+    <script type="text/javascript" src="../../../src/gantt/gtv_gantt_render_month.js"></script>
+    <script type="text/javascript" src="../../../src/gantt/gtv_gantt_render_week.js"></script>
+    <script type="text/javascript" src="../../../src/gantt/gtv_gantt_request.js"></script>
+    <script type="text/javascript" src="../../../src/gantt/gtv_gantt_sigma_coloption.js"></script>
+    <script type="text/javascript" src="../../../src/gantt/gtv_gantt_sigma_dsoption.js"></script>
+	
+	<!--sigma-->
+	<script type="text/javascript" src="../../../src/gt_const.js"></script>
+	<script type="text/javascript" src="../../../src/gt_base.js"></script>
+	<script type="text/javascript" src="../../../src/gt_tool.js"></script>
+	<script type="text/javascript" src="../../../src/gt_editor.js"></script>
+	<script type="text/javascript" src="../../../src/gt_dialog.js"></script>
+	<script type="text/javascript" src="../../../src/gt_grid.js"></script>
+	<script type="text/javascript" src="../../../src/gt_ajax.js"></script>
+	<script type="text/javascript" src="../../../src/gt_column.js"></script>
+	<script type="text/javascript" src="../../../src/gt_dataset.js"></script>
+	<script type="text/javascript" src="../../../src/gt_template.js"></script>
+	<script type="text/javascript" src="../../../src/gt_validator.js"></script>	
+	
+	<!--sigma test data-->
+   <script type="text/javascript" src="./data/data1.js"></script>
+ 	
+<title></title>
+</head>
+<body>
+
+<h4>テスト</h4>
+<ol>
+	<li>gridの表示を確認</li>
+</ol>
+
+<div id="content"></div>
+
+<script>
+
+var dsOption= {
+	fields :[
+		{name:'project'},
+		{name:'user'},
+		{name:'startDay', type:'date'},
+		{name:'endDay', type:'date'},
+		{name:'task'},
+		{name:'progress', type:'int'},
+		{name:'chart', type:'gantt'},
+	],
+	recordType:'object',
+	data : __TEST_DATA_OBJ__
+}
+
+var colsOption = [
+     {id:'no', header:"プロジェクト", width:100, headAlign:"center", align:"left", frozen:true},
+     {id:'user', header:"担当", width:50, headAlign:"center", align:"left", frozen:true},
+     {id:'startDay', header:"開始日", width:80, headAlign:"center", align:"center", frozen:true},
+     {id:'endDay', header:"終了日", width:80, headAlign:"center", align:"center", frozen:true},
+     {id:'task', header:"タスク", width:100, headAlign:"center", align:"left", frozen:true},
+     {id:'progress', header:"進捗率", width:50, headAlign:"center", align:"right", frozen:true
+		, renderer:function(value, record, colObj, grid, colNo, rowNo) {
+			return '<a href="#">' + value + '</a>';
+		}
+	 },
+	 {id:'chart', header:"", width :50, headAlign:"center", align:"left", frozen:false},
+];
+ 
+ var chartOption = {
+	type:'day',
+	startDate:'2018-01-21',
+	endDate:'2018-03-01',
+	headerFormatDay:'MM/DD',
+	headerFormatWeek:'MM/B',
+	headerFormatMonth:'YY/MM',
+	maxColumnCount:50,
+};
+
+var gridOption={
+  	id:"myGrid1",
+	container:'content', 
+	width:"100%",
+	height:"300",
+	replaceContainer :true, 
+	dataset:dsOption ,
+	columns:colsOption,
+	pageSize:10 ,
+	pageSizeList:[10, 20, 50, 100],
+	toolbarPosition:"top",
+	toolbarContent:"skin | nav goto | pagesize | ganttreload | filter bookmark | add del | save | ganttday ganttweek ganttmonth | state ",
+	selectRowByChec:true,
+	showGridMenu:true,
+	allowFreeze:true,
+	allowGroup:true,
+	allowHide:true,
+	allowCustomSkin:true,
+	stripeRows:true,
+	skin:"variations",
+	gantt:chartOption,
+};
+
+gridOption.onComplete = function(grid) {
+};
+
+gridOption.onCellClick=function(value,record,cell,row,colNo,columnObj,grid) {
+};
+
+
+/////////////////////////////////////////
+
+try {
+
+
+
+factory = Sigma.Gantt.Factory;
+
+var sigmaDsOption = factory.get(
+	'SigmaDsOption',
+	dsOption
+);
+
+/*
+sigmaDsOption.loadDataset(
+	',
+	{},
+	loadCallback,
+	function(message) {
+		throw new Sigma.Gantt.Error.LoadFailure('url=' + this.option.loadURL);
+	}
+);
+*/
+
+
+function loadCallback(dataCollection) {
+	var chart = factory.get(
+		'Chart',
+		gridOption.gantt
+	);
+	
+	dataCollection.buildDataset(chart);
+
+	var render = factory.get(
+		'Render',
+		chart
+	);
+	
+	var sigmaColOption = factory.get(
+		'SigmaColOption',
+		render,
+		gridOption.columns,
+		sigmaDsOption.ganttFieldName()
+	);
+
+	sigmaColOption.buildColumns(chart);
+	
+	gridOption.dataset.data = dataCollection.toSigmaObject();
+	gridOption.columns = sigmaColOption.toSigmaObject();
+	
+	//event追加
+	//option.omComplete = chart.buildEvent(option.omComplete);
+	
+	var grid = new Sigma.Grid(gridOption);
+	Sigma.Util.onLoad(Sigma.Grid.render(grid));
+}
+
+
+////////////////////////
+
+var data = [
+	{
+		project:1,
+		user:'yamada',
+		startDay:'2018-01-23',
+		endDay:'2018-02-01',
+		task:'model design',
+		progress:60,
+		chart:[
+			{
+				id:10,
+				start:'2018-01-23',
+				end:'2018-01-28',
+				type:'bar',
+				progress:50,
+				format:'YYYY-MM-DD',
+			},
+			{
+				id:101,
+				start:'2018-02-01',
+				end:'2018-02-10',
+				type:'stone',
+				progress:100,
+				//format:'YYYY-MM-DD',
+				text:'TITLE',
+				className:'my-class',
+				textColor:'#ff0000',
+				borderColor:'#00FF00',
+				backgroundColor:'#c0c0c0',
+				progressColor:'#0000FF',
+			},
+		],
+	},	
+	{
+		project:2,
+		user:'okada',
+		startDay:'2018-02-01',
+		endDay:'2018-02-28',
+		task:'view design',
+		progress:20,
+		chart:[
+			{
+				id:20,
+				start:'{startDay}',
+				end:'{endDay}',
+				type:'stone',
+				progress:20,
+			},
+		],
+	},
+];
+
+	var dataCollection = new Sigma.Gantt.DataCollection(data, 'chart');
+	loadCallback(dataCollection);
+} catch(e) {
+	console.error(e.message);
+	console.error(e.stack);
+}
+
+</script>
+
+</body>
+</html>

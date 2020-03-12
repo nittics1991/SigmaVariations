@@ -172,7 +172,7 @@ td {	font-size:12px;	}
 /* =============================== */
 
 .gt-inner {
-	qdisplay: block;
+	display: block;
 	padding : 1px 2px 1px 2px;
 	height:19px;
 	line-height:16px;

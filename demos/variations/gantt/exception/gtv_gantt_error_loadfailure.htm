@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+	
+	<!--moment-->
+    <script type="text/javascript" src="../../../../grid/moment/moment-with-locales.js"></script>
+	
+	<!--sigma variations/lib-->
+    <script type="text/javascript" src="../../../../src/lib/gtv_assert.js"></script>
+	
+	<!--sigma variations/gantt-->
+    <script type="text/javascript" src="../../../../src/gantt/exception/gtv_gantt_error_loadfailure.js"></script>
+	
+	<!--sigma-->
+	<script type="text/javascript" src="../../../../src/gt_const.js"></script>
+	<script type="text/javascript" src="../../../../src/gt_base.js"></script>
+	<script type="text/javascript" src="../../../../src/gt_tool.js"></script>
+	<script type="text/javascript" src="../../../../src/gt_editor.js"></script>
+	<script type="text/javascript" src="../../../../src/gt_dialog.js"></script>
+	<script type="text/javascript" src="../../../../src/gt_grid.js"></script>
+	<script type="text/javascript" src="../../../../src/gt_ajax.js"></script>
+	<script type="text/javascript" src="../../../../src/gt_column.js"></script>
+	<script type="text/javascript" src="../../../../src/gt_dataset.js"></script>
+	<script type="text/javascript" src="../../../../src/gt_template.js"></script>
+	<script type="text/javascript" src="../../../../src/gt_validator.js"></script>	
+ 	
+<title></title>
+</head>
+<body>
+
+<h4>テスト</h4>
+<ol>
+	<li>consoleでassert確認</li>
+</ol>
+
+<div id="mocha"></div>
+
+<script>
+
+var obj;
+var expect;
+
+console.log('===test');
+
+expect = 'exception message;'
+obj = new Sigma.Gantt.Error.LoadFailure();
+Sigma.Assert.eq(
+	'error',
+	obj.message,
+	'non message'
+);
+
+expect = 'exception message;'
+obj = new Sigma.Gantt.Error.LoadFailure(expect);
+Sigma.Assert.eq(
+	expect,
+	obj.message,
+	'message'
+);
+
+
+</script>
+
+</body>
+</html>

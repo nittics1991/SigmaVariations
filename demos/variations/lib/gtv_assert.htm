@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+	
+	<!--sigma variations/lib-->
+    <script type="text/javascript" src="../../../src/lib/gtv_assert.js"></script>
+	
+<title></title>
+</head>
+<body>
+
+<h4>テスト</h4>
+<ol>
+	<li></li>
+</ol>
+
+<script>
+
+console.log("===eq test");
+
+console.log("1---true");
+Sigma.Assert.eq(12, 12, "1");
+
+console.log("2---false", "2");
+Sigma.Assert.eq(12, 13);
+
+console.log("3---false");
+Sigma.Assert.eq(12, "12", "3");
+
+console.log("===eqObj test");
+
+console.log("1---true");
+Sigma.Assert.eqObj(
+	{a:"AAA", b:"BBBB"},
+	{a:"AAA", b:"BBBB"},
+	"1"
+);
+
+console.log("2---true");
+Sigma.Assert.eqObj(
+	{a:"AAA", b:"BBBB"},
+	{b:"BBBB",a:"AAA"},
+	"2"
+);
+
+console.log("3---false");
+Sigma.Assert.eqObj(
+	{a:"AAA", b:"BBBB"},
+	{a:"AAA", b:"BBBBB"},
+	"3"
+);
+
+console.log("4---false");
+Sigma.Assert.eqObj(
+	{a:"AAA", b:"BBBB"},
+	{c:"AAA", b:"BBBB"},
+	"4"
+);
+
+
+console.log("===ex test");
+
+console.log("1---true");
+Sigma.Assert.ex(
+	function(a) {throw a;},
+	["aaa"],
+	"1"
+);
+
+console.log("2---false");
+Sigma.Assert.ex(
+	function(a) {return a;},
+	["aaa"],
+	"2"
+);
+
+
+console.log("===nex test");
+
+console.log("1---true");
+Sigma.Assert.nex(
+	function(a) {return a;},
+	["aaa"],
+	"1"
+);
+
+console.log("2---false");
+Sigma.Assert.nex(
+	function(a) {throw a;},
+	["aaa"],
+	"2"
+);
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+	
+	<!--sigma css-->
+    <link rel="stylesheet" type="text/css" href="../../../grid/gt_grid.css" />
+    <link rel="stylesheet" type="text/css" href="../../../grid/skin/default/skinstyle.css" />
+    <link rel="stylesheet" type="text/css" href="../../../grid/skin/variations/skinstyle.css" />
+    <link rel="stylesheet" type="text/css" href="../../../grid/gtv_gantt.css" />
+	
+	<!--moment-->
+    <script type="text/javascript" src="../../../grid/moment/moment-with-locales.js"></script>
+	
+	<!--sigma msg-->
+    <script type="text/javascript" src="../../../grid/gt_msg_en.js"></script>
+    
+	<!--sigma variations/lib-->
+    <script type="text/javascript" src="../../../src/lib/gtv_assert.js"></script>
+    <script type="text/javascript" src="../../../src/lib/gtv_date.js"></script>
+	
+	<!--sigma variations/gantt-->
+    <script type="text/javascript" src="../../../src/gantt/gtv_gantt_chart.js"></script>
+    <script type="text/javascript" src="../../../src/gantt/gtv_gantt_data.js"></script>
+    <script type="text/javascript" src="../../../src/gantt/gtv_gantt_data_collection.js"></script>
+    <script type="text/javascript" src="../../../src/gantt/gtv_gantt_sigma_coloption.js"></script>
+    <script type="text/javascript" src="../../../src/gantt/gtv_gantt_render_base.js"></script>
+    <script type="text/javascript" src="../../../src/gantt/gtv_gantt_render_week.js"></script>
+	
+	<!--sigma-->
+	<script type="text/javascript" src="../../../src/gt_const.js"></script>
+	<script type="text/javascript" src="../../../src/gt_base.js"></script>
+	<script type="text/javascript" src="../../../src/gt_tool.js"></script>
+	<script type="text/javascript" src="../../../src/gt_editor.js"></script>
+	<script type="text/javascript" src="../../../src/gt_dialog.js"></script>
+	<script type="text/javascript" src="../../../src/gt_grid.js"></script>
+	<script type="text/javascript" src="../../../src/gt_ajax.js"></script>
+	<script type="text/javascript" src="../../../src/gt_column.js"></script>
+	<script type="text/javascript" src="../../../src/gt_dataset.js"></script>
+	<script type="text/javascript" src="../../../src/gt_template.js"></script>
+	<script type="text/javascript" src="../../../src/gt_validator.js"></script>	
+	
+	<!--sigma test data-->
+	<script type="text/javascript" src="../../data/test_data_obj.js"></script>
+ 	
+<title></title>
+</head>
+<body>
+
+<h4>テスト</h4>
+<ol>
+	<li>gridをclickでテスト実行</li>
+	<li>consoleでassert確認</li>
+	<li>gridの表示を確認</li>
+</ol>
+
+<div id="content"></div>
+
+<script>
+
+var grid_demo_id = "myGrid1" ;
+
+var dsOption= {
+	fields :[
+		{name : 'no'  },
+		{name : 'country'  },
+		{name : 'customer'  },
+		{name : 'employee'  },
+		{name : 'bill2005' ,type: 'float' },
+		{name : 'bill2006' ,type: 'float' },
+		{name : 'bill2007' ,type: 'float' },
+		{name : 'bill2008' ,type: 'float' },
+		{name : 'orderDate' ,type:'date'  },
+	],
+	
+	//recordType : 'array',
+	//data : __TEST_DATA__
+	
+	recordType : 'object',
+	data : __TEST_DATA_OBJ__
+}
+
+var colsOption = [
+	 {id: 'chk', isCheckColumn:true, frozen:true},
+     {id: 'no' , header: "Order No" , width :60, frozen:true},
+     {id: 'employee' , header: "Employee" , width :80, frozen:true},
+	 {id: 'country' , header: "Country" , width :40},
+	 {id: 'customer' , header: "Customer" , width :80},
+	 {id: 'gantt' , header: "date" , width :50},
+	 {id: 'gantt_0' , header: "date0" , width :50},
+	 {id: 'gantt_1' , header: "date1" , width :50},
+	 {id: 'gantt_2' , header: "date2" , width :50},
+	 {id: 'gantt_3' , header: "date3" , width :50},
+	 {id: 'gantt_4' , header: "date4" , width :50},
+	 {id: 'gantt_5' , header: "date5" , width :50},
+	 {id: 'gantt_6' , header: "date6" , width :50},
+	 {id: 'gantt_7' , header: "date7" , width :50},
+	 {id: 'gantt_8' , header: "date8" , width :50},
+	 {id: 'gantt_9' , header: "date9" , width :50},
+];
+ 
+var gridOption={
+  	id : "myGrid1",
+	container : 'content', 
+	width: "100%",
+	height: "300",
+	replaceContainer : true, 
+	dataset : dsOption ,
+	columns : colsOption,
+	pageSize : 10 ,
+	pageSizeList:[10, 20, 50, 100],
+	toolbarPosition:"top",
+	toolbarContent :"skin | nav goto | pagesize | reload | filter bookmark | add del copy paste fillcolumn | save | rowheight selectedcheck | aggregate | config unconfig downloadconfig uploadconfig | state ",
+	selectRowByChec:true,
+	showGridMenu:true,
+	allowFreeze:true,
+	allowGroup:true,
+	allowHide:true,
+	allowCustomSkin:true,
+	stripeRows:true,
+	skin:"variations",
+	
+};
+
+
+gridOption.onComplete = function(grid) {
+};
+
+gridOption.onCellClick=function(value,record,cell,row,colNo,columnObj,grid) {
+	var html = '<div style="position:relative;">';
+	html += '<div class="gtv-gantt-bar" style="width:100px; left:20px; color:#0000ff; border-color:#ff0000; background-color:#00ff00;">abcde</div>';
+	
+	html += '<div class="gtv-gantt-progress" style="width:50px; left:20px;"></div>';
+	
+	html += '<div class="gtv-gantt-bar" style="width:100px; left:20px; color:#0000ff; border-color:#ff0000; background-color:#00ff00;">abcde</div>';
+	html += '</div>	'
+	
+	var elm = document.querySelector('#myGrid1_bodyDiv .gt-col-mygrid1-gantt_0 .gt-inner');
+	elm.insertAdjacentHTML('afterbegin', html);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+var chartOption = {
+	type:'day',
+	startDate:'2018-01-23',
+	endDate:'2018-03-23',
+	headerFormatDay:'YYYY/MM/DD',
+	headerFormatWeek:'YYYY/MM/B',
+	headerFormatMonth:'YYYY/MM',
+	maxColumnCount:30,
+	
+	// eventClick = null;
+	// eventMouseover = null;
+	// eventMouseout = null;
+	
+	
+};
+
+var chart = new Sigma.Gantt.Chart(chartOption);
+var obj = new Sigma.Gantt.RenderBase(chart);
+
+var data = {
+	id:10,
+	parent:null,
+	start:'2018-02-05',
+	end:'2018-02-28',
+	type:['bar', 'stone'],
+	progress:50,
+	format:'YYYY-MM-DD',
+	text:'abcde',
+	className:null,
+	textColor:'#ff0000',
+	borderColor:'#00ff00',
+	backgroundColor:'#0000ff',
+	progressColor:'#00ffff',
+};
+
+
+obj._buildShapeBar(data);
+
+
+
+
+};
+
+//////////////////////////////////////////////////////////////
+
+var mygrid=new Sigma.Grid( gridOption );
+Sigma.Util.onLoad( Sigma.Grid.render(mygrid) );
+
+//////////////////////////////////////////////////////////////
+
+
+</script>
+
+<script>
+	
+var obj;
+var expect;
+
+console.log('===test');
+
+var chartOption = {
+	type:'day',
+	startDate:'2018-01-23',
+	endDate:'2018-03-23',
+	headerFormatDay:'YYYY/MM/DD',
+	headerFormatWeek:'YYYY/MM/B',
+	headerFormatMonth:'YYYY/MM',
+	maxColumnCount:30,
+	
+	// eventClick = null;
+	// eventMouseover = null;
+	// eventMouseout = null;
+	
+	
+};
+
+var chart = new Sigma.Gantt.Chart(chartOption);
+obj = new Sigma.Gantt.RenderWeek(chart);
+
+obj._colObj = {
+	width:100,
+};
+
+var data = {
+	id:10,
+	parent:null,
+	start:'2018-02-05',	//2week mon
+	end:'2018-02-28',	//4week wed
+	type:['bar', 'stone'],
+	progress:0,
+	format:'YYYY-MM-DD',
+	text:null,
+	className:null,
+	textColor:null,
+	borderColor:null,
+	backgroundColor:null,
+	progressColor:null,
+};
+
+
+console.log('===left,width');
+
+Sigma.Assert.eq(
+	parseInt(2/7*100),
+	obj.calcLeft(data),
+	'left'
+);
+
+Sigma.Assert.eq(
+	100 - parseInt(2/7*100) + (100 * 2) + parseInt(4/7*100) + 3,
+	obj.calcWidth(data),
+	'width'
+);
+
+data.end = '2018-02-07';
+Sigma.Assert.eq(
+	parseInt(4/7*100)  - parseInt(2/7*100),
+	obj.calcWidth(data),
+	'width same week'
+);
+
+</script>
+
+</body>
+</html>

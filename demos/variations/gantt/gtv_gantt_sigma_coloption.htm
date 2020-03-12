@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+	
+	<!--moment-->
+    <script type="text/javascript" src="../../../grid/moment/moment-with-locales.js"></script>
+	
+	<!--sigma variations/lib-->
+    <script type="text/javascript" src="../../../src/lib/gtv_assert.js"></script>
+    <script type="text/javascript" src="../../../src/lib/gtv_date.js"></script>
+	
+	<!--sigma variations/gantt-->
+    <script type="text/javascript" src="../../../src/gantt/gtv_gantt_chart.js"></script>
+    <script type="text/javascript" src="../../../src/gantt/gtv_gantt_sigma_coloption.js"></script>
+	
+	<!--sigma-->
+	<script type="text/javascript" src="../../../src/gt_const.js"></script>
+	<script type="text/javascript" src="../../../src/gt_base.js"></script>
+	<script type="text/javascript" src="../../../src/gt_tool.js"></script>
+	<script type="text/javascript" src="../../../src/gt_editor.js"></script>
+	<script type="text/javascript" src="../../../src/gt_dialog.js"></script>
+	<script type="text/javascript" src="../../../src/gt_grid.js"></script>
+	<script type="text/javascript" src="../../../src/gt_ajax.js"></script>
+	<script type="text/javascript" src="../../../src/gt_column.js"></script>
+	<script type="text/javascript" src="../../../src/gt_dataset.js"></script>
+	<script type="text/javascript" src="../../../src/gt_template.js"></script>
+	<script type="text/javascript" src="../../../src/gt_validator.js"></script>	
+ 	
+<title></title>
+</head>
+<body>
+
+<h4>テスト</h4>
+<ol>
+	<li>consoleでassert確認</li>
+</ol>
+
+<div id="mocha"></div>
+
+<script>
+
+var obj;
+var expect;
+
+console.log('===test');
+
+var colOption = [
+	 {id: 'chk', isCheckColumn:true, frozen:true},
+     {id: 'no' , header: "Order No" , width :60, frozen:true},
+     {id: 'employee' , header: "Employee" , width :80, frozen:true},
+	 {id: 'country' , header: "Country" , width :40},
+	 {id: 'gantt' , header: "Country" , width :40,
+		renderer:function(value, record, colObj, grid, colNo, rowNo) {
+			console.log('---user defined method---');
+		},
+	 },
+	 {id: 'customer' , header: "Customer" , width :80},
+];
+
+var render = function() {};
+render.prototype.render = function(value, record, colObj, grid, colNo, rowNo, _this)  {
+	console.log('render called');
+};
+
+var renderObj = new render();
+
+obj = new Sigma.Gantt.SigmaColOption(renderObj, colOption, 'gantt');
+Sigma.Assert.eq(
+	true,
+	obj.isValid(),
+	"isValid"
+);
+
+
+console.log('===buildColumns');
+
+chartOption = {
+	type:'day',
+	startDate:'2018-01-23',
+	endDate:'2018-01-31',
+	headerFormatDay:'YYYY/MM/DD',
+	headerFormatWeek:'YYYY/MM/B',
+	headerFormatMonth:'YYYY/MM',
+	maxColumnCount:10,
+};
+var chart = new Sigma.Gantt.Chart(chartOption);
+obj = obj.buildColumns(chart);
+
+Sigma.Assert.eqObj(
+	{id: 'chk', isCheckColumn:true, frozen:true},
+	obj.buildedColumns[0],
+	'column chk'
+);
+
+Sigma.Assert.eq(
+	'gantt_0',
+	obj.buildedColumns[5].id,
+	'column gantt id'
+);
+
+Sigma.Assert.eq(
+	'2018/01/31',
+	obj.buildedColumns[13].header,
+	'column gantt header'
+);
+
+console.log('===renderer must be console.log');
+
+var renderer = obj.buildedColumns[5].renderer;
+renderer();
+
+console.log('no message an error');
+
+</script>
+
+</body>
+</html>

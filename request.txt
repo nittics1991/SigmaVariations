@@ -1,0 +1,16 @@
+Request
+
+190628
+    dialogやメニューの中で
+    １．画面がリフレッシュされる
+    ２．チェックボックスやラジオボタンが選択できない
+    原因として
+    dialog内のボタンのevent callback内に、Sigma.U.stopEvent(e);が無い
+    dialogのshow()でbodyを作るhtlmテキストに　 onclick="Sigma.clickHandler.onFilterItem(event)" 
+        があり、余計なイベント処理を行っている
+
+20-03-11
+    フィルタ
+        データがコードで表示が文字に変換しているデータを、表示文字でフィルタしたい
+
+

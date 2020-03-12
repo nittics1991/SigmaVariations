@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+	
+	<!--moment-->
+    <script type="text/javascript" src="../../../grid/moment/moment-with-locales.js"></script>
+	
+	<!--sigma variations/lib-->
+    <script type="text/javascript" src="../../../src/lib/gtv_assert.js"></script>
+    <script type="text/javascript" src="../../../src/lib/gtv_date.js"></script>
+	
+	<!--sigma variations/gantt-->
+    <script type="text/javascript" src="../../../src/gantt/gtv_gantt_data.js"></script>
+	
+	<!--sigma-->
+	<script type="text/javascript" src="../../../src/gt_const.js"></script>
+	<script type="text/javascript" src="../../../src/gt_base.js"></script>
+	<script type="text/javascript" src="../../../src/gt_tool.js"></script>
+	<script type="text/javascript" src="../../../src/gt_editor.js"></script>
+	<script type="text/javascript" src="../../../src/gt_dialog.js"></script>
+	<script type="text/javascript" src="../../../src/gt_grid.js"></script>
+	<script type="text/javascript" src="../../../src/gt_ajax.js"></script>
+	<script type="text/javascript" src="../../../src/gt_column.js"></script>
+	<script type="text/javascript" src="../../../src/gt_dataset.js"></script>
+	<script type="text/javascript" src="../../../src/gt_template.js"></script>
+	<script type="text/javascript" src="../../../src/gt_validator.js"></script>	
+ 	
+<title></title>
+</head>
+<body>
+
+<h4>テスト</h4>
+<ol>
+	<li>consoleでassert確認</li>
+</ol>
+
+<div id="mocha"></div>
+
+<script>
+
+var obj;
+var expect;
+
+console.log('===');
+
+expect = {
+	id:null,
+	start:null,
+	end:null,
+	type:'bar',
+	progress:0,
+	format:'YYYY-MM-DD',
+	text:null,
+	className:null,
+	textColor:null,
+	borderColor:null,
+	backgroundColor:null,
+	progressColor:null,
+	pline:{},
+};
+
+obj = new Sigma.Gantt.Data();
+Sigma.Assert.eq(false, obj.isValid(), "null isValid");
+Sigma.Assert.eqObj(expect, obj.toObject(), "null toObject");
+
+expect = {
+	id:11,
+	start:'2018-01-23',
+	end:'2018-12-31',
+	type:'bar',
+	progress:100,
+	format:'YYYY-MM-DD',
+	text:'TITLE',
+	className:'my-class',
+	textColor:'#ff0000',
+	borderColor:'#00FF00',
+	backgroundColor:'#1290aA',
+	progressColor:'#000000',
+	pline:{},
+};
+
+obj = new Sigma.Gantt.Data(expect);
+Sigma.Assert.eq(true, obj.isValid(), "success isValid");
+Sigma.Assert.eqObj(expect, obj.toObject(), "success toObject");
+
+expect = {
+	//id:11,
+	start:'2018-01-23',
+	end:'2018-12-31',
+	type:'bar',
+	progress:100,
+	format:'YYYY-MM-DD',
+	text:'TITLE',
+	className:'my-class',
+	textColor:'#ff0000',
+	borderColor:'#00FF00',
+	backgroundColor:'#1290aA',
+	progressColor:'#000000',
+	pline:{},
+};
+
+obj = new Sigma.Gantt.Data(expect);
+Sigma.Assert.eq(false, obj.isValid(), "id isValid");
+expect.id = null;
+Sigma.Assert.eqObj(expect, obj.toObject(), "id toObject");
+
+expect = {
+	id:11,
+	//start:'2018-01-23',
+	end:'2018-12-31',
+	type:'bar',
+	progress:100,
+	format:'YYYY-MM-DD',
+	text:'TITLE',
+	className:'my-class',
+	textColor:'#ff0000',
+	borderColor:'#00FF00',
+	backgroundColor:'#1290aA',
+	progressColor:'#000000',
+	pline:{},
+};
+
+obj = new Sigma.Gantt.Data(expect);
+Sigma.Assert.eq(false, obj.isValid(), "start isValid");
+expect.start = null;
+Sigma.Assert.eqObj(expect, obj.toObject(), "start toObject");
+
+expect = {
+	id:11,
+	start:'2018-01-23',
+	end:'',
+	type:'bar',
+	progress:100,
+	format:'YYYY-MM-DD',
+	text:'TITLE',
+	className:'my-class',
+	textColor:'#ff0000',
+	borderColor:'#00FF00',
+	backgroundColor:'#1290aA',
+	progressColor:'#000000',
+	pline:{},
+};
+
+obj = new Sigma.Gantt.Data(expect);
+Sigma.Assert.eq(false, obj.isValid(), "end isValid");
+expect.end = null;
+Sigma.Assert.eqObj(expect, obj.toObject(), "end toObject");
+
+expect = {
+	id:11,
+	start:'2018-01-23',
+	end:'2018-12-31',
+	type:['zzz'],
+	progress:100,
+	format:'YYYY-MM-DD',
+	text:'TITLE',
+	className:'my-class',
+	textColor:'#ff0000',
+	borderColor:'#00FF00',
+	backgroundColor:'#1290aA',
+	progressColor:'#000000',
+	pline:{},
+};
+
+obj = new Sigma.Gantt.Data(expect);
+Sigma.Assert.eq(false, obj.isValid(), "type isValid");
+Sigma.Assert.eqObj(expect, obj.toObject(), "type toObject");
+
+expect = {
+	id:11,
+	start:'2018-01-23',
+	end:'2018-12-31',
+	type:['zzz'],
+	progress:"aaa",
+	format:'YYYY-MM-DD',
+	text:'TITLE',
+	className:'my-class',
+	textColor:'#ff0000',
+	borderColor:'#00FF00',
+	backgroundColor:'#1290aA',
+	progressColor:'#000000',
+	pline:{},
+};
+
+obj = new Sigma.Gantt.Data(expect);
+Sigma.Assert.eq(false, obj.isValid(), "progress isValid");
+Sigma.Assert.eqObj(expect, obj.toObject(), "progress toObject");
+
+expect = {
+	id:11,
+	start:'2018-01-23',
+	end:'2018-12-31',
+	type:['zzz'],
+	progress:"aaa",
+	format:'YYYY-MM-DD',
+	text:'TITLE',
+	className:'my-class',
+	textColor:'ff0000',
+	borderColor:'#00FF00',
+	backgroundColor:'#1290aA',
+	progressColor:'#000000',
+	pline:{},
+};
+
+obj = new Sigma.Gantt.Data(expect);
+Sigma.Assert.eq(false, obj.isValid(), "textColor isValid");
+Sigma.Assert.eqObj(expect, obj.toObject(), "textColor toObject");
+
+expect = {
+	id:11,
+	start:'2018-01-23',
+	end:'2018-12-31',
+	type:['zzz'],
+	progress:"aaa",
+	format:'YYYY-MM-DD',
+	text:'TITLE',
+	className:'my-class',
+	textColor:'#ff0000',
+	borderColor:'#00000000',
+	backgroundColor:'#1290aA',
+	progressColor:'#000000',
+	pline:{},
+};
+
+obj = new Sigma.Gantt.Data(expect);
+Sigma.Assert.eq(false, obj.isValid(), "borderColor isValid");
+Sigma.Assert.eqObj(expect, obj.toObject(), "borderColor toObject");
+
+expect = {
+	id:11,
+	start:'2018-01-23',
+	end:'2018-12-31',
+	type:['zzz'],
+	progress:"aaa",
+	format:'YYYY-MM-DD',
+	text:'TITLE',
+	className:'my-class',
+	textColor:'#ff0000',
+	borderColor:'#00FF00',
+	backgroundColor:'#0000ag',
+	progressColor:'#000000',
+	pline:{},
+};
+
+obj = new Sigma.Gantt.Data(expect);
+Sigma.Assert.eq(false, obj.isValid(), "backgroundColor isValid");
+Sigma.Assert.eqObj(expect, obj.toObject(), "backgroundColor toObject");
+
+expect = {
+	id:11,
+	start:'2018-01-23',
+	end:'2018-12-31',
+	type:['zzz'],
+	progress:"aaa",
+	format:'YYYY-MM-DD',
+	text:'TITLE',
+	className:'my-class',
+	textColor:'#ff0000',
+	borderColor:'#00FF00',
+	backgroundColor:'#0000ag',
+	progressColor:'#000000FF',
+	pline:{},
+};
+
+obj = new Sigma.Gantt.Data(expect);
+Sigma.Assert.eq(false, obj.isValid(), "progressColor isValid");
+Sigma.Assert.eqObj(expect, obj.toObject(), "progressColor toObject");
+
+expect = {
+	id:11,
+	start:'2018-01-23',
+	end:'2018-12-31',
+	type:'stone',
+	progress:50,
+	format:'YYYY-MM-DD',
+	text:'TITLE',
+	className:'my-class',
+	textColor:'#ff0000',
+	borderColor:'#00FF00',
+	backgroundColor:'#0000FF',
+	progressColor:'#0000FF',
+	pline:{"2018-01-31":20, "2018-02-04":50},
+};
+
+obj = new Sigma.Gantt.Data(expect);
+Sigma.Assert.eq(true, obj.isValid(), "pline isValid");
+Sigma.Assert.eqObj(expect, obj.toObject(), "pline toObject");
+
+</script>
+
+</body>
+</html>
