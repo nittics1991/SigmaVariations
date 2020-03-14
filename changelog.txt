@@ -437,7 +437,23 @@ v2.0.0 20-03-13 nittics1991
         gantt用設定追加
     grid/gtv_msg_en.js
         削除
-
+v2.1.0	20-03-14 nittics1991
+    HTML Filter機能追加
+    
+	grid/gt_msg_en.js 
+		dialogタイトル文字追加
+	src/gt_grid.js 
+		showDialog() dialog表示処理追加
+	src/gt_tool.js 
+		tools{} dialog表示処理追加
+	src/tool/gtv_html_filter.js 
+		新規追加
+    grid/skin/variations/skin/images/html_filter_list.png
+		新規追加
+    grid/skin/variations/skin/skinsytle.css
+		.gt-tool-htmlfilter ボタン表示追加
+    demos/variations/v210htmlFilter.htm
+		新規追加
 
 
 

@@ -663,3 +663,9 @@ td.gt-cell-updated {
 }
 /*<==v1260*/
 
+/*v210==>*/
+.gt-skin-variations .gt-tool-htmlfilter {
+	background:url(./images/html_filter_list.png) no-repeat center center;
+}
+/*<==v210*/
+

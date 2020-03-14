@@ -5092,6 +5092,19 @@ Sigma.GridDefault = {
 			break;
         /*<==v1230*/
 		
+		/*v210==>*/
+          case "htmlfilter":
+            grid.htmlFilterDialog =
+              grid.htmlFilterDialog ||
+              Sigma.Tool.HtmlFilterDialog.create({
+                title: grid.getMsg("DIAG_TITLE_HTML_FILTER"),
+                gridId: grid.id
+              });
+            grid.htmlFilterDialog.show();
+
+            break;
+        /*<==v210*/
+        
     }
   },
 

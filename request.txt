@@ -9,8 +9,3 @@ Request
     dialogのshow()でbodyを作るhtlmテキストに　 onclick="Sigma.clickHandler.onFilterItem(event)" 
         があり、余計なイベント処理を行っている
 
-20-03-11
-    フィルタ
-        データがコードで表示が文字に変換しているデータを、表示文字でフィルタしたい
-
-

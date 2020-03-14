@@ -1121,6 +1121,15 @@ Sigma.ToolFactroy = {
     },
     /*<==v1260*/
 	
+    /*v210==>*/
+    htmlfilter: {
+      onclick: function(event, grid) {
+        grid.lastAction = "htmlfilter";
+        grid.showDialog("htmlfilter");
+      }
+    },
+    /*<==v210*/
+    
 	
   }
 };

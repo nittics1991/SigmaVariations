@@ -142,6 +142,12 @@ Sigma.Msg.Grid.en={
 	TOOL_ROWSYNC:"SyncRowHeight",
 	/*<==v1260*/
 	
+	/*v210==>*/
+	DIAG_TITLE_HTML_FILTER:"HTML Filter in Page",
+	TOOL_HTMLFILTER : "Html Filter in Page" ,
+	/*<==v210*/
+    
+	
 };
 
 Sigma.Msg.Grid['default']=Sigma.Msg.Grid.en;
