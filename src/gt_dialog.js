@@ -42,18 +42,6 @@ Sigma.DialogDefault = {
     var grid = Sigma.$grid(this.gridId);
     grid.closeGridMenu();
     if (Sigma.$invoke(this, "beforeShow", [grid]) !== false) {
-      //todo
-      /*
-			if (Sigma.isIE) {
-				Sigma.eachGrid(function(g){
-					if (g!=grid){
-						g.gridDiv.style.position=g.viewport.style.position="static";
-						g.toolBarBox && (g.toolBarBox.style.position="static");
-					}
-				});	
-				
-			}
-			*/
       this.locked = true;
       grid.showMask();
       this.autoRerender && this.render(grid.gridMask);
@@ -81,18 +69,6 @@ Sigma.DialogDefault = {
       }
       grid.activeDialog = null;
       this.hidden = true;
-      //todo
-      /*
-			if (Sigma.isIE) {
-				Sigma.eachGrid(function(g){
-					if (g!=grid){
-						//todo 
-						g.gridDiv.style.position=g.viewport.style.position="relative";
-						g.toolBarBox && (g.toolBarBox.style.position="relative");
-					}
-				});
-			}
-			*/
       Sigma.$invoke(this, "afterHide", [grid]);
     }
   },
@@ -452,8 +428,8 @@ Sigma.createFilterDialog = function(cfg) {
 
   var outW = 430,
     outH = 220;
-  var inW = outW - (Sigma.isBoxModel ? 16 : 18),
-    inH = outH - (Sigma.isBoxModel ? 93 : 95);
+  var inW = outW - 16,
+    inH = outH - 93;
   var dialog = new Sigma.Dialog({
     id: dialogId,
     gridId: gridId,

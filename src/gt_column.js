@@ -389,18 +389,6 @@ Sigma.ColumnDefault = {
       this.frozenSortIcon = Sigma.Grid.getSortIcon(this, this.frozenHeadCell);
       this.frozenHdTool = Sigma.Grid.getHdTool(this, this.frozenHeadCell);
       
-      /*v102==>*/
-      /*
-      if (!Sigma.isIE) {
-        Sigma.Grid.initColumnEvent(
-          grid,
-          this,
-          this.frozenHeadCell,
-          this.frozenSortIcon
-        );
-      }
-      */
-      
       try {
           Sigma.Grid.initColumnEvent(
               grid,

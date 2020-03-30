@@ -191,8 +191,8 @@ Sigma.Tool.HtmlFilterDialog = {
 
       var outW = 430,
         outH = 220;
-      var inW = outW - (Sigma.isBoxModel ? 16 : 18),
-        inH = outH - (Sigma.isBoxModel ? 93 : 95);
+      var inW = outW - 16,
+        inH = outH - 93;
       var dialog = new Sigma.Dialog({
         id: dialogId,
         gridId: gridId,

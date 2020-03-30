@@ -10,45 +10,8 @@ Sigma.loaded = false;
 **/
 Sigma.init = function(win) {
   win = win || window;
-
   Sigma.doc = document;
-
   win.undefined = win.undefined;
-
-  var ua = win.navigator.userAgent.toLowerCase();
-
-  Sigma.isIE = ua.indexOf("msie") > -1;
-  Sigma.isIE7 = ua.indexOf("msie 7") > -1;
-  Sigma.isIE8 = ua.indexOf("msie 8") > -1;
-  Sigma.isIE9 = ua.indexOf("msie 9") > -1;
-
-  /*v102==>*/
-  Sigma.isIE11 = ua.indexOf("trident") > -1;
-  /*<==v102>*/
-  
-  Sigma.isFF = ua.indexOf("firefox") > -1;
-  Sigma.isFF1 = ua.indexOf("firefox/1") > -1;
-  Sigma.isFF2 = ua.indexOf("firefox/2") > -1;
-  Sigma.isFF3 = ua.indexOf("firefox/3") > -1;
-
-  Sigma.isOpera = ua.indexOf("opera") > -1;
-
-  Sigma.isWebkit = /webkit|khtml/.test(ua);
-  Sigma.isSafari = ua.indexOf("safari") > -1 || Sigma.isWebkit;
-  Sigma.isChrome = ua.indexOf("chrome") > -1 || Sigma.isWebkit;
-  Sigma.isGecko = Sigma.isMoz = !Sigma.isSafari && ua.indexOf("gecko") > -1;
-
-  Sigma.isStrict = Sigma.doc.compatMode == "CSS1Compat" || Sigma.isSafari;
-  Sigma.isBoxModel =
-    Sigma.isIE && !Sigma.isIE8 && !Sigma.isIE9 && !Sigma.isStrict;
-
-  Sigma.isNotStrictIE = Sigma.isBoxModel;
-
-  Sigma.isSecure = win.location.href.toLowerCase().indexOf("https") === 0;
-
-  Sigma.isWindows = ua.indexOf("windows") != -1 || ua.indexOf("win32") != -1;
-  Sigma.isMac = ua.indexOf("macintosh") != -1 || ua.indexOf("mac os x") != -1;
-  Sigma.isLinux = ua.indexOf("linux") != -1;
 };
 
 Sigma.init();
@@ -258,14 +221,6 @@ Sigma.$extend(Sigma, {
   **/
   $element: function(el, props) {
     if (Sigma.$type(el, "string")) {
-      if (Sigma.isIE && props && (props.name || props.type)) {
-        var name = props.name ? ' name="' + props.name + '"' : "";
-        var type = props.type ? ' type="' + props.type + '"' : "";
-        delete props.name;
-        delete props.type;
-        el = "<" + el + name + type + ">";
-      }
-      
       
 		  /*v103==>*/
 		  //el = Sigma.doc.createElement(el);
@@ -649,14 +604,6 @@ Sigma.Utils = {
   },
 
   getCellIndex: function(td) {
-    if (Sigma.isIE) {
-      var cells = td.parentNode.cells;
-      for (var i = 0, j = cells.length; i < j; i++) {
-        if (cells[i] === td) {
-          return i;
-        }
-      }
-    }
     return td.cellIndex;
   },
 
@@ -833,12 +780,7 @@ Sigma.Utils = {
         return null;
       }
       Sigma.EventCache.remove(el);
-      if (Sigma.isIE) {
-        Sigma.U.orphanDiv.appendChild(el);
-        Sigma.U.orphanDiv.innerHTML = "";
-      } else {
         el.parentNode.removeChild(el);
-      }
     }
   },
 
@@ -922,10 +864,6 @@ Sigma.Utils = {
     var x = ev.pageX;
     if (!x && 0 !== x) {
       x = ev.clientX || 0;
-
-      if (Sigma.isIE) {
-        x += Sigma.U.getPageScroll()[0];
-      }
     }
 
     return x;
@@ -936,9 +874,6 @@ Sigma.Utils = {
     var y = ev.pageY;
     if (!y && 0 !== y) {
       y = ev.clientY || 0;
-      if (Sigma.isIE) {
-        y += Sigma.U.getPageScroll()[1];
-      }
     }
     return y;
   },
@@ -999,39 +934,18 @@ Sigma.Utils = {
       if (!hasAbsolute && p.style.position == "absolute") {
         hasAbsolute = true;
       }
-      if (Sigma.isGecko) {
-        pe = p;
-        var bt = parseInt(pe.style.borderTopWidth, 10) || 0;
-        var bl = parseInt(pe.style.borderLeftWidth, 10) || 0;
-        x += bl;
-        y += bt;
-        if (p != el && pe.style.overflow != "visible") {
-          x += bl;
-          y += bt;
-        }
-      }
       p = p.offsetParent;
-    }
-
-    if (Sigma.isSafari && hasAbsolute) {
-      x -= bd.offsetLeft;
-      y -= bd.offsetTop;
-    }
-    if (Sigma.isGecko && !hasAbsolute) {
-      var dbd = bd;
-      x += parseInt(dbd.style.borderTopWidth, 10) || 0;
-      y += parseInt(dbd.style.borderTopWidth, 10) || 0;
     }
 
     p = el.parentNode;
     while (p && p != bd) {
-      if (
-        !Sigma.isOpera ||
-        (p.tagName.toUpperCase() != "TR" && p.style.display != "inline")
+      
+      if (p.tagName.toUpperCase() != "TR" && p.style.display != "inline"
       ) {
         x -= p.scrollLeft;
         y -= p.scrollTop;
       }
+      
       p = p.parentNode;
     }
     return [x, y];
@@ -1171,10 +1085,7 @@ Sigma.Utils = {
     if (!el.currentStyle || !el.currentStyle.hasLayout) {
       el.style.zoom = 1;
     }
-    if (Sigma.isIE) {
-      el.style.filter =
-        opacity == 1 ? "" : "alpha(opacity=" + opacity * 100 + ")";
-    }
+    
     el.style.opacity = opacity;
     if (opacity === 0) {
       if (el.style.visibility != "hidden") {
@@ -1361,11 +1272,7 @@ Sigma.Utils.CSS = (function() {
       if (id) {
         rules.setAttribute("id", id);
       }
-      if (Sigma.isIE) {
-        head.appendChild(rules);
-        ss = rules.styleSheet;
-        ss.cssText = cssText;
-      } else {
+      
         try {
           rules.appendChild(docT.createTextNode(cssText));
         } catch (e) {
@@ -1375,7 +1282,7 @@ Sigma.Utils.CSS = (function() {
         ss = rules.styleSheet
           ? rules.styleSheet
           : rules.sheet || docT.styleSheets[docT.styleSheets.length - 1];
-      }
+      
       this.cacheStyleSheet(ss);
       return ss;
     },
@@ -1557,11 +1464,6 @@ Sigma.toQueryString = function(source) {
   }
   return queryString.join("&");
 };
-
-Sigma.toJSONString = function(source, format) {
-  return Sigma.JSON.encode(source, "__gt_", format);
-};
-Sigma.$json = Sigma.toJSONString;
 
 ////////////////////////
 

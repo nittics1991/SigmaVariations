@@ -439,14 +439,14 @@ Sigma.GridDefault = {
       autoExpandColumn: null,
       autoColumnWidth: false,
 
-      cellWidthPadding: Sigma.isBoxModel ? 0 : 4,
-      cellHeightPadding: Sigma.isBoxModel ? 0 : 2,
+      cellWidthPadding: 0,
+      cellHeightPadding: 0,
 
-      cellWidthFix: Sigma.isBoxModel ? 0 : 0, //-1 ,
-      innerWidthFix: Sigma.isBoxModel ? 0 : Sigma.isIE8 ? -1 : -4,
+      cellWidthFix: 0,
+      innerWidthFix: 0,
 
-      freezeFixH: Sigma.isBoxModel ? 0 : 0,
-      freezeFixW: Sigma.isIE ? -1 : -2,
+      freezeFixH: 0,
+      freezeFixW: -1,
 
       toolbarHeight: 24,
       toolBarTopHeight: 0,
@@ -1178,13 +1178,6 @@ Sigma.GridDefault = {
       this.gridDiv = Sigma.$(this.id + "_div");
     } else {
       var classNames = [
-        Sigma.isBoxModel
-          ? "gt-b-ie "
-          : Sigma.isSafari
-            ? "gt-b-safari "
-            : Sigma.isOpera
-              ? "gt-b-opera "
-              : Sigma.isStrict ? "gt-b-strict" : "",
         "gt-grid",
         "gt-skin-" + this.skin
       ];
@@ -1249,8 +1242,7 @@ Sigma.GridDefault = {
     this.separateLine = Sigma.$(this.id + "_separateLine");
     this.toolBarTopHeight =
       this.toolbarPosition == "top" || this.toolbarPosition == "t"
-        ? this.toolbarHeight + (Sigma.isBoxModel ? 0 : 1)
-        : 0;
+        ? this.toolbarHeight : 0;
     //var _f_top = 0;
     if (this.separateLine) {
       this.separateLine.style.top = this.toolBarTopHeight + "px";
@@ -1296,21 +1288,10 @@ Sigma.GridDefault = {
       ("" + this.height).indexOf("%") > 0
         ? this.gridDiv.clientHeight
         : parseInt(this.height);
-    var _fix = 0 - (Sigma.isBoxModel ? 2 : 3);
+    var _fix = 0 - 2;
 
     this.bodyDiv.style.height =
       gHeight - (this.headDivHeight + this.toolbarHeight) + _fix + "px";
-
-    /* todo  :  bug opera  */
-    if (Sigma.isOpera) {
-      var _w = this.gridDiv.clientWidth + _fix + "px";
-      this.viewport.style.width = _w;
-      //var _h=this.gridDiv.clientHeight + _fix +"px";
-      //this.viewport.style.height= _h;
-      if (this.toolBarBox) {
-        this.toolBarBox.style.width = _w;
-      }
-    }
 
     if (this.freezeBodyDiv) {
       this.freezeBodyDiv.style.height = this.bodyDiv.clientHeight + "px";
@@ -1547,7 +1528,7 @@ Sigma.GridDefault = {
     var mL = this.tableMarginLeft;
     var fW = this.freezeBodyDiv.clientWidth; //- mL ;
     var acLeft =
-      this.activeCell.offsetLeft + (Sigma.isFF2 || Sigma.isFF1 ? 0 : mL);
+      this.activeCell.offsetLeft + mL;
 
     var acRight = acLeft + this.activeCell.offsetWidth;
     var acTop = this.activeCell.offsetTop;
@@ -1561,7 +1542,7 @@ Sigma.GridDefault = {
     if (Sigma.$chk(x)) {
       this.bodyDiv.scrollLeft = x;
     } else if (acLeft <= bdLeft + fW) {
-      this.bodyDiv.scrollLeft = acLeft - fW - (fW > 0 ? 1 : 0); //acLeft - ((Sigma.isFF2 || Sigma.isFF1)?0:mL) ;
+      this.bodyDiv.scrollLeft = acLeft - fW - (fW > 0 ? 1 : 0);
     } else if (acRight >= bdRight) {
       this.bodyDiv.scrollLeft = bdLeft + acRight - bdRight + mL;
     }
@@ -1885,7 +1866,7 @@ Sigma.GridDefault = {
 
     if (this.activeEditor !== this.activeDialog) {
       this.activeEditor.setPosition(
-        (Sigma.isFF2 || Sigma.isFF1 ? 0 : leftFix) + cell.offsetLeft,
+        cell.offsetLeft,
         cell.offsetTop
       );
       this.activeEditor.setSize(cell.offsetWidth, cell.offsetHeight);
@@ -2404,17 +2385,13 @@ Sigma.GridDefault = {
     this.toolTipDiv.style.left =
       cell.offsetLeft +
       this.bodyDiv.offsetLeft -
-      this.bodyDiv.scrollLeft +
-      (Sigma.isFF2 || Sigma.isFF1 ? 0 : this.tableMarginLeft) +
-      "px";
+      this.bodyDiv.scrollLeft + "px";
     this.toolTipDiv.style.top =
       cell.offsetTop +
       cell.offsetHeight +
       this.bodyDiv.offsetTop -
       this.bodyDiv.scrollTop +
-      this.toolBarTopHeight +
-      (Sigma.isFF ? 1 : 0) +
-      "px";
+      this.toolBarTopHeight + 0 + "px";
     width && (this.toolTipDiv.style.width = width + "px");
 	
 	
@@ -2524,7 +2501,40 @@ Sigma.GridDefault = {
     grid.requesting = true;
     var action = reqParam[grid.CONST.action];
 
-    if (url) {
+    if (!url) {
+      onFailure({ status: "url is null" });
+        return;
+    }
+    
+    //parameterType未使用
+    try {
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify({data:reqParam}),
+            //headers: new Headers({
+                //Sigma.ajaxから持ってくるか?
+            //})
+        })
+        .then(function(response) {
+            if (response.status !== 200) {
+                throw response.statusText;
+            }
+            return response.json();
+        })
+        then(function(obj) {
+            if(typeof onSuccess === 'function'){
+                onSuccess(obj);
+            }
+        });
+    } catch (e) {
+        if(typeof onFailure === 'function'){
+            onFailure({status:"Exception " + e.message}, e);
+        }
+    }
+    
+    
+    
+    
       try {
         grid.ajax = new Sigma.Ajax(url);
         grid.ajax.encoding = grid.encoding || grid.ajax.encoding;
@@ -2539,9 +2549,9 @@ Sigma.GridDefault = {
       } catch (e) {
         onFailure({ status: "Exception " + e.message }, e);
       }
+      
+      
     } else {
-      onFailure({ status: "url is null" });
-    }
   },
 
   load: function(recount, force) {
@@ -2908,10 +2918,6 @@ Sigma.GridDefault = {
         gTable = Sigma.U.nextElement(gTable);
       }
       grid.freezeBodyTable = gTable;
-      ///if (!Sigma.isIE) {
-      //	grid.freezeHeadDiv.style.left="-1px";
-      //	grid.freezeBodyDiv.style.left="-1px";
-      ///}
     }
 
     grid.bodyFirstRow = grid.getFirstRow();
@@ -3163,10 +3169,6 @@ Sigma.GridDefault = {
 						//} );
 
 					}
-				}
-				
-				if ( Sigma.isOpera ){
-					grid.isColumnResizing=false;
 				}
 			}, null , colObj);
 			
@@ -4376,7 +4378,7 @@ Sigma.GridDefault = {
           reqParam[this.CONST.exportFileName] = fileName;
 
           this.gridFormTextarea.name = name;
-          this.gridFormTextarea.value = Sigma.$json(reqParam);
+          this.gridFormTextarea.value = JSON.stringify(reqParam);
         }
         //alert(this.gridFormTextarea.value)
         this.gridFormFileName.value = fileName;
@@ -4659,24 +4661,12 @@ Sigma.GridDefault = {
       _doc.close();
     }
 
-    if (Sigma.isIE || Sigma.isGecko || Sigma.isSafari) {
       docT = grid.gridIFrame.contentWindow.document;
       printBody(docT);
       grid.gridIFrame.contentWindow.focus();
       grid.gridIFrame.contentWindow.print();
-    } else if (Sigma.isOpera) {
-      var pwin = window.open("");
-      docT = pwin.document;
-      printBody(docT);
-      pwin.focus();
-      // todo
-      Sigma.$thread(function() {
-        pwin.print();
-        Sigma.$thread(function() {
-          pwin.close();
-        }, 2000);
-      });
-    }
+      
+    
     Sigma.$thread(function() {
       grid.hideWaiting();
     }, 1000);
@@ -5234,17 +5224,7 @@ Sigma.GridDefault = {
       _hideOverflow = true;
     }
 
-    if (_hideOverflow) {
-      if (Sigma.isIE) {
-        this.gridDiv.style.overflowY = "hidden";
-      } else if (Sigma.isOpera) {
-        this.gridDiv.style.overflow = "hidden";
-      }
-    }
-
-    //Sigma.$thread(function(){
     grid._onResize(isInit);
-    //});
   },
 
   /**
@@ -5678,7 +5658,7 @@ Sigma.$extend(Sigma.Grid, {
     if (grid.columnMoveS) {
       grid.columnMoveS.style.left =
         colObj.headCell.offsetLeft +
-        (Sigma.isFF2 || Sigma.isFF1 ? 0 : grid.tableMarginLeft) +
+        grid.tableMarginLeft +
         "px";
       grid.columnMoveS.style.display = "block";
     }
@@ -5701,7 +5681,7 @@ Sigma.$extend(Sigma.Grid, {
     _hg.setAttribute("colIndex", colObj.getColumnIndex());
     _hg.setAttribute("offsetX2", left - mX);
     _hg.style.left =
-      left + (Sigma.isFF2 || Sigma.isFF1 ? 0 : grid.tableMarginLeft) + "px";
+      left + grid.tableMarginLeft + "px";
     _hg.style.width = colObj.headCell.offsetWidth - 1 + "px";
     _hg.style.display = "block";
     _hg.innerHTML =
@@ -5725,8 +5705,7 @@ Sigma.$extend(Sigma.Grid, {
     ) {
       var dX = mX - grid.viewportXY[0] + grid.headDiv.scrollLeft;
       grid.headerGhost.style.left =
-        mX +
-        (Sigma.isFF2 || Sigma.isFF1 ? 0 : grid.tableMarginLeft) +
+        mX + grid.tableMarginLeft +
         grid.headerGhost.getAttribute("offsetX2") / 1 +
         "px";
       var sLeft = -1;
@@ -5744,9 +5723,7 @@ Sigma.$extend(Sigma.Grid, {
       }
       if (sLeft >= 0) {
         grid.columnMoveS.style.left =
-          sLeft +
-          (Sigma.isFF2 || Sigma.isFF1 ? 0 : grid.tableMarginLeft) +
-          "px";
+          sLeft + grid.tableMarginLeft + "px";
         grid.columnMoveS.style.display = "block";
       } else {
         grid.columnMoveS.style.display = "none";
@@ -5775,7 +5752,7 @@ Sigma.$extend(Sigma.Grid, {
       var colObj = grid.columnMap[grid.resizeColumnId];
       colObj.newRightX = mX - grid.viewportXY[0];
 
-      var dwidth = colObj.newRightX - colObj.oldRightX; //- ( Sigma.isOpera||Sigma.isSafari?0:1);
+      var dwidth = colObj.newRightX - colObj.oldRightX;
 
       var newWidth = dwidth + parseInt(colObj.width);
       colObj.setWidth(newWidth);
@@ -5789,16 +5766,13 @@ Sigma.$extend(Sigma.Grid, {
 
       grid.syncScroll();
 
-      if (!Sigma.isOpera) {
-        grid.isColumnResizing = false;
-      }
       Sigma.$invoke(grid, "afterColumnResize", [colObj, newWidth, grid]);
     } else if (
       !grid.customHead &&
       grid.headerGhost &&
       grid.headerGhost.style.display == "block"
     ) {
-      var dX = Sigma.isIE ? evt.x : evt.pageX;
+      var dX = evt.pageX;
       var newIndex = grid.columnMoveS.getAttribute("newColIndex");
       var oldIndex = grid.headerGhost.getAttribute("colIndex");
 
@@ -6078,10 +6052,7 @@ Sigma.$extend(Sigma.Grid, {
 		  
         }
       }
-      if (Sigma.isOpera) {
-        grid.isColumnResizing = false;
-      }
-    });
+   });
 
     if (colObj.resizable) {
       separator.colID = colObj.id;
@@ -6222,7 +6193,7 @@ Sigma.initGlobalEvent = function() {
     return;
   }
   //
-  var d = Sigma.isIE ? Sigma.doc.body : Sigma.doc;
+  var d = Sigma.doc;
 
   Sigma.U.addEvent(d, "mousemove", function(event) {
     Sigma.activeGrid && Sigma.Grid.doDocGridHandler(event, Sigma.activeGrid);
